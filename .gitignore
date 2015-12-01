@@ -1,12 +1,26 @@
+lToolBuilders/
+akka-cluster-load-balancing-example/
+*.*~
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
+*.project
+*.cache
+sigar/
+*.classpath
+*.settings/
+target/
+*.bak
+*.log*
+*.lnk
+target/
+.metadata
+RUNNING_PID
+test-output/
+/.DS_Store
+*.DS_Store
 *.war
 *.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+.idea/
+*.iml
+*.gz
+buildinfo.properties
+/bin/
