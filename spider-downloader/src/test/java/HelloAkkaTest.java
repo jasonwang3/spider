@@ -19,7 +19,7 @@ public class HelloAkkaTest {
 
     @AfterClass
     public static void teardown() {
-        system.shutdown();
+        JavaTestKit.shutdownActorSystem(system);
         system.awaitTermination(Duration.create("10 seconds"));
     }
 
