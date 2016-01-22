@@ -9,7 +9,7 @@ import org.slf4j.{LoggerFactory, Logger}
 
 object DownloaderEngineMaster extends App {
   val logger = LoggerFactory.getLogger(classOf[DownloaderEngineMaster])
-  val system = ActorSystem("downloaderEngine")
+  val system = ActorSystem("ClusterSystem")
 
 }
 

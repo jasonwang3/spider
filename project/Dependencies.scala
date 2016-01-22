@@ -11,6 +11,7 @@ object Dependencies {
     import Versions._
 
     val akka_actor =      "com.typesafe.akka"   %% "akka-actor"          % akkaVersion
+    val akka_cluster =    "com.typesafe.akka"   %% "akka-cluster"        % akkaVersion
     val akka_testkit =    "com.typesafe.akka"   %% "akka-testkit"        % akkaVersion
     val akka_slf4j  =     "com.typesafe.akka"   %% "akka-slf4j"          % akkaVersion
     val scalatest =       "org.scalatest"       %% "scalatest"           % "2.2.4"      % "test"
@@ -20,8 +21,22 @@ object Dependencies {
     val slf4f =           "org.slf4j"           % "slf4j-api"            % "1.7.13"
   }
 
+  val spider_cluster_seed = Seq(
+    Compile.akka_actor,
+    Compile.akka_cluster,
+    Compile.akka_slf4j,
+    Compile.akka_testkit,
+    Compile.scalatest,
+    Compile.junit,
+    Compile.junit_interface,
+    Compile.logback,
+    Compile.slf4f
+  )
+
+
   val spider_downloader = Seq(
     Compile.akka_actor,
+    Compile.akka_cluster,
     Compile.akka_slf4j,
     Compile.akka_testkit,
     Compile.scalatest,
