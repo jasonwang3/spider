@@ -1,6 +1,7 @@
+package com.spider.downloader
+
 import akka.actor.ActorSystem
-import akka.event.Logging
-import org.slf4j.{LoggerFactory, Logger}
+import org.slf4j.LoggerFactory
 
 /**
   * Created by jason on 16-1-21.

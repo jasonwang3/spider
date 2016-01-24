@@ -19,6 +19,7 @@ object Dependencies {
     val junit_interface = "com.novocode"        % "junit-interface"      % "0.11"       % "test"
     val logback =         "ch.qos.logback"      % "logback-classic"      % "1.1.3"
     val slf4f =           "org.slf4j"           % "slf4j-api"            % "1.7.13"
+    val guava =           "com.google.guava"    % "guava"                % "19.0"
   }
 
   val spider_cluster_seed = Seq(
@@ -44,6 +45,10 @@ object Dependencies {
     Compile.junit_interface,
     Compile.logback,
     Compile.slf4f
+  )
+
+  val spider_model = Seq(
+    Compile.guava
   )
 
 }
