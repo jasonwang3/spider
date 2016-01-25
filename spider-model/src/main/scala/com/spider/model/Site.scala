@@ -1,6 +1,8 @@
-package com.spider.model.downloader
+package com.spider.model
 
 import com.google.common.collect.{HashBasedTable, Table}
+import com.spider.model.downloader.Request
+import org.apache.http.HttpHost
 
 import scala.collection.immutable.HashMap
 import scala.collection.mutable
@@ -23,7 +25,7 @@ class Site {
 
   var userAgent = ""
 
-  var defaultCookies = mutable.LinkedHashMap[String, String]
+  var defaultCookies = mutable.LinkedHashMap[String, String]()
 
   var cookies: Table[String, String, String] = HashBasedTable.create()
 
@@ -43,6 +45,11 @@ class Site {
 
   var acceptStatCode: Set[Int] = Site.DEFAULT_STATUS_CODE_SET
 
-  var headers = HashMap[String, String]
+  var headers = HashMap[String, String]()
+
+  var httpProxy: HttpHost = null
+
+
+
 
 }
