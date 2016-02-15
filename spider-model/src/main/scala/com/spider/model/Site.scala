@@ -18,8 +18,7 @@ object Site {
 
 }
 
-
-class Site {
+class Site() {
 
   var domain = ""
 
@@ -29,7 +28,7 @@ class Site {
 
   var cookies: Table[String, String, String] = HashBasedTable.create()
 
-  var charset = ""
+  var charset = "utf-8"
 
   var startRequests = Array[Request]()
 
@@ -49,7 +48,19 @@ class Site {
 
   var httpProxy: HttpHost = null
 
+  var useGzip = true
 
+  def toTask(): Task = {
+    val task = new Task
+    task.site = this
+    task.uuid = this.domain
+    task
+  }
+
+  def setDomain(domain: String): Site = {
+    this.domain = domain
+    this
+  }
 
 
 }

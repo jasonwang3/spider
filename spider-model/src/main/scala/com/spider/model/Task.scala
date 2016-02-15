@@ -7,15 +7,8 @@ import java.util.UUID
   */
 class Task {
 
-  var uuid = generateUUID("123")
+  var uuid: String = null
 
   var site: Site = null
 
-  def generateUUID(x: String) = {
-    if (x != null) {
-      x
-    } else {
-      UUID.randomUUID().toString
-    }
-  }
 }
