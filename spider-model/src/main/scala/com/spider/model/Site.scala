@@ -1,6 +1,5 @@
 package com.spider.model
 
-import _root_.us.codecraft.webmagic.proxy.ProxyPool
 import com.google.common.collect.{HashBasedTable, Table}
 import com.spider.model.downloader.{ProxyPool, Request}
 import org.apache.http.HttpHost
@@ -66,5 +65,8 @@ class Site() {
     this
   }
 
+  def getAllCookies: Map[String, Map[String,String]] = {
+    this.cookies.rowMap().asInstanceOf
+  }
 
 }

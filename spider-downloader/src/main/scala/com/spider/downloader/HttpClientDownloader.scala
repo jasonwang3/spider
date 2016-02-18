@@ -6,6 +6,7 @@ import com.spider.model.{Site, Task}
 import org.apache.http.NameValuePair
 import org.apache.http.client.config.{CookieSpecs, RequestConfig}
 import org.apache.http.client.methods.{CloseableHttpResponse, HttpUriRequest, RequestBuilder}
+import org.apache.http.impl.client.CloseableHttpClient
 
 /**
   * Created by jason on 16-1-28.
@@ -40,7 +41,7 @@ class HttpClientDownloader extends Downloader {
       headers.foreach(headers => requestBuilder.addHeader(headers._1, headers._2))
     }
     val requestConfigBuilder: RequestConfig.Builder = RequestConfig.custom().setConnectionRequestTimeout(site.timeOut)
-      .setSocketTimeout(site.timeOut).setConnectTimeout(site.timeOut).setCookieSpec(CookieSpecs.DEFAULT);
+      .setSocketTimeout(site.timeOut).setConnectTimeout(site.timeOut).setCookieSpec(CookieSpecs.DEFAULT)
     //TODO:support for proxy
     requestBuilder.setConfig(requestConfigBuilder.build)
     requestBuilder.build()
@@ -72,9 +73,9 @@ class HttpClientDownloader extends Downloader {
 
   }
 
-//  def getHttpClient(site: Site): CloseableHttpResponse = {
+//  def getHttpClient(site: Site): CloseableHttpClient = {
 //    if (site == null) {
-//
+//      httpClientGenerator.getClient(null)
 //    }
 //  }
 
