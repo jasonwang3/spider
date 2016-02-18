@@ -21,12 +21,19 @@ class Request {
   /**
     * Store additional information in extras.
     */
-  var extra: Map[String, Any] = Map()
+  var extras: Map[String, Any] = null
 
   /**
     * Priority of the request.<br>
     * The bigger will be processed earlier. <br>
     */
   var priority: Long = 0
+
+  def getExtra(key: String): AnyRef = {
+    if (extras == null) {
+      return null
+    }
+    return extras.get(key)
+  }
 
 }

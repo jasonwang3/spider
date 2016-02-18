@@ -1,7 +1,8 @@
 package com.spider.model
 
+import _root_.us.codecraft.webmagic.proxy.ProxyPool
 import com.google.common.collect.{HashBasedTable, Table}
-import com.spider.model.downloader.Request
+import com.spider.model.downloader.{ProxyPool, Request}
 import org.apache.http.HttpHost
 
 import scala.collection.immutable.HashMap
@@ -50,6 +51,8 @@ class Site() {
   var headers = HashMap[String, String]()
 
   var httpProxy: HttpHost = null
+
+  var httpProxyPool: ProxyPool = null
 
   var useGzip = true
 
