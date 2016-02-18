@@ -5,10 +5,11 @@ import java.util.UUID
 /**
   * Created by jason on 16-1-28.
   */
-class Task {
+class Task (_site:Site,_uuid:String){
 
-  var uuid: String = null
+  var uuid: String = _uuid
 
-  var site: Site = null
+  val site: Site = _site
+
 
 }

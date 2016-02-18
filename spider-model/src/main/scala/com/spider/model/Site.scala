@@ -15,6 +15,9 @@ object Site {
 
   val DEFAULT_STATUS_CODE_SET = Set[Int]()
 
+  def create() = {
+    new Site
+  }
 
 }
 
@@ -51,9 +54,7 @@ class Site() {
   var useGzip = true
 
   def toTask(): Task = {
-    val task = new Task
-    task.site = this
-    task.uuid = this.domain
+    val task = new Task(this,this.domain)
     task
   }
 
