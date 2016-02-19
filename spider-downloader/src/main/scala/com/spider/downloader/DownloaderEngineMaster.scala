@@ -1,5 +1,6 @@
 package com.spider.downloader
 
+import akka.actor.ActorSystem
 import com.spider.core.akka.spring.SpringServiceHelper
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
@@ -16,7 +17,7 @@ object DownloaderEngineMaster extends App {
   val applicationContext: ApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml")
   SpringServiceHelper.getInstance.setApplicationContext(applicationContext)
 
-
+  val system = ActorSystem("ClusterSystem")
 
 }
 
