@@ -1,7 +1,6 @@
 package com.spider.seed
 
-import akka.actor.Actor.Receive
-import akka.actor.{Props, ActorLogging, Actor, ActorSystem}
+import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
 import akka.cluster.Cluster
 import akka.cluster.ClusterEvent._
 import org.slf4j.LoggerFactory
@@ -12,7 +11,7 @@ import org.slf4j.LoggerFactory
 object AkkaClusterSeed extends App {
   val logger = LoggerFactory.getLogger(classOf[AkkaClusterSeed])
   val system = ActorSystem("ClusterSystem")
-  system.actorOf(Props[ClusterListener],"clusterListener")
+  system.actorOf(Props[ClusterListener], "clusterListener")
 }
 
 class AkkaClusterSeed() {
@@ -35,7 +34,7 @@ class ClusterListener extends Actor with ActorLogging {
 
   def receive = {
     case MemberUp(member) =>
-      log.info("Member is Up: {},{}", member.address,member.getRoles)
+      log.info("Member is Up: {},{}", member.address, member.getRoles)
     case UnreachableMember(member) =>
       log.info("Member detected as unreachable: {}", member)
     case MemberRemoved(member, previousStatus) =>

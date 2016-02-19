@@ -10,6 +10,8 @@ object Dependencies {
 
     import Versions._
 
+    val core_spring =     "com.spider.core"           % "core-akka-spring"     % "1.0-SNAPSHOT"
+
     val akka_actor =      "com.typesafe.akka"         %% "akka-actor"          % akkaVersion
     val akka_cluster =    "com.typesafe.akka"         %% "akka-cluster"        % akkaVersion
     val akka_testkit =    "com.typesafe.akka"         %% "akka-testkit"        % akkaVersion
@@ -21,6 +23,8 @@ object Dependencies {
     val slf4f =           "org.slf4j"                 % "slf4j-api"            % "1.7.13"
     val guava =           "com.google.guava"          % "guava"                % "19.0"
     val httpcomponents =  "org.apache.httpcomponents" % "httpclient"           % "4.5.1"
+
+    val spring_context =  "org.springframework"       % "spring-context"       % "4.2.4.RELEASE"
   }
 
   val spider_cluster_seed = Seq(
@@ -45,7 +49,9 @@ object Dependencies {
     Compile.junit,
     Compile.junit_interface,
     Compile.logback,
-    Compile.slf4f
+    Compile.slf4f,
+    Compile.spring_context,
+    Compile.core_spring
   )
 
   val spider_model = Seq(

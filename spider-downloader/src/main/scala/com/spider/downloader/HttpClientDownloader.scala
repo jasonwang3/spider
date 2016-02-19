@@ -3,15 +3,22 @@ package com.spider.downloader
 import com.spider.model.downloader.{Page, Request}
 import com.spider.model.utils.HttpConstant
 import com.spider.model.{Site, Task}
+import jdk.nashorn.internal.objects.annotations.Setter
 import org.apache.http.NameValuePair
 import org.apache.http.client.config.{CookieSpecs, RequestConfig}
 import org.apache.http.client.methods.{CloseableHttpResponse, HttpUriRequest, RequestBuilder}
 import org.apache.http.impl.client.CloseableHttpClient
 
+import scala.beans.BeanProperty
+import scala.collection.immutable.HashMap
+
 /**
   * Created by jason on 16-1-28.
   */
 class HttpClientDownloader extends Downloader {
+  @BeanProperty
+  var httpClientGenerator: HttpClientGenerator = null
+  var httpClients: HashMap[String, CloseableHttpClient] = new HashMap[String, CloseableHttpClient]()
 
   override def download(request: Request, task: Task): Page = {
     var site: Site = null
@@ -30,7 +37,7 @@ class HttpClientDownloader extends Downloader {
     var statusCode: Int = 0
 
     val httpUriRequest: HttpUriRequest = getHttpUriRequest(request, site, headers)
-//    httpResponse = getHttpClient(site).execute(httpUriRequest)
+    httpResponse = getHttpClient(site).execute(httpUriRequest)
 
     new Page
   }
@@ -73,11 +80,21 @@ class HttpClientDownloader extends Downloader {
 
   }
 
-//  def getHttpClient(site: Site): CloseableHttpClient = {
-//    if (site == null) {
-//      httpClientGenerator.getClient(null)
-//    }
-//  }
-
+  def getHttpClient(site: Site): CloseableHttpClient = {
+    if (site == null) {
+      return httpClientGenerator.getClient(null)
+    }
+    var httpClient: CloseableHttpClient = httpClients.get(site.domain).get
+    if (httpClient == null) {
+      this synchronized {
+        httpClient = httpClients.get(site.domain).get
+        if (httpClient == null) {
+          httpClient = httpClientGenerator.getClient(site)
+          httpClients += (site.domain -> httpClient)
+        }
+      }
+    }
+    httpClient
+  }
 
 }

@@ -3,7 +3,6 @@ package com.spider.model
 import com.google.common.collect.{HashBasedTable, Table}
 import com.spider.model.downloader.{ProxyPool, Request}
 import org.apache.http.HttpHost
-
 import scala.collection.immutable.HashMap
 import scala.collection.mutable
 
@@ -56,7 +55,7 @@ class Site() {
   var useGzip = true
 
   def toTask(): Task = {
-    val task = new Task(this,this.domain)
+    val task = new Task(this, this.domain)
     task
   }
 
@@ -65,8 +64,8 @@ class Site() {
     this
   }
 
-  def getAllCookies: Map[String, Map[String,String]] = {
-    this.cookies.rowMap().asInstanceOf
+  def getAllCookies: java.util.Map[String, java.util.Map[String, String]] = {
+    this.cookies.rowMap()
   }
 
 }
