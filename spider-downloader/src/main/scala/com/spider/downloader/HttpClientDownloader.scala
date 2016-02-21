@@ -1,10 +1,12 @@
 package com.spider.downloader
 
+import java.io.IOException
+import java.nio.charset.Charset
+
 import com.spider.model.downloader.{Page, Request}
 import com.spider.model.utils.HttpConstant
 import com.spider.model.{Site, Task}
-import jdk.nashorn.internal.objects.annotations.Setter
-import org.apache.http.NameValuePair
+import org.apache.http.{HttpResponse, NameValuePair}
 import org.apache.http.client.config.{CookieSpecs, RequestConfig}
 import org.apache.http.client.methods.{CloseableHttpResponse, HttpUriRequest, RequestBuilder}
 import org.apache.http.impl.client.CloseableHttpClient
@@ -15,7 +17,7 @@ import scala.collection.immutable.HashMap
 /**
   * Created by jason on 16-1-28.
   */
-class HttpClientDownloader extends Downloader {
+class HttpClientDownloader extends AbstractDownloader {
   @BeanProperty
   var httpClientGenerator: HttpClientGenerator = null
   var httpClients: HashMap[String, CloseableHttpClient] = new HashMap[String, CloseableHttpClient]()
@@ -38,6 +40,11 @@ class HttpClientDownloader extends Downloader {
 
     val httpUriRequest: HttpUriRequest = getHttpUriRequest(request, site, headers)
     httpResponse = getHttpClient(site).execute(httpUriRequest)
+    statusCode = httpResponse.getStatusLine.getStatusCode
+    request.putExtra(Request.STATUS_CODE, statusCode)
+    if (statusAccept(acceptStatCode, statusCode)) {
+
+    }
 
     new Page
   }
@@ -97,4 +104,31 @@ class HttpClientDownloader extends Downloader {
     httpClient
   }
 
+  protected def statusAccept(acceptStatCode: Set[Int], statusCode: Int): Boolean = {
+    acceptStatCode.contains(statusCode)
+  }
+
+
+//  protected def handleResponse(request: Request, charset: String, httpResponse: HttpResponse, task: Task): Page = {
+//
+//  }
+
+  @throws(classOf[IOException])
+  protected def getContent(charset: String, httpResponse: HttpResponse): String = {
+    if (charset == null) {
+      val contentBytes: Array[Byte] = IOUtils.toByteArray(httpResponse.getEntity.getContent)
+      val htmlCharset: String = getHtmlCharset(httpResponse, contentBytes)
+      if (htmlCharset != null) {
+        return new String(contentBytes, htmlCharset)
+      }
+      else {
+        logger.warn("Charset autodetect failed, use {} as charset. Please specify charset in Site.setCharset()", Charset.defaultCharset)
+        return new String(contentBytes)
+      }
+    }
+    else {
+      return IOUtils.toString(httpResponse.getEntity.getContent, charset)
+    }
+    "123"
+  }
 }

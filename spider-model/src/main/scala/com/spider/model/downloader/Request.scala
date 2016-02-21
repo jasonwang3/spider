@@ -1,5 +1,8 @@
 package com.spider.model.downloader
 
+import scala.collection.mutable
+
+
 /**
   * Created by jason on 16-1-22.
   */
@@ -21,7 +24,7 @@ class Request {
   /**
     * Store additional information in extras.
     */
-  var extras: Map[String, Any] = null
+  var extras: mutable.HashMap[String, Any] = null
 
   /**
     * Priority of the request.<br>
@@ -34,6 +37,14 @@ class Request {
       return null
     }
     return extras.get(key)
+  }
+
+  def putExtra(key: String, value: AnyRef): Request = {
+    if (extras == null) {
+      extras = mutable.HashMap[String, Any]()
+    }
+    extras += (key -> value)
+    return this
   }
 
 }

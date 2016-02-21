@@ -9,6 +9,8 @@ import com.spider.model.downloader.{Page, Request}
 abstract class AbstractDownloader extends Downloader{
 
 
+  def download(url: String): Html = {
 
+  }
 
 }
