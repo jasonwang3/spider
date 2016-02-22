@@ -32,14 +32,14 @@ class Request {
     */
   var priority: Long = 0
 
-  def getExtra(key: String): AnyRef = {
+  def getExtra(key: String): Any = {
     if (extras == null) {
       return null
     }
     return extras.get(key)
   }
 
-  def putExtra(key: String, value: AnyRef): Request = {
+  def putExtra(key: String, value: Any): Request = {
     if (extras == null) {
       extras = mutable.HashMap[String, Any]()
     }

@@ -3,20 +3,33 @@ package com.spider.downloader
 import java.io.IOException
 import java.nio.charset.Charset
 
+import com.spider.downloader.util.UrlUtils
 import com.spider.model.downloader.{Page, Request}
 import com.spider.model.utils.HttpConstant
 import com.spider.model.{Site, Task}
-import org.apache.http.{HttpResponse, NameValuePair}
+import org.apache.commons.io.IOUtils
 import org.apache.http.client.config.{CookieSpecs, RequestConfig}
 import org.apache.http.client.methods.{CloseableHttpResponse, HttpUriRequest, RequestBuilder}
 import org.apache.http.impl.client.CloseableHttpClient
+import org.apache.http.{HttpResponse, NameValuePair}
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
+import org.slf4j.LoggerFactory
 
 import scala.beans.BeanProperty
 import scala.collection.immutable.HashMap
+import scala.collection.JavaConversions._
 
 /**
   * Created by jason on 16-1-28.
   */
+
+
+object HttpClientDownloader {
+  val logger = LoggerFactory.getLogger(classOf[HttpClientDownloader])
+}
+
 class HttpClientDownloader extends AbstractDownloader {
   @BeanProperty
   var httpClientGenerator: HttpClientGenerator = null
@@ -109,9 +122,9 @@ class HttpClientDownloader extends AbstractDownloader {
   }
 
 
-//  protected def handleResponse(request: Request, charset: String, httpResponse: HttpResponse, task: Task): Page = {
-//
-//  }
+  //  protected def handleResponse(request: Request, charset: String, httpResponse: HttpResponse, task: Task): Page = {
+  //
+  //  }
 
   @throws(classOf[IOException])
   protected def getContent(charset: String, httpResponse: HttpResponse): String = {
@@ -122,13 +135,48 @@ class HttpClientDownloader extends AbstractDownloader {
         return new String(contentBytes, htmlCharset)
       }
       else {
-        logger.warn("Charset autodetect failed, use {} as charset. Please specify charset in Site.setCharset()", Charset.defaultCharset)
+        HttpClientDownloader.logger.warn("Charset autodetect failed, use {} as charset. Please specify charset in Site.setCharset()", Charset.defaultCharset)
         return new String(contentBytes)
       }
     }
     else {
       return IOUtils.toString(httpResponse.getEntity.getContent, charset)
     }
-    "123"
   }
+
+  @throws(classOf[IOException])
+  protected def getHtmlCharset(httpResponse: HttpResponse, contentBytes: Array[Byte]): String = {
+    var charset: String = null
+    val value: String = httpResponse.getEntity.getContentType.getValue
+    charset = UrlUtils.getCharset(value)
+    if (charset.isEmpty) {
+      HttpClientDownloader.logger.debug("Auto get charset: {}", charset)
+      return charset
+    }
+    val defaultCharset: Charset = Charset.defaultCharset
+    val content: String = new String(contentBytes, defaultCharset.name)
+    if (!content.isEmpty) {
+      val document: Document = Jsoup.parse(content)
+      val links: Elements = document.select("meta")
+      links.find(element => {
+        var metaContent: String = element.attr("content")
+        var metaCharset: String = element.attr("charset")
+        if (metaContent.indexOf("charset") != -1) {
+          metaContent = metaContent.substring(metaContent.indexOf("charset"), metaContent.length)
+          charset = metaContent.split("=")(1)
+          true
+        } else if (!metaCharset.isEmpty) {
+          charset = metaCharset
+          true
+        } else {
+          false
+        }
+      })
+
+    }
+    HttpClientDownloader.logger.debug("Auto get charset: {}", charset)
+    charset
+  }
+
+
 }
