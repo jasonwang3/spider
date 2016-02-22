@@ -22,9 +22,9 @@ object Site {
 
 class Site() {
 
-  var domain = ""
+  var domain: String = null
 
-  var userAgent = ""
+  var userAgent: String = null
 
   var defaultCookies = mutable.LinkedHashMap[String, String]()
 

@@ -16,11 +16,11 @@ object Request {
 }
 
 
-class Request {
+class Request(_url: String) {
 
-  var url: String = ""
+  val url: String = _url
 
-  var method: String = ""
+  var method: String = null
   /**
     * Store additional information in extras.
     */

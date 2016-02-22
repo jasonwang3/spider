@@ -33,7 +33,7 @@ object HttpClientDownloader {
 class HttpClientDownloader extends AbstractDownloader {
   @BeanProperty
   var httpClientGenerator: HttpClientGenerator = null
-  var httpClients: HashMap[String, CloseableHttpClient] = new HashMap[String, CloseableHttpClient]()
+  var httpClients: HashMap[String, CloseableHttpClient] = HashMap[String, CloseableHttpClient]()
 
   override def download(request: Request, task: Task): Page = {
     var site: Site = null
@@ -77,13 +77,14 @@ class HttpClientDownloader extends AbstractDownloader {
   protected def selectRequestMethod(request: Request): RequestBuilder = {
     val method = request.method
     if (method == null || method.equalsIgnoreCase(HttpConstant.Method.GET)) {
-      RequestBuilder.get()
+      return RequestBuilder.get()
     } else if (method.equalsIgnoreCase(HttpConstant.Method.POST)) {
       val requestBuilder: RequestBuilder = RequestBuilder.post
       val nameValuePair: Array[NameValuePair] = request.getExtra("nameValuePair").asInstanceOf[Array[NameValuePair]]
       if (nameValuePair != null && nameValuePair.length > 0) {
         nameValuePair.foreach(value => requestBuilder.addParameter(value))
       }
+      return requestBuilder
     } else if (method.equalsIgnoreCase(HttpConstant.Method.HEAD)) {
       return RequestBuilder.head
     }
@@ -104,10 +105,10 @@ class HttpClientDownloader extends AbstractDownloader {
     if (site == null) {
       return httpClientGenerator.getClient(null)
     }
-    var httpClient: CloseableHttpClient = httpClients.get(site.domain).get
+    var httpClient: CloseableHttpClient = httpClients.getOrElse(site.domain, null)
     if (httpClient == null) {
       this synchronized {
-        httpClient = httpClients.get(site.domain).get
+        httpClient = httpClients.getOrElse(site.domain, null)
         if (httpClient == null) {
           httpClient = httpClientGenerator.getClient(site)
           httpClients += (site.domain -> httpClient)
@@ -122,9 +123,14 @@ class HttpClientDownloader extends AbstractDownloader {
   }
 
 
-  //  protected def handleResponse(request: Request, charset: String, httpResponse: HttpResponse, task: Task): Page = {
-  //
-  //  }
+//  protected def handleResponse(request: Request, charset: String, httpResponse: HttpResponse, task: Task): Page = {
+//    val content: String = getContent(charset, httpResponse)
+//    val page: Page = new Page
+//    page.setRawText(content)
+//    page.setUrl(new PlainText(request.getUrl))
+//    page.setRequest(request)
+//    page.setStatusCode(httpResponse.getStatusLine.getStatusCode)
+//  }
 
   @throws(classOf[IOException])
   protected def getContent(charset: String, httpResponse: HttpResponse): String = {

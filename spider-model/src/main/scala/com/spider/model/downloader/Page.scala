@@ -5,4 +5,9 @@ package com.spider.model.downloader
   */
 class Page {
 
+  var request: Request = null
+
+  var resultItems: ResultItems = new ResultItems
+
+
 }
