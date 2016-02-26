@@ -123,14 +123,14 @@ class HttpClientDownloader extends AbstractDownloader {
   }
 
 
-  protected def handleResponse(request: Request, charset: String, httpResponse: HttpResponse, task: Task): Page = {
-    val content: String = getContent(charset, httpResponse)
-    val page: Page = new Page
-    page.setRawText(content)
-    page.setUrl(new PlainText(request.getUrl))
-    page.setRequest(request)
-    page.setStatusCode(httpResponse.getStatusLine.getStatusCode)
-  }
+//  protected def handleResponse(request: Request, charset: String, httpResponse: HttpResponse, task: Task): Page = {
+//    val content: String = getContent(charset, httpResponse)
+//    val page: Page = new Page
+////    page.setRawText(content)
+////    page.setUrl(new PlainText(request.getUrl))
+////    page.setRequest(request)
+////    page.setStatusCode(httpResponse.getStatusLine.getStatusCode)
+//  }
 
   @throws(classOf[IOException])
   protected def getContent(charset: String, httpResponse: HttpResponse): String = {

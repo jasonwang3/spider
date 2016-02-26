@@ -25,6 +25,7 @@ object Dependencies {
     val guava =           "com.google.guava"          % "guava"                % "19.0"
     val httpcomponents =  "org.apache.httpcomponents" % "httpclient"           % "4.5.1"
     val commons_io =      "commons-io"                % "commons-io"           % "2.4"
+    val commons_lang3 =   "org.apache.commons"        % "commons-lang3"        % "3.4"
     val spring_context =  "org.springframework"       % "spring-context"       % "4.2.4.RELEASE"
     val jsoup =           "org.jsoup"                 % "jsoup"                % "1.8.3"
   }
@@ -54,6 +55,7 @@ object Dependencies {
     Compile.spring_context,
     Compile.core_spring,
     Compile.commons_io,
+    Compile.commons_lang3,
     Compile.jsoup
   )
 
