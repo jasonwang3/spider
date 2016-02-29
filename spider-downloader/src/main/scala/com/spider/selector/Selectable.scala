@@ -21,6 +21,8 @@ trait Selectable {
 
   def regex(regex: String): Selectable
 
+  def regex(regex: String, group: Int)
+
   def regex(regex: String, replacement: String): Selectable
 
   def toString: String

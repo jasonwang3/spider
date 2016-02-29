@@ -19,7 +19,6 @@ class PlainText(_sourceTexts: List[String]) extends AbstractSelectable {
   def this(text: String) = this(List(text))
 
 
-  override def exist: Boolean = ???
 
   override def links: Selectable = {
     throw new UnsupportedOperationException("Links can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).")
@@ -31,11 +30,6 @@ class PlainText(_sourceTexts: List[String]) extends AbstractSelectable {
 
   }
 
-  override def get: String = ???
-
-  override def all: List[String] = ???
-
-  override def select(selector: Selector): Selectable = ???
 
   override def xpath(xpath: String): Selectable = {
     throw new UnsupportedOperationException("XPath can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).")

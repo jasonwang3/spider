@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils
 object RegexSelector {
   def apply(_regexStr: String, _group: Int): RegexSelector = {
     assert(!_regexStr.isEmpty)
-    var regexSelector: RegexSelector = new RegexSelector
+    val regexSelector: RegexSelector = new RegexSelector
     var regexStr: String = _regexStr
     if (StringUtils.countMatches(regexStr, "(") - StringUtils.countMatches(regexStr, "\\(") == StringUtils.countMatches(regexStr, "(?:") - StringUtils.countMatches(regexStr, "\\(?:")) {
       regexStr = "(" + regexStr + ")"
@@ -41,7 +41,12 @@ class RegexSelector private() extends Selector {
     selectGroup(text).get(group)
   }
 
-  override def selectList(test: String): List[String] = ???
+  override def selectList(test: String): List[String] = {
+    var strings: List[String] = List()
+    val results: List[RegexResult] = selectGroupList(test)
+    results.foreach(result => strings += result.get(group))
+    strings
+  }
 
 
   def selectGroup(text: String): RegexResult = {
@@ -57,7 +62,7 @@ class RegexSelector private() extends Selector {
   }
 
 
-  def selectGroupList(text: String):List[RegexResult] = {
+  def selectGroupList(text: String): List[RegexResult] = {
     val matcher: Matcher = regex.matcher(text)
     var resultList: List[RegexResult] = List()
     while (matcher.find) {
@@ -65,7 +70,7 @@ class RegexSelector private() extends Selector {
       for (i <- 1 to groups.length) {
         groups(i) = matcher.group(i)
       }
-      resultList  new RegexResult(groups)
+      resultList new RegexResult(groups)
     }
     resultList
   }
