@@ -19,7 +19,6 @@ class PlainText(_sourceTexts: List[String]) extends AbstractSelectable {
   def this(text: String) = this(List(text))
 
 
-
   override def links: Selectable = {
     throw new UnsupportedOperationException("Links can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).")
   }
@@ -30,16 +29,9 @@ class PlainText(_sourceTexts: List[String]) extends AbstractSelectable {
 
   }
 
-
   override def xpath(xpath: String): Selectable = {
     throw new UnsupportedOperationException("XPath can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).")
   }
-
-  override def regex(regex: String): Selectable = ???
-
-  override def regex(regex: String, replacement: String): Selectable = ???
-
-  override def selectList(selector: Selector): Selectable = ???
 
   override def $(selector: String): Selectable = {
     throw new UnsupportedOperationException("$ can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).")
@@ -53,5 +45,5 @@ class PlainText(_sourceTexts: List[String]) extends AbstractSelectable {
     throw new UnsupportedOperationException("Smart content can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).")
   }
 
-  override protected def getSourceTexts: List[String] = ???
+  override protected def getSourceTexts: List[String] = sourceTexts
 }

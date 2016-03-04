@@ -6,6 +6,10 @@ import com.spider.model.selector.RegexResult
 import com.spider.selector.Selector
 import org.apache.commons.lang3.StringUtils
 
+import scala.collection.mutable.ListBuffer
+import scala.collection.parallel.mutable
+
+
 /**
   * Created by jason on 16-2-26.
   */
@@ -42,10 +46,10 @@ class RegexSelector private() extends Selector {
   }
 
   override def selectList(test: String): List[String] = {
-    var strings: List[String] = List()
+    var strings: ListBuffer[String] = ListBuffer()
     val results: List[RegexResult] = selectGroupList(test)
     results.foreach(result => strings += result.get(group))
-    strings
+    strings.toList
   }
 
 
@@ -64,15 +68,15 @@ class RegexSelector private() extends Selector {
 
   def selectGroupList(text: String): List[RegexResult] = {
     val matcher: Matcher = regex.matcher(text)
-    var resultList: List[RegexResult] = List()
+    var resultList: ListBuffer[RegexResult] = ListBuffer()
     while (matcher.find) {
       val groups: Array[String] = new Array[String](10)
       for (i <- 1 to groups.length) {
         groups(i) = matcher.group(i)
       }
-      resultList new RegexResult(groups)
+      resultList += new RegexResult(groups)
     }
-    resultList
+    resultList.toList
   }
 }
 

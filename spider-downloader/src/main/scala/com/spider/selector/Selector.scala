@@ -7,5 +7,5 @@ package com.spider.selector
 trait Selector {
   def select(text: String): String
 
-  def selectList(test: String): List[String];
+  def selectList(text: String): List[String];
 }
