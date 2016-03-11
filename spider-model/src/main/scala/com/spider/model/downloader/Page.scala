@@ -9,5 +9,8 @@ class Page {
 
   var resultItems: ResultItems = new ResultItems
 
+  var page: Page = null
+
+
 
 }

@@ -1,12 +1,10 @@
 package com.spider.selector.impl
 
 import com.spider.selector.AbstractBaseElementSelector
-import org.apache.commons.collections.CollectionUtils
 import org.jsoup.nodes.Element
-import us.codecraft.xsoup.{Xsoup, XPathEvaluator}
+import us.codecraft.xsoup.{XPathEvaluator, Xsoup}
 
-import scala.beans.BeanProperty
-import scala.reflect.internal.util.Collections
+import scala.collection.JavaConversions._
 
 /**
   * Created by jason on 16-3-3.
@@ -20,11 +18,19 @@ class XpathSelector(_xpathStr: String) extends AbstractBaseElementSelector {
     null
   }
 
-  override def hasAttribute: Boolean = ???
+  override def hasAttribute: Boolean = {
+    xPathEvaluator.hasAttribute
+  }
 
-  override def selectElements(element: Element): List[Element] = ???
+  override def selectElements(element: Element): List[Element] = {
+    xPathEvaluator.evaluate(element).getElements.toList
+  }
 
-  override def select(element: Element): String = ???
+  override def select(element: Element): String = {
+    xPathEvaluator.evaluate(element).get()
+  }
 
-  override def selectList(element: Element): List[String] = ???
+  override def selectList(element: Element): List[String] = {
+    xPathEvaluator.evaluate(element).list().toList
+  }
 }
