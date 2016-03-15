@@ -18,5 +18,5 @@ object SpiderBuild extends Build{
   lazy val spider_downloader = Project("spider-downloader",file("spider-downloader")).settings(
     scalaVersion := "2.11.7",
     libraryDependencies ++= Dependencies.spider_downloader
-  )
+  ).dependsOn(spider_model)
 }
