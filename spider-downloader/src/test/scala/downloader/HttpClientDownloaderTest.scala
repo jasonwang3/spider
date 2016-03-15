@@ -1,13 +1,9 @@
 package downloader
 
 import com.spider.downloader.HttpClientDownloader
-import com.spider.model.Site
-import com.spider.model.downloader.Request
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import org.springframework.context.ApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext
-
-import scala.collection.immutable.Stack
 
 
 /**
@@ -25,7 +21,8 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
 
 
   "download" should "download a page" in {
-    httpClientDownloader.download(new Request("https://github.com"),Site.create().toTask())
+    val html = httpClientDownloader.download("https://github.com")
+    html.getFirstSourceText.isEmpty should be false
   }
 
 }

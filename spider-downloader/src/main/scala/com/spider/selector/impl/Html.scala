@@ -1,13 +1,8 @@
 package com.spider.selector.impl
 
-import java.util.Collections
-
 import com.spider.selector.{ElementSelector, Selector}
 import org.jsoup.Jsoup
-import org.jsoup.nodes.{Element, Document, Entities}
-import us.codecraft.webmagic.selector.ElementSelector
-import us.codecraft.webmagic.selector.ElementSelector
-import scala.collection.JavaConversions._
+import org.jsoup.nodes.{Document, Entities}
 
 /**
   * Created by jason on 16-3-8.

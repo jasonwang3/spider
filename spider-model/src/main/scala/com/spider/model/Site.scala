@@ -12,7 +12,7 @@ import scala.collection.mutable
 
 object Site {
 
-  val DEFAULT_STATUS_CODE_SET = Set[Int]()
+  val DEFAULT_STATUS_CODE_SET = Set[Int](200)
 
   def create() = {
     new Site
@@ -66,6 +66,11 @@ class Site() {
 
   def getAllCookies: java.util.Map[String, java.util.Map[String, String]] = {
     this.cookies.rowMap()
+  }
+
+  def setCharset(charset: String): Site = {
+    this.charset = charset
+    this
   }
 
 }
