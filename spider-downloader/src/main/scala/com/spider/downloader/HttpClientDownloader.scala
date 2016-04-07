@@ -28,11 +28,10 @@ import scala.collection.immutable.HashMap
   */
 
 
-object HttpClientDownloader {
-  val logger = LoggerFactory.getLogger(classOf[HttpClientDownloader])
-}
 
 class HttpClientDownloader extends AbstractDownloader {
+  val logger = LoggerFactory.getLogger(classOf[HttpClientGenerator])
+
   @BeanProperty
   var httpClientGenerator: HttpClientGenerator = null
   var httpClients: HashMap[String, CloseableHttpClient] = HashMap[String, CloseableHttpClient]()
@@ -50,6 +49,7 @@ class HttpClientDownloader extends AbstractDownloader {
       charset = site.charset
       headers = site.headers
     }
+    logger.info("downloading page {}", request.url)
     var httpResponse: CloseableHttpResponse = null
     var statusCode: Int = 0
     try {
@@ -58,12 +58,12 @@ class HttpClientDownloader extends AbstractDownloader {
       statusCode = httpResponse.getStatusLine.getStatusCode
       request.putExtra(Request.STATUS_CODE, statusCode)
       if (statusAccept(acceptStatCode, statusCode)) {
-        var page = handleResponse(request, charset, httpResponse, task)
+        val page = handleResponse(request, charset, httpResponse, task)
         return page
       }
     } catch {
       case e: IOException => {
-        HttpClientDownloader.logger.warn("download page " + request.url + " error", e)
+        logger.warn("download page " + request.url + " error", e)
         return null
       }
     } finally {
@@ -75,7 +75,7 @@ class HttpClientDownloader extends AbstractDownloader {
       }
       catch {
         case e: IOException => {
-          HttpClientDownloader.logger.warn("close response fail", e)
+          logger.warn("close response fail", e)
         }
       }
     }
@@ -164,7 +164,7 @@ class HttpClientDownloader extends AbstractDownloader {
         return new String(contentBytes, htmlCharset)
       }
       else {
-        HttpClientDownloader.logger.warn("Charset autodetect failed, use {} as charset. Please specify charset in Site.setCharset()", Charset.defaultCharset)
+        logger.warn("Charset autodetect failed, use {} as charset. Please specify charset in Site.setCharset()", Charset.defaultCharset)
         return new String(contentBytes)
       }
     }
@@ -179,7 +179,7 @@ class HttpClientDownloader extends AbstractDownloader {
     val value: String = httpResponse.getEntity.getContentType.getValue
     charset = UrlUtils.getCharset(value)
     if (charset.isEmpty) {
-      HttpClientDownloader.logger.debug("Auto get charset: {}", charset)
+      logger.debug("Auto get charset: {}", charset)
       return charset
     }
     val defaultCharset: Charset = Charset.defaultCharset
@@ -203,7 +203,7 @@ class HttpClientDownloader extends AbstractDownloader {
       })
 
     }
-    HttpClientDownloader.logger.debug("Auto get charset: {}", charset)
+    logger.debug("Auto get charset: {}", charset)
     charset
   }
 

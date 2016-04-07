@@ -73,4 +73,14 @@ class Site() {
     this
   }
 
+  def addCookie(name: String, value: String): Site = {
+    this.defaultCookies += (name -> value)
+    this
+  }
+
+  def addCookie(domain: String, name: String, value: String): Site = {
+    this.cookies.put(domain, name, value)
+    this
+  }
+
 }

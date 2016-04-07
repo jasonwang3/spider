@@ -1,8 +1,11 @@
 package com.spider.selector.impl
 
+import java.util.Collections
+
 import com.spider.selector.{ElementSelector, Selector}
 import org.jsoup.Jsoup
-import org.jsoup.nodes.{Document, Entities}
+import org.jsoup.nodes.{Document, Element, Entities}
+import scala.collection.JavaConversions._
 
 /**
   * Created by jason on 16-3-8.
@@ -64,6 +67,10 @@ class Html(val _document: Document) extends HtmlNode {
 
   def create(text: String): Html = {
     Html(text)
+  }
+
+  override protected def getElements: List[Element] = {
+    return Collections.singletonList[Element](getDocument).toList
   }
 
 }

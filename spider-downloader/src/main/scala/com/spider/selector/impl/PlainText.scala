@@ -1,6 +1,6 @@
 package com.spider.selector.impl
 
-import com.spider.selector.{AbstractSelectable, Selectable, Selector}
+import com.spider.selector.{AbstractSelectable, Selectable}
 
 /**
   * Created by jason on 16-2-26.

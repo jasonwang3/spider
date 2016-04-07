@@ -4,6 +4,7 @@ import java.util
 
 import com.spider.selector.{AbstractBaseElementSelector, AbstractSelectable, Selectable}
 import org.jsoup.nodes.{Document, Element}
+
 import scala.collection.JavaConversions._
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
@@ -12,12 +13,19 @@ import scala.collection.mutable.{ArrayBuffer, ListBuffer}
   */
 class HtmlNode(_element: List[Element]) extends AbstractSelectable {
 
-  val elements: List[Element] = _element
+  private val elements: List[Element] = _element
 
   def this() = this(null)
 
+  protected def getElements: List[Element] = {
+    return elements
+  }
 
-  override protected def getSourceTexts: List[String] = ???
+  override protected def getSourceTexts: List[String] = {
+    val sourceTests: ListBuffer[String] = ListBuffer()
+    getElements.foreach(f => sourceTests += toString)
+    sourceTests.toList
+  }
 
   override def links: Selectable = xpath("//a/@href")
 

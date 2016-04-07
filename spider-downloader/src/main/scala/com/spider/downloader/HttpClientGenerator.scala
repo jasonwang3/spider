@@ -67,9 +67,6 @@ class HttpClientGenerator private() {
       httpClientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler(site.retryTimes, true))
     }
     generateCookie(httpClientBuilder, site)
-
-
-
     httpClientBuilder.build()
   }
 
