@@ -9,7 +9,6 @@ import com.spider.selector.impl.{Html, Page}
   */
 abstract class AbstractDownloader extends Downloader{
 
-
   def download(url: String): Html = {
     download(url, null)
   }

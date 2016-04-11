@@ -83,4 +83,8 @@ class Site() {
     this
   }
 
+  def addHeader(key: String, value: String): Site = {
+    this.headers += (key -> value)
+    this
+  }
 }
