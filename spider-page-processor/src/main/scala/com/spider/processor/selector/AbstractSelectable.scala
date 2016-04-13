@@ -1,6 +1,6 @@
-package com.spider.selector
+package com.spider.processor.selector
 
-import com.spider.selector.impl.{RegexSelector, PlainText}
+import com.spider.processor.selector.impl.{RegexSelector, PlainText}
 
 /**
   * Created by jason on 16-2-2.

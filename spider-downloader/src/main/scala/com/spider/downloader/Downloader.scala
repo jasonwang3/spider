@@ -1,8 +1,7 @@
 package com.spider.downloader
 
 import com.spider.model.Task
-import com.spider.model.downloader.Request
-import com.spider.selector.impl.Page
+import com.spider.model.downloader.{Page, Request}
 
 /**
   * Created by jason on 16-1-28.

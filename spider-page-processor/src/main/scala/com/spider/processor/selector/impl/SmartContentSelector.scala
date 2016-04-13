@@ -1,7 +1,7 @@
-package com.spider.selector.impl
+package com.spider.processor.selector.impl
 
 
-import com.spider.selector.Selector
+import com.spider.processor.selector.Selector
 
 /**
   * Created by jason on 16-3-2.

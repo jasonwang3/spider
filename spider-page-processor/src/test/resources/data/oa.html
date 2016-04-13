@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/seeyon/common/css/default.css?V=V3_50SP1_null">
+    <link href="/seeyon/common/skin/default/skin.css?V=V3_50SP1_null" type="text/css" rel="stylesheet"><script type="text/javascript">var skinType = '/seeyon/common/skin/default';</script>
+
+
+
+    <link rel="stylesheet" type="text/css" href="/seeyon/apps_res/systemmanager/css/css.css?V=V3_50SP1_null">
+
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/common/js/menu/xmenu.js?V=V3_50SP1_null"></script>
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/common/js/V3X.js?V=V3_50SP1_null"></script>
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/common/jquery/jquery.js?V=V3_50SP1_null"></script>
+
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/apps_res/v3xmain/js/phrase.js?V=V3_50SP1_null"></script>
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/apps_res/bulletin/js/bulletin.js?V=V3_50SP1_null"></script>
+
+
+
+    <script type="text/javascript">
+        <!--
+        var v3x = new V3X();
+        v3x.init("/seeyon", "zh-cn");
+
+        var depId = 974467335571260029;
+
+        v3x.init("/seeyon", "zh-cn");
+        v3x.loadLanguage("/apps_res/v3xmain/js/i18n");
+        v3x.loadLanguage("/apps_res/collaboration/js/i18n");
+        v3x.loadLanguage("/apps_res/edoc/js/i18n");
+        _ = v3x.getMessage;
+
+        var systemPhraseURL = "/seeyon/phrase.do";
+
+        var currentUserId = "-4207766533875479878";
+        var currentUserName = "李乐";
+        //-->
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/common/js/jquery.js?V=V3_50SP1_null"></script>
+    <link rel="stylesheet" type="text/css" href="/seeyon/apps_res/collaboration/css/collaboration.css?V=V3_50SP1_null">
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/apps_res/collaboration/js/collaboration.js?V=V3_50SP1_null"></script>
+    <script type="text/javascript" charset="UTF-8" src="/seeyon/apps_res/collaboration/js/batch.js?V=V3_50SP1_null"></script>
+    <link rel="stylesheet" type="text/css" href="/seeyon/common/css/layout.css?V=V3_50SP1_null"/>
+
+    <script type="text/javascript">
+        <!--
+        function openPendingDetail(_url, openType, w, h) {
+            if(openType == 'href'){
+                location.href = _url;
+            }else {
+                if(_url.indexOf("inquirybasic") > 0) {
+                    openWin(_url) ;
+                } else if(_url.indexOf("newsData") < 0 && _url.indexOf("bulData") < 0) {
+                    var rv = v3x.openWindow({
+                        url: _url,
+                        width : w,
+                        height : h,
+                        workSpace: w ? '' : 'yes',
+                        dialogType:v3x.getBrowserFlag('openWindow')?'modal':'open'
+                    });
+                    if(_url.indexOf("inquirybasic.do?method=showInquiryFrame") != -1){
+                        getA8Top().reFlesh();
+                    }
+                    else if (rv == "true" || rv == true) {
+                        getA8Top().reFlesh();
+                    }
+                } else {
+                    v3x.openWindow({
+                        url: _url,
+                        width : w || screen.width-155,
+                        height : h || screen.height-190,
+                        top : 130,
+                        left : 140,
+                        dialogType: 'open'
+                    });
+                }
+            }
+        }
+        getA8Top().showShortCut();
+
+        var ExtendId = "1";
+        if(ExtendId){
+            try{
+                var ExtendObj = getA8Top().contentFrame.leftFrame.document.getElementById('person_space_' + ExtendId);
+                if(ExtendObj){
+                    ExtendObj.innerHTML = "123";
+                }
+            }
+            catch(e){}
+        }
+        //-->
+    </script>
+    <title>待办工作</title>
+</head>
+<body class="with-header">
+<div class="main_div_row2">
+    <div class="right_div_row2">
+        <div class="top_div_row2">
+
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+                <tr class="page2-header-line">
+                    <td width="100%" height="38" valign="top"  class="page-list-border-LRD gov_noborder gov_border_bottom">
+                        <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr class="page2-header-line">
+                                <td width="45" class="page2-header-img"><div class="morePending"></div></td>
+                                <td class="page2-header-bg">
+                                    待办协同 (123)
+                                </td>
+                                <td class="page2-header-line padding-right" align="right"><a href="javascript:getA8Top().contentFrame.topFrame.back()">返回</a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+
+                            <tr>
+                                <td height="26" class="webfx-menu-bar" >
+
+                                    <script type="text/javascript">
+                                        var myBar = new WebFXMenuBar("/seeyon","webfx-menu-bar-gray");
+                                        myBar.add(new WebFXMenuButton("batch", "批处理", "javascript:batchColl()", [10,1], "", null));
+                                        document.write(myBar);
+                                        document.close();
+                                    </script>
+
+                                </td>
+                                <td height="26" width="40%" class="webfx-menu-bar">
+                                    <div class="div-float-right condition-search-div">
+                                        <form action="" name="searchForm" id="searchForm" method="get" onkeypress="doSearchEnter()" onsubmit="return false" style="margin: 0px">
+                                            <input type="hidden" name="pendingType" value="">
+                                            <input type="hidden" name="method" value="morePending4App">
+                                            <input type="hidden" name="app" value="Coll">
+                                            <input type="hidden" name="fragmentId" value="">
+                                            <input type="hidden" name="ordinal" value="">
+                                            <input type="hidden" name="currentPanel" value="">
+                                            <div class="div-float">
+                                                <select id="condition" name="condition" onChange="showNextSpecialCondition(this)" class="condition">
+                                                    <option value="">--查询条件--</option>
+                                                    <option value="subject">标题</option>
+                                                    <option value="sender">发起人</option>
+                                                    <option value="createDate">发起时间</option>
+
+                                                </select>
+                                            </div>
+                                            <div id="subjectDiv" class="div-float hidden"><input id="textfield" type="text" name="textfield" class="textfield"/></div>
+                                            <div id="senderDiv" class="div-float hidden"><input type="text" name="textfield" class="textfield"></div>
+
+                                            <div id="createDateDiv" class="div-float hidden">
+                                                <input type="text" name="textfield" class="input-date cursor-hand" onclick="whenstart('/seeyon',this,575,140);" readonly>
+                                                -
+                                                <input type="text" name="textfield1" class="input-date cursor-hand" onclick="whenstart('/seeyon',this,675,140);" readonly>
+                                            </div>
+                                            <div onclick="javascript:doSearch()" class="div-float condition-search-button"></div>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td></tr></table>
+        </div>
+
+
+
+
+        <div class="center_div_row2" id="scrollListDiv">
+            <form action="" name="listForm" id="listForm" method="get" onsubmit="return false" style="margin: 0px">
+
+
+                <div id="mxtgrid_pending" class="mxtgrid" style="display:none; width:100%"  dragable="true" subHeight="0">
+                    <div class="hDiv" id="hDivpending"><div class="hDivBox"><table cellpadding="0" cellspacing="0" id="hTablepending"><thead class="table-header">
+                    <tr id="headIDpending">
+                        <th width="5%" align="center"><div style="text-align:center" onclick="sortColumn(event, true, true)"><input type='checkbox' id='allCheckbox' onclick='selectAll(this, "id")'/></div></th>
+                        <th width="35%" type="String"><div style="text-align:" onclick="sortColumn(event, true, true)">标题</div></th>
+                        <th width="10%" type="String" align="left"><div style="text-align:left" onclick="sortColumn(event, true, true)">发起人</div></th>
+                        <th width="15%" type="Date" align="left"><div style="text-align:left" onclick="sortColumn(event, true, true)">发起时间</div></th>
+                        <th width="15%" type="Date" align="left"><div style="text-align:left" onclick="sortColumn(event, true, true)">接收时间</div></th>
+                        <th width="10%" type="String" align="center"><div style="text-align:center" onclick="sortColumn(event, true, true)">处理期限</div></th>
+                        <th width="10%" type="String" align="left"><div style="text-align:left" onclick="sortColumn(event, true, true)">类型</div></th>
+                    </tr>
+                    </thead></table></div></div>
+                    <div style="top: 1px;" class="cDrag" id="cDragpending">
+                        <div style="display: block; height:900px;"></div>
+                        <div style="display: block; height:900px;"></div>
+                        <div style="display: block; height:900px;"></div>
+                        <div style="display: block; height:900px;"></div>
+                        <div style="display: block; height:900px;"></div>
+                        <div style="display: block; height:900px;"></div>
+                        <div style="display: block; height:900px;"></div>
+                    </div>
+                    <div class="bDiv" id="bDivpending"><table border="0" cellpadding="0" cellspacing="0" id="bTablepending"><tbody id="bodyIDpending" class="table-body">
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="-4591262892831194712" false category="1" affairId="2177712827263371927" colSubject="新疆分公司爱慕品牌活动申请" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="新疆分公司爱慕品牌活动申请" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=2177712827263371927&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">新疆分公司爱慕品牌活动申请
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="新疆爱慕品牌代表" class="sort no-read" width="10%" style="text-align:left; width: 229px;">新疆爱慕品牌代表</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 13:24" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;13:24</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 13:29" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;13:29</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="2562264063155979474" false category="1" affairId="4654046473476001686" colSubject="公示爱慕事业部员工月度绩效自评表-3月" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="公示爱慕事业部员工月度绩效自评表-3月" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=4654046473476001686&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">公示爱慕事业部员工月度绩效自评表-3月
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="唐飞" class="sort no-read" width="10%" style="text-align:left; width: 229px;">唐飞</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 13:29" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;13:29</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 13:29" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;13:29</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" class="sort no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="6719558610751867839" false category="1" affairId="7008301643245112068" colSubject="山西经销高平红旗广场店庆促销申请表【新】(太原经销&nbsp;2016-04-13&nbsp;11:08)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="山西经销高平红旗广场店庆促销申请表【新】(太原经销 2016-04-13 11:08)" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=7008301643245112068&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">山西经销高平红旗广场店庆促销申请表【新】(太原经销&nbsp;2016-04-13&nbsp;11:08)
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="太原经销" class="sort no-read" width="10%" style="text-align:left; width: 229px;">太原经销</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 11:17" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;11:17</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 11:32" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;11:32</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="6818330407658082210" false category="1" affairId="-3431484841936531681" colSubject="(第2次重复发起)V6编码规则、产品标准及商标规格表（更新）" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="(第2次重复发起)V6编码规则、产品标准及商标规格表（更新）" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-3431484841936531681&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">(第2次重复发起)V6编码规则、产品标准及商标规格表（更新）
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="靳慧艳" class="sort no-read" width="10%" style="text-align:left; width: 229px;">靳慧艳</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 10:15" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;10:15</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 10:16" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;10:16</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" class="sort no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="496096564410270231" false category="1" affairId="-2274655444207189019" colSubject="天津分公司友谊商厦春季VIP节爱慕促销活动申请" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="天津分公司友谊商厦春季VIP节爱慕促销活动申请" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-2274655444207189019&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">天津分公司友谊商厦春季VIP节爱慕促销活动申请
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="天津公用" class="sort no-read" width="10%" style="text-align:left; width: 229px;">天津公用</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 19:04" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;19:04</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 10:11" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;10:11</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="-1181415740911172039" false category="1" affairId="3504486572905153623" colSubject="YXPP-B10&nbsp;金华一百生活馆五一期间二卖促销申请表【新】(杭州办公用&nbsp;2016-04-12&nbsp;11:02)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="YXPP-B10 金华一百生活馆五一期间二卖促销申请表【新】(杭州办公用 2016-04-12 11:02)" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=3504486572905153623&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">YXPP-B10&nbsp;金华一百生活馆五一期间二卖促销申请表【新】(杭州办公用&nbsp;2016-04-12&nbsp;11:02)
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="杭州办公用" class="sort no-read" width="10%" style="text-align:left; width: 229px;">杭州办公用</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 11:31" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;11:31</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 09:58" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;09:58</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="-4905813150392430818" false category="1" affairId="1203256215863511444" colSubject="吉林&nbsp;&nbsp;&nbsp;促销申请表【新】欧亚店庆吉林市场" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="吉林   促销申请表【新】欧亚店庆吉林市场" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=1203256215863511444&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">吉林&nbsp;&nbsp;&nbsp;促销申请表【新】欧亚店庆吉林市场
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="吉林AM业务" class="sort no-read" width="10%" style="text-align:left; width: 229px;">吉林AM业务</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-11 15:08" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-11&nbsp;15:08</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 09:41" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;09:41</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="3691255555892855560" false category="1" affairId="2602092967373262519" colSubject="天津分公司-爱慕4月-YXPP-B10&nbsp;促销申请表【新】(天津公用&nbsp;2016-04-11&nbsp;11:33)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="天津分公司-爱慕4月-YXPP-B10 促销申请表【新】(天津公用 2016-04-11 11:33)" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=2602092967373262519&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">天津分公司-爱慕4月-YXPP-B10&nbsp;促销申请表【新】(天津公用&nbsp;2016-04-11&nbsp;11:33)
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="天津公用" class="sort no-read" width="10%" style="text-align:left; width: 229px;">天津公用</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-11 11:37" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-11&nbsp;11:37</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 09:31" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;09:31</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="4694166104398843895" false category="1" affairId="-2737657636097079910" colSubject="太原办OL王府井奥莱清明节促销申请表" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="太原办OL王府井奥莱清明节促销申请表" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-2737657636097079910&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">太原办OL王府井奥莱清明节促销申请表
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="太原公用" class="sort no-read" width="10%" style="text-align:left; width: 229px;">太原公用</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-03-30 15:15" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-03-30&nbsp;15:15</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 09:13" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;09:13</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="5641836687962817549" false category="1" affairId="4164333571324201415" colSubject="AM及生活馆促销申请表（新）4.7" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="AM及生活馆促销申请表（新）4.7" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=4164333571324201415&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">AM及生活馆促销申请表（新）4.7
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="西安爱慕品牌经理" class="sort no-read" width="10%" style="text-align:left; width: 229px;">西安爱慕品牌经理</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-07 19:36" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-07&nbsp;19:36</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-13 08:47" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-13&nbsp;08:47</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="9105635055662678616" false category="1" affairId="-1877519196127015837" colSubject="2016年加盟会议及一季度工作会议通知（一季度会议日程更新）" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="2016年加盟会议及一季度工作会议通知（一季度会议日程更新）" class="sort proxy-false nowrap" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-1877519196127015837&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">2016年加盟会议及一季度工作会议通知（一季度会议日程更新）
+						   		
+						   </a></span><span class='inline-block bodyType_OfficeWord'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="魏彬" class="sort" width="10%" style="text-align:left; width: 229px;">魏彬</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 18:28" class="sort" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;18:28</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 18:28" class="sort" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;18:28</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="3673944113421369654" false category="1" affairId="4489800737475021700" colSubject="湖南分公司AM平四&nbsp;促销申请表（张玲）【新】(长沙办公用&nbsp;2016-04-12&nbsp;17:16)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="湖南分公司AM平四 促销申请表（张玲）【新】(长沙办公用 2016-04-12 17:16)" class="sort proxy-false nowrap" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=4489800737475021700&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">湖南分公司AM平四&nbsp;促销申请表（张玲）【新】(长沙办公用&nbsp;2016-04-12&nbsp;17:16)
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="长沙办公用" class="sort" width="10%" style="text-align:left; width: 229px;">长沙办公用</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 17:24" class="sort" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;17:24</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 17:42" class="sort" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;17:42</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="6789433353414787338" false category="1" affairId="-2767957317448481756" colSubject="广东分公司爱慕品牌促销申请表(广州爱慕品牌&nbsp;2016-04-11&nbsp;16:08)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="广东分公司爱慕品牌促销申请表(广州爱慕品牌 2016-04-11 16:08)" class="sort proxy-false nowrap" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-2767957317448481756&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">广东分公司爱慕品牌促销申请表(广州爱慕品牌&nbsp;2016-04-11&nbsp;16:08)
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="广州爱慕品牌" class="sort" width="10%" style="text-align:left; width: 229px;">广州爱慕品牌</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-11 16:14" class="sort" width="15%" style="text-align:left; width: 229px;">2016-04-11&nbsp;16:14</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 17:40" class="sort" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;17:40</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="-4313903755201985215" false category="1" affairId="-577754740297416461" colSubject="2016&nbsp;第14周&nbsp;商品销售情况跟踪-DZ" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="2016 第14周 商品销售情况跟踪-DZ" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-577754740297416461&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">2016&nbsp;第14周&nbsp;商品销售情况跟踪-DZ
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="王丹" class="sort no-read" width="10%" style="text-align:left; width: 229px;">王丹</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 16:53" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;16:53</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 16:53" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;16:53</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" class="sort no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="3830978535178715489" false category="1" affairId="-7787755184187423899" colSubject="YXPP-B10&nbsp;促销申请表【新】(韩笑－江苏&nbsp;2016-04-06&nbsp;14:48)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="YXPP-B10 促销申请表【新】(韩笑－江苏 2016-04-06 14:48)" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-7787755184187423899&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">YXPP-B10&nbsp;促销申请表【新】(韩笑－江苏&nbsp;2016-04-06&nbsp;14:48)
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="韩笑－江苏" class="sort no-read" width="10%" style="text-align:left; width: 229px;">韩笑－江苏</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-07 11:38" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-07&nbsp;11:38</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 16:53" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;16:53</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="-3672960643455040784" false category="1" affairId="-5910801141757883758" colSubject="伊藤双楠店、高新店、建设店二卖场促销申请表【新】(四川分公司爱慕业务&nbsp;2016-04-11&nbsp;14:05)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="伊藤双楠店、高新店、建设店二卖场促销申请表【新】(四川分公司爱慕业务 2016-04-11 14:05)" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-5910801141757883758&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">伊藤双楠店、高新店、建设店二卖场促销申请表【新】(四川分公司爱慕业务&nbsp;2016-04-11&nbsp;14:05)
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="四川分公司爱慕业务" class="sort no-read" width="10%" style="text-align:left; width: 229px;">四川分公司爱慕业务</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-11 14:15" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-11&nbsp;14:15</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 16:35" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;16:35</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="888266197551235392" false category="1" affairId="1012325771637441517" colSubject="湖南分公司AM长沙怀化步步高促销申请表-许江飞【新】(IM长沙业务&nbsp;2016-04-12&nbsp;13:39)" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="湖南分公司AM长沙怀化步步高促销申请表-许江飞【新】(IM长沙业务 2016-04-12 13:39)" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=1012325771637441517&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">湖南分公司AM长沙怀化步步高促销申请表-许江飞【新】(IM长沙业务&nbsp;2016-04-12&nbsp;13:39)
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="IM长沙业务" class="sort no-read" width="10%" style="text-align:left; width: 229px;">IM长沙业务</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 14:39" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;14:39</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 16:27" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;16:27</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="808719165808921576" false category="1" affairId="-7889250045421206382" colSubject="爱慕16SS订货产品供货消化率滚动公示及下一步工作安排" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="爱慕16SS订货产品供货消化率滚动公示及下一步工作安排" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=-7889250045421206382&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">爱慕16SS订货产品供货消化率滚动公示及下一步工作安排
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="杜莎莎" class="sort no-read" width="10%" style="text-align:left; width: 229px;">杜莎莎</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 15:34" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;15:34</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 15:34" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;15:34</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" class="sort no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="erow">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="7538986028773887407" false category="1" affairId="96343978670378084" colSubject="各品牌2016春夏上市规划及方案" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="各品牌2016春夏上市规划及方案" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span class='inline-block importance_2'></span><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=96343978670378084&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">各品牌2016春夏上市规划及方案
+						   		
+						   </a></span><span class='inline-block attachment_table_true'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="索莉" class="sort no-read" width="10%" style="text-align:left; width: 229px;">索莉</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 15:21" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;15:21</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 15:21" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;15:21</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" class="sort no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    <tr class="">
+                        <td onclick="selectRow(this)"><div  align="center" class="sort" width="5%" style="text-align:center; width: 229px;"><input type="checkbox" name='id' value="-2203983610135428365" false category="1" affairId="3070812587364336172" colSubject="爱慕慕澜促销活动赠品备案" ></div></td>
+                        <td onclick="selectRow(this)"><div  title="爱慕慕澜促销活动赠品备案" class="sort proxy-false nowrap no-read" width="35%" style="text-align:; width: 229px;"><span><a  href="javascript:openPendingDetail('/seeyon/collaboration.do?method=detail&from=Pending&affairId=3070812587364336172&from=Pending', 'openWorkSpace', 0, 0)" class="title-more">爱慕慕澜促销活动赠品备案
+						   		
+						   </a></span><span class='inline-block bodyType_FORM'></span></div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="兰州业务3" class="sort no-read" width="10%" style="text-align:left; width: 229px;">兰州业务3</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 10:28" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;10:28</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" title="2016-04-12 13:21" class="sort no-read" width="15%" style="text-align:left; width: 229px;">2016-04-12&nbsp;13:21</div></td>
+                        <td onclick="selectRow(this)"><div  align="center" title="未超期" class="sort deadline-false no-read" width="10%" style="text-align:center; width: 229px;">无</div></td>
+                        <td onclick="selectRow(this)"><div  align="left" class="sort no-read" width="10%" style="text-align:left; width: 229px;"><a  href="/seeyon/collaboration.do?method=collaborationFrame&from=Pending">协同</a></div></td>
+                    </tr>
+                    </tbody></table></div>
+                    <div class="fDIV"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td colspan="7" id="pagerTd" class="table_footer" noWrap>
+                                <script type="text/javascript">
+                                    <!--
+                                    var pageFormMethod = "get"
+                                    var pageQueryMap = new Properties();
+                                    pageQueryMap.put('app', "Coll");
+                                    pageQueryMap.put('method', "morePending4App");
+                                    pageQueryMap.put('_spage', '');
+                                    pageQueryMap.put('page', '1');
+                                    pageQueryMap.put('count', '123');
+                                    //-->
+                                </script>
+                                每页<input type="text" maxlength="3" class="pager-input-25" value="20" name="pageSize" onChange="pagesizeChange(this)" onkeypress="enterSubmit(this, 'pageSize')">条/共123条记录 <span class=hole_count>共7页</span><span class=sepreat>|</span><!a href="javascript:first(this)">首页</!a>
+                            <!a href="javascript:prev(this)">上一页</!a>
+                        <a href="javascript:next(this)">下一页</a>
+                        <a href="javascript:last(this, '7')">末页</a>
+                        <span class=sepreat>|</span>第<input type="text" maxlength="10" class="pager-input-25" value="1" onChange="pageChange(this)" pageCount="7" onkeypress="enterSubmit(this, 'intpage')">页
+                        <input type="button" value="go" class="go" onclick="pageGo(this)">
+                        </td>
+                        </tr>
+                    </table></div>
+                </div>
+                <script>setFFGrid('pending',true)</script>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var oHeight = parseInt(document.body.clientHeight)-112;
+    var oWidth = parseInt(document.body.clientWidth)-5;
+    initFFScroll('scrollListDiv2',oHeight,oWidth);
+
+    //branches_a8_v350sp1_r_gov 常屹修改 GOV-4563  【代理事项】小查询中，输入特殊字符，查询，报错。
+
+
+
+    showCondition("", "", "");
+
+
+
+
+
+</script>
+</body>
+</html>

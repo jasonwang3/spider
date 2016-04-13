@@ -1,12 +1,11 @@
 package com.spider.downloader.actor
 
-import akka.actor.Actor
+import akka.actor.{Actor, Props}
 import akka.actor.Actor.Receive
 import akka.event.Logging
 import com.spider.core.akka.spring.SpringServiceHelper
 import com.spider.downloader.{AbstractDownloader, HttpClientDownloader}
-import com.spider.model.downloader.DownloadRequest
-import com.spider.selector.impl.Page
+import com.spider.model.downloader.{DownloadRequest, Page}
 
 /**
   * Created by jason on 16-3-15.
@@ -22,10 +21,12 @@ class DownloadCoordinatorActor extends Actor {
   }
 
   def processRequest(downloadRequest: DownloadRequest) = {
-
+    val downloadActor = context.actorOf(Props[DownloadActor])
+    downloadActor.tell(downloadActor, self)
   }
 
   def processPage(page: Page) = {
+
 
   }
 

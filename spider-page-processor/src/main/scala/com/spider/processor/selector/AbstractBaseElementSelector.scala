@@ -1,4 +1,4 @@
-package com.spider.selector
+package com.spider.processor.selector
 
 import org.apache.commons.lang3.StringUtils
 import org.jsoup.Jsoup
@@ -27,7 +27,7 @@ abstract class AbstractBaseElementSelector extends Selector with ElementSelector
     if (StringUtils.isNotBlank(text)) {
       return selectElement(Jsoup.parse(text))
     }
-    return null
+    null
   }
 
 

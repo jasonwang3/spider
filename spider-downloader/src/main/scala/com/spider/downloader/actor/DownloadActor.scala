@@ -4,8 +4,7 @@ import akka.actor.Actor
 import akka.event.Logging
 import com.spider.core.akka.spring.SpringServiceHelper
 import com.spider.downloader.{AbstractDownloader, HttpClientDownloader}
-import com.spider.model.downloader.DownloadRequest
-import com.spider.selector.impl.Page
+import com.spider.model.downloader.{DownloadRequest, Page}
 
 /**
   * Created by jason on 16-4-11.

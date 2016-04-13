@@ -1,4 +1,4 @@
-package com.spider.downloader.util
+package com.spider.processor.util
 
 import java.net.{MalformedURLException, URL}
 import java.nio.charset.Charset

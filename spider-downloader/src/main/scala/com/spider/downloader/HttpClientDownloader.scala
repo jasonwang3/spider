@@ -4,10 +4,9 @@ import java.io.IOException
 import java.nio.charset.Charset
 
 import com.spider.downloader.util.UrlUtils
-import com.spider.model.downloader.Request
+import com.spider.model.downloader.{Page, Request}
 import com.spider.model.utils.HttpConstant
 import com.spider.model.{Site, Task}
-import com.spider.selector.impl.{Page, PlainText}
 import org.apache.commons.io.IOUtils
 import org.apache.http.client.config.{CookieSpecs, RequestConfig}
 import org.apache.http.client.methods.{CloseableHttpResponse, HttpUriRequest, RequestBuilder}
@@ -149,7 +148,7 @@ class HttpClientDownloader extends AbstractDownloader {
     val content: String = getContent(charset, httpResponse)
     val page: Page = new Page
     page.rawText = content
-    page.url = new PlainText(request.url)
+//    page.url = new PlainText(request.url)
     page.request = request
     page.statusCode = httpResponse.getStatusLine.getStatusCode
     page

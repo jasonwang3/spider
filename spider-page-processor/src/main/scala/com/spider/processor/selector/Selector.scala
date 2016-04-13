@@ -1,4 +1,4 @@
-package com.spider.selector
+package com.spider.processor.selector
 
 
 /**

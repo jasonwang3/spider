@@ -1,8 +1,8 @@
-package com.spider.selector.impl
+package com.spider.processor.selector.impl
 
 import java.util
 
-import com.spider.selector.{AbstractBaseElementSelector, AbstractSelectable, Selectable}
+import com.spider.processor.selector.{AbstractBaseElementSelector, AbstractSelectable, Selectable}
 import org.jsoup.nodes.{Document, Element}
 
 import scala.collection.JavaConversions._

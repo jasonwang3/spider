@@ -1,6 +1,6 @@
-package com.spider.selector.impl
+package com.spider.processor.selector.impl
 
-import com.spider.selector.AbstractBaseElementSelector
+import com.spider.processor.selector.AbstractBaseElementSelector
 import org.jsoup.nodes.Element
 import us.codecraft.xsoup.{XPathEvaluator, Xsoup}
 

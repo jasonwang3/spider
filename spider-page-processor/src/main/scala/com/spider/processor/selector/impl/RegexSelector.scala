@@ -1,9 +1,9 @@
-package com.spider.selector.impl
+package com.spider.processor.selector.impl
 
 import java.util.regex.{Matcher, Pattern}
 
 import com.spider.model.selector.RegexResult
-import com.spider.selector.Selector
+import com.spider.processor.selector.Selector
 import org.apache.commons.lang3.StringUtils
 
 import scala.collection.mutable.ListBuffer

@@ -23,8 +23,8 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
 
 
   "download" should "download a page" in {
-    val html = httpClientDownloader.download("https://github.com")
-    html.getFirstSourceText.isEmpty should be(false)
+    val page = httpClientDownloader.download("https://github.com")
+    page.rawText should not be (null)
   }
 
   "download with cookies" should "download a page" in {
@@ -34,15 +34,14 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
       .addCookie("github.com", "tz", "Asia%2FShanghai")
       .addCookie("github.com", "user_session", "nW84V1XqEMGOU0ZwCFw19lAULBCSdNMDXztlcpdIESwGqCbOVwYXyadqNNa9vG6snuxlzNjmigc9WFHw")
     val page = httpClientDownloader.download(new Request("https://github.com"), site.toTask())
-    page.getHtml.getFirstSourceText.isEmpty should be(false)
   }
 
   "download http://219.238.188.179/" should "download a page" in {
-    val site: Site = Site.create().setDomain("219.238.188.179").addCookie("219.238.188.179", "JSESSIONID", "D9656D8AC0FD9151C0666D5CDEBB94C1")
+    val site: Site = Site.create().setDomain("219.238.188.179").addCookie("219.238.188.179", "JSESSIONID", "6FCECEFDA2CF051799FEED807A0BE74F")
       .addCookie("219.238.188.179", "login.locale", "zh_CN")
       .addHeader("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36")
-    val page = httpClientDownloader.download(new Request("http://219.238.188.179/seeyon/main.do?main.do?app=Coll&method=morePending4App&_spage=&page=2&count=125&pageSize=20"), site.toTask())
-    println(page.getHtml.getDocument)
+    val page = httpClientDownloader.download(new Request("http://219.238.188.179/seeyon/main.do?method=morePending4App&app=Coll"), site.toTask())
+    page.rawText should not be (null)
   }
 
 }

@@ -1,8 +1,8 @@
-package com.spider.selector.impl
+package com.spider.processor.selector.impl
 
 import java.util.Collections
 
-import com.spider.selector.{ElementSelector, Selector}
+import com.spider.processor.selector.{ElementSelector, Selector}
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{Document, Element, Entities}
 import scala.collection.JavaConversions._
@@ -39,7 +39,7 @@ object Html {
 }
 
 class Html(val _document: Document) extends HtmlNode {
-  private var document: Document = _document
+  private val document: Document = _document
 
   def this() = this(null)
 

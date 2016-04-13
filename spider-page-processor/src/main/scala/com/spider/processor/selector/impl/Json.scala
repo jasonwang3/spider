@@ -1,4 +1,4 @@
-package com.spider.selector.impl
+package com.spider.processor.selector.impl
 
 import us.codecraft.xsoup.XTokenQueue
 

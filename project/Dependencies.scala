@@ -68,4 +68,18 @@ object Dependencies {
     Compile.httpcomponents
   )
 
+  val spider_page_processor = Seq(
+    Compile.akka_actor,
+    Compile.akka_cluster,
+    Compile.akka_slf4j,
+    Compile.akka_testkit,
+    Compile.scalatest,
+    Compile.scalactic,
+    Compile.jsoup,
+    Compile.xsoup,
+    Compile.commons_io,
+    Compile.commons_lang3,
+    Compile.commons_collection
+  )
+
 }
