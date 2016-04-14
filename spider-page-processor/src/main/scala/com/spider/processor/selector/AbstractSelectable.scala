@@ -55,9 +55,15 @@ abstract class AbstractSelectable extends Selectable {
     return selectList(selector, getSourceTexts)
   }
 
-  override def regex(regex: String): Selectable = ???
+  override def regex(regex: String): Selectable = {
+    val regexSelector = RegexSelector(regex)
+    selectList(regexSelector, getSourceTexts)
+  }
 
-  override def regex(regex: String, group: Int) = ???
+  override def regex(regex: String, group: Int) = {
+    val regexSelector = RegexSelector(regex, group)
+    selectList(regexSelector, getSourceTexts)
+  }
 
   override def regex(regex: String, replacement: String) = ???
 

@@ -4,7 +4,6 @@ import java.util
 
 import com.spider.processor.selector.{AbstractBaseElementSelector, AbstractSelectable, Selectable}
 import org.jsoup.nodes.{Document, Element}
-
 import scala.collection.JavaConversions._
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
@@ -48,12 +47,18 @@ class HtmlNode(_element: List[Element]) extends AbstractSelectable {
     selectElements(xpathSelector)
   }
 
-  override def $(selector: String): Selectable = ???
+  override def $(selector: String): Selectable = {
+    val cssSelector: CssSelector = new CssSelector(selector)
+    selectElements(cssSelector)
+  }
 
-  override def $(selector: String, attrName: String): Selectable = ???
+  override def $(selector: String, attrName: String): Selectable = {
+    val cssSelector: CssSelector = new CssSelector(selector)
+    return selectElements(cssSelector)
+  }
 
   protected def selectElements(elementSelector: AbstractBaseElementSelector): Selectable = {
-    var elementIterator: util.ListIterator[Element] = elements.listIterator()
+    var elementIterator: util.ListIterator[Element] = getElements.listIterator()
     if (!elementSelector.hasAttribute) {
       val resultElements: ArrayBuffer[Element] = ArrayBuffer()
       while (elementIterator.hasNext) {
@@ -86,3 +91,4 @@ class HtmlNode(_element: List[Element]) extends AbstractSelectable {
     return element
   }
 }
+
