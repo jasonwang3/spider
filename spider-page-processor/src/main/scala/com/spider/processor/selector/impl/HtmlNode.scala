@@ -58,7 +58,7 @@ class HtmlNode(_element: List[Element]) extends AbstractSelectable {
   }
 
   protected def selectElements(elementSelector: AbstractBaseElementSelector): Selectable = {
-    var elementIterator: util.ListIterator[Element] = getElements.listIterator()
+    var elementIterator: Iterator[Element] = getElements.listIterator()
     if (!elementSelector.hasAttribute) {
       val resultElements: ArrayBuffer[Element] = ArrayBuffer()
       while (elementIterator.hasNext) {
@@ -79,13 +79,13 @@ class HtmlNode(_element: List[Element]) extends AbstractSelectable {
     }
   }
 
-  private def checkElementAndConvert(elementIterator: util.ListIterator[Element]): Element = {
-    val element: Element = elementIterator.next
+  private def checkElementAndConvert(elementIterator: Iterator[Element]): Element = {
+    var element: Element = elementIterator.next
     if (!(element.isInstanceOf[Document])) {
       val root: Document = new Document(element.ownerDocument.baseUri)
       val clone: Element = element.clone
       root.appendChild(clone)
-      elementIterator.set(root)
+      element = root
       return root
     }
     return element

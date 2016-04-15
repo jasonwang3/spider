@@ -56,8 +56,8 @@ class RegexSelector private() extends Selector {
   def selectGroup(text: String): RegexResult = {
     val matcher: Matcher = regex.matcher(text)
     if (matcher.find) {
-      val groups: Array[String] = new Array[String](10)
-      for (i <- 1 to groups.length) {
+      val groups: Array[String] = new Array[String](matcher.groupCount + 1)
+      for (i <- 0 to groups.length - 1) {
         groups(i) = matcher.group(i)
       }
       return new RegexResult(groups)
@@ -70,8 +70,8 @@ class RegexSelector private() extends Selector {
     val matcher: Matcher = regex.matcher(text)
     var resultList: ListBuffer[RegexResult] = ListBuffer()
     while (matcher.find) {
-      val groups: Array[String] = new Array[String](10)
-      for (i <- 1 to groups.length) {
+      val groups: Array[String] = new Array[String](matcher.groupCount + 1)
+      for (i <- 0 to groups.length - 1) {
         groups(i) = matcher.group(i)
       }
       resultList += new RegexResult(groups)

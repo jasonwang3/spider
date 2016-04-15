@@ -1,6 +1,8 @@
 package com.spider.processor.selector
 
-import com.spider.processor.selector.impl.{RegexSelector, PlainText}
+import com.spider.processor.selector.impl.{PlainText, RegexSelector}
+
+import scala.collection.mutable.ListBuffer
 
 /**
   * Created by jason on 16-2-2.
@@ -26,8 +28,11 @@ abstract class AbstractSelectable extends Selectable {
   }
 
   protected def selectList(selector: Selector, strings: List[String]) = {
-    val results = for (string <- strings;
-                       result <- selector.selectList(string)) yield result
+    val results =
+      for (string <- strings;
+           result <- selector.selectList(string)
+           if (!result.isEmpty)
+      ) yield result
     new PlainText(results)
   }
 
