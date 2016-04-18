@@ -15,7 +15,7 @@ class RegexResult(_groups: Array[String]) {
   def this() = this(null)
 
   def get(groupId: Int): String = {
-    if (groupId == null) {
+    if (groupId == 0) {
       return null
     }
     groups(groupId)

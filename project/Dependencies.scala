@@ -82,4 +82,6 @@ object Dependencies {
     Compile.commons_collection
   )
 
+  val spider_api = Seq()
+
 }
