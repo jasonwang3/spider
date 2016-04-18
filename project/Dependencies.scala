@@ -1,3 +1,4 @@
+import play.sbt.PlayImport._
 import sbt._
 
 object Dependencies {
@@ -82,6 +83,11 @@ object Dependencies {
     Compile.commons_collection
   )
 
-  val spider_api = Seq()
+  val spider_api = Seq(
+    jdbc,
+    cache,
+    ws,
+    "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  )
 
 }
