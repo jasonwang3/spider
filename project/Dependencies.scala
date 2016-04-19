@@ -84,6 +84,10 @@ object Dependencies {
   )
 
   val spider_api = Seq(
+    Compile.akka_actor,
+    Compile.akka_cluster,
+    Compile.akka_slf4j,
+    Compile.akka_testkit,
     jdbc,
     cache,
     ws,
