@@ -69,7 +69,7 @@ class Html(val _document: Document) extends HtmlNode {
     Html(text)
   }
 
-  override protected def getElements: List[Element] = {
+  override def getElements: List[Element] = {
     return Collections.singletonList[Element](getDocument).toList
   }
 

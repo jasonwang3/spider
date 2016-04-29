@@ -22,7 +22,7 @@ class HtmlNode(_element: List[Element]) extends AbstractSelectable {
 
   override protected def getSourceTexts: List[String] = {
     val sourceTests: ListBuffer[String] = ListBuffer()
-    getElements.foreach(f => sourceTests += toString)
+    getElements.foreach(f => sourceTests += f.toString)
     sourceTests.toList
   }
 

@@ -37,10 +37,10 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
   }
 
   "download http://219.238.188.179/" should "download a page" in {
-    val site: Site = Site.create().setDomain("219.238.188.179").addCookie("219.238.188.179", "JSESSIONID", "6FCECEFDA2CF051799FEED807A0BE74F")
+    val site: Site = Site.create().setDomain("219.238.188.179").addCookie("219.238.188.179", "JSESSIONID", "3F7A12BDDFFE24CEB68E3006DE5C314B")
       .addCookie("219.238.188.179", "login.locale", "zh_CN")
       .addHeader("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36")
-    val page = httpClientDownloader.download(new Request("http://219.238.188.179/seeyon/main.do?method=morePending4App&app=Coll"), site.toTask())
+    val page = httpClientDownloader.download(new Request("http://219.238.188.179/seeyon/collaboration.do?method=getContent&summaryId=-4591262892831194712&affairId=2177712827263371927&from=Pending&isQuote=&type=&lenPotent="), site.toTask())
     page.rawText should not be (null)
   }
 
