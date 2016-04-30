@@ -31,6 +31,7 @@ object Dependencies {
     val spring_context =     "org.springframework"       % "spring-context"       % "4.2.4.RELEASE"
     val jsoup =              "org.jsoup"                 % "jsoup"                % "1.8.3"
     val xsoup =              "us.codecraft"              % "xsoup"                % "0.3.1"
+    val poi =                "org.apache.poi"            % "poi"                  % "3.14"
   }
 
   val spider_cluster_seed = Seq(
@@ -80,7 +81,8 @@ object Dependencies {
     Compile.xsoup,
     Compile.commons_io,
     Compile.commons_lang3,
-    Compile.commons_collection
+    Compile.commons_collection,
+    Compile.poi
   )
 
   val spider_api = Seq(

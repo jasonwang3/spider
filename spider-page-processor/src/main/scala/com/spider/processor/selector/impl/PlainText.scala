@@ -46,4 +46,6 @@ class PlainText(_sourceTexts: List[String]) extends AbstractSelectable {
   }
 
   override protected def getSourceTexts: List[String] = sourceTexts
+
+  override def srcs: Selectable = ???
 }

@@ -19,6 +19,8 @@ trait Selectable {
 
   def links: Selectable
 
+  def srcs: Selectable
+
   def regex(regex: String): Selectable
 
   def regex(regex: String, group: Int)
