@@ -1,6 +1,8 @@
 package com.spider.model
 
+import com.spider.model.Action.Action
 import com.spider.model.downloader.DownloadRequest
+
 import scala.collection.mutable
 
 /**
@@ -12,5 +14,5 @@ class Spider {
 
   var downloadRequest: DownloadRequest = null
 
-  var actions: mutable.HashMap[Rule, Action.Value] = null
+  var actions: mutable.HashMap[Rule, Action] = null
 }
