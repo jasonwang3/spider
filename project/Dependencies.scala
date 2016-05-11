@@ -96,4 +96,20 @@ object Dependencies {
     "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
   )
 
+  val spider_coordinator = Seq(
+    Compile.akka_actor,
+    Compile.akka_cluster,
+    Compile.akka_slf4j,
+    Compile.akka_testkit,
+    Compile.scalatest,
+    Compile.scalactic,
+    Compile.logback,
+    Compile.slf4f,
+    Compile.spring_context,
+    Compile.core_spring,
+    Compile.commons_io,
+    Compile.commons_lang3,
+    Compile.commons_collection
+  )
+
 }
