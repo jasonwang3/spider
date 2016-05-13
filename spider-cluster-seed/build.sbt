@@ -18,3 +18,16 @@ mappings in Universal <++= (packageBin in Compile, baseDirectory ) map { (_, tar
   (dir.*** --- dir) pair flatRebase("conf")
 }
 
+/** docker start */
+packageName in Docker := packageName.value
+
+version in Docker := version.value
+
+dockerBaseImage := "java"
+
+dockerRepository := Some("index.tenxcloud.com/w926494698")
+
+dockerExposedPorts := Seq(2551)
+
+defaultLinuxInstallLocation in Docker := "/opt/docker"
+/** docker end */

@@ -1,4 +1,5 @@
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
+import com.typesafe.sbt.packager.docker.DockerPlugin
 import com.typesafe.sbt.packager.linux.LinuxPlugin
 import sbt.Keys._
 import sbt._
@@ -12,7 +13,7 @@ object SpiderBuild extends Build {
   lazy val spider_cluster_seed = Project("spider-cluster-seed", file("spider-cluster-seed")).settings(
     scalaVersion := "2.11.7",
     libraryDependencies ++= Dependencies.spider_cluster_seed
-  ).enablePlugins(JavaAppPackaging).enablePlugins(LinuxPlugin)
+  ).enablePlugins(JavaAppPackaging).enablePlugins(LinuxPlugin).enablePlugins(DockerPlugin)
 
   lazy val spider_model = Project("spider-model", file("spider-model")).settings(
     scalaVersion := "2.11.7",
