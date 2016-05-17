@@ -17,4 +17,7 @@ class Spider(_id: String, _request: Request, _site: Site, _actions: mutable.Hash
   val site: Site = _site
 
   val actions: mutable.HashMap[Rule, Action] = _actions
+
+
+  override def toString = s"Spider(id=$id, request=$request, site=$site, actions=$actions)"
 }

@@ -21,6 +21,7 @@ class DownloadActor extends Actor {
   def download(downloadRequest: DownloadRequest): Unit = {
     log.info("received download request,url is {}", downloadRequest.request.url)
     val page: Page = downloader.download(downloadRequest.request, downloadRequest.site.toTask())
+    page.step = downloadRequest.step
     sender().tell(page, self)
   }
 

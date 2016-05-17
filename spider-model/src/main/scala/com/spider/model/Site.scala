@@ -20,7 +20,8 @@ object Site {
 
 }
 
-class Site() {
+@SerialVersionUID(1L)
+class Site() extends Serializable{
 
   var domain: String = null
 

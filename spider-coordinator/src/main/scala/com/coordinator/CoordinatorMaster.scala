@@ -1,6 +1,7 @@
 package com.coordinator
 
 import akka.actor.{ActorSystem, Props}
+import com.coordinator.actor.SpiderCoordinatorActor
 import org.slf4j.LoggerFactory
 
 /**
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory
 object CoordinatorMaster extends App {
   val logger = LoggerFactory.getLogger(classOf[CoordinatorMaster])
   val system = ActorSystem("ClusterSystem")
+  system.actorOf(Props[SpiderCoordinatorActor], "spiderCoordinatorActor")
 
 }
 
