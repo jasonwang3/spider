@@ -21,6 +21,5 @@ class ProcessorCoordinatorActor extends Actor with ActorLogging {
 
   override def preStart = {
     log.info("ProcessorCoordinatorActor stated")
-
   }
 }

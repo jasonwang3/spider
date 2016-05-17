@@ -1,5 +1,6 @@
 package com.spider.model
 
+import com.spider.model.Action.Action
 import com.spider.model.support.SelectorType.SelectorType
 
 import scala.collection.mutable
@@ -8,9 +9,12 @@ import scala.collection.mutable
   * Created by jason on 16-4-19.
   */
 @SerialVersionUID(1L)
-class Rule extends Serializable{
+class Rule(_action: Action, _matchRule: mutable.LinkedHashMap[SelectorType, String]) extends Serializable{
   // CSS -> "div.bDiv", XPATH -> frame[@id='detailMainFrame']
-  var matchRule: mutable.LinkedHashMap[SelectorType, String] = null
+  val action: Action = _action
+
+  val matchRule: mutable.LinkedHashMap[SelectorType, String] = _matchRule
+
 
 
 

@@ -1,6 +1,6 @@
 package com.spider.downloader.actor
 
-import akka.actor.Actor
+import akka.actor.{Actor, Props}
 import akka.event.Logging
 import com.spider.core.akka.spring.SpringServiceHelper
 import com.spider.downloader.{AbstractDownloader, HttpClientDownloader}
@@ -9,7 +9,13 @@ import com.spider.model.downloader.{DownloadRequest, Page}
 /**
   * Created by jason on 16-4-11.
   */
-class DownloadActor extends Actor {
+
+object DownloadActor {
+  def props(spiderId: String): Props = Props(classOf[DownloadActor], spiderId)
+}
+
+class DownloadActor(_spiderId: String) extends Actor {
+  val spiderId: String = _spiderId
   val log = Logging(context.system, this)
   var downloader: AbstractDownloader = null
 
@@ -27,6 +33,6 @@ class DownloadActor extends Actor {
 
   override def preStart() = {
     downloader = SpringServiceHelper.getBean("httpClientDownloader").asInstanceOf[HttpClientDownloader]
-    log.info("downloadCoordinatorActor start")
+    log.info("downloadCoordinatorActor start, spider id is {}", spiderId)
   }
 }

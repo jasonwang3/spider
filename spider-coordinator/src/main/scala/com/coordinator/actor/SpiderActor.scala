@@ -4,7 +4,8 @@ import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSub
 import akka.cluster.pubsub.DistributedPubSubMediator.Publish
 import com.spider.model.downloader.{DownloadRequest, Page, Request}
-import com.spider.model.{PubSubMessage, Site, Spider}
+import com.spider.model.processor.AnalyzeRequest
+import com.spider.model.{Action, PubSubMessage, Site, Spider}
 
 /**
   * Created by jason on 16-5-13.
@@ -28,7 +29,18 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
     log.info("received page, status code is {}", page.statusCode)
     val step = page.step
     if (page.statusCode == 200) {
-
+      val rule = spider.rules(step - 1)
+      if (rule != null) {
+        val action = rule.action
+        if (action == Action.Download) {
+          val analyzeRequest: AnalyzeRequest = new AnalyzeRequest(spider.id, step, page.rawText, rule)
+          mediator ! Publish(PubSubMessage.ANALYZE_REQUEST, analyzeRequest)
+        }
+      } else {
+        //TODO
+      }
+    } else {
+      //TODO
     }
   }
 
@@ -39,7 +51,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
 
   override def preStart() = {
     log.info("Spider Actor started, name is {}", self.path.name)
-    val downLoadRequest = generateDownloadRequest(spider.request, spider.site, 0)
+    val downLoadRequest = generateDownloadRequest(spider.request, spider.site, 1)
     sendDownloadRequest(downLoadRequest)
   }
 }

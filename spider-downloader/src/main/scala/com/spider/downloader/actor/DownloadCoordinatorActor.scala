@@ -11,7 +11,7 @@ import com.spider.model.downloader.DownloadRequest
 /**
   * Created by jason on 16-3-15.
   */
-class DownloadCoordinatorActor extends Actor with ActorLogging{
+class DownloadCoordinatorActor extends Actor with ActorLogging {
   var downloader: AbstractDownloader = null
   val mediator = DistributedPubSub(context.system).mediator
 
@@ -24,7 +24,7 @@ class DownloadCoordinatorActor extends Actor with ActorLogging{
   }
 
   def processRequest(downloadRequest: DownloadRequest) = {
-    val downloadActor = context.actorOf(Props[DownloadActor], "downloadActor-" + downloadRequest.spiderId)
+    val downloadActor = context.actorOf(DownloadActor.props(downloadRequest.spiderId))
     downloadActor.tell(downloadRequest, sender)
   }
 

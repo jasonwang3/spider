@@ -8,7 +8,7 @@ import scala.collection.mutable
 /**
   * Created by jason on 16-4-19.
   */
-class Spider(_id: String, _request: Request, _site: Site, _actions: mutable.HashMap[Rule, Action]) {
+class Spider(_id: String, _request: Request, _site: Site, _rules: List[Rule]) {
 
   var id: String = _id
 
@@ -16,8 +16,8 @@ class Spider(_id: String, _request: Request, _site: Site, _actions: mutable.Hash
 
   val site: Site = _site
 
-  val actions: mutable.HashMap[Rule, Action] = _actions
+  val rules: List[Rule] = _rules
 
 
-  override def toString = s"Spider(id=$id, request=$request, site=$site, actions=$actions)"
+  override def toString = s"Spider(id=$id, request=$request, site=$site, rules=$rules)"
 }
