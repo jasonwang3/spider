@@ -1,6 +1,6 @@
 package com.spider.downloader.actor
 
-import akka.actor.{Actor, ActorLogging, Props}
+import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSub
 import akka.cluster.pubsub.DistributedPubSubMediator.{Subscribe, SubscribeAck}
 import com.spider.core.akka.spring.SpringServiceHelper

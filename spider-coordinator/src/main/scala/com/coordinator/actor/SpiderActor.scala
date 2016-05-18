@@ -4,7 +4,7 @@ import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSub
 import akka.cluster.pubsub.DistributedPubSubMediator.Publish
 import com.spider.model.downloader.{DownloadRequest, Page, Request}
-import com.spider.model.processor.AnalyzeRequest
+import com.spider.model.processor.{AnalyzeRequest, AnalyzeResponse}
 import com.spider.model.{Action, PubSubMessage, Site, Spider}
 
 /**
@@ -16,6 +16,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
 
   override def receive: Receive = {
     case page: Page => processPage(page)
+    case analyzeResponse: AnalyzeResponse => processAnalyzeResponse(analyzeResponse)
     case _ => log.info("received unknown message")
 
   }
@@ -26,7 +27,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   }
 
   def processPage(page: Page): Unit = {
-    log.info("received page, status code is {}", page.statusCode)
+    log.debug("received page, status code is {}", page.statusCode)
     val step = page.step
     if (page.statusCode == 200) {
       val rule = spider.rules(step - 1)
@@ -43,6 +44,16 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
       //TODO
     }
   }
+
+  def processAnalyzeResponse(analyzeResponse: AnalyzeResponse) = {
+    log.debug("received analyze response {}", analyzeResponse)
+    analyzeResponse.targets.foreach(url => {
+      val downloadRequest: DownloadRequest = new DownloadRequest(new Request("http://219.238.188.179" + url), spider.site, spider.id, analyzeResponse.step + 1)
+      mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
+    })
+  }
+
+
 
   def generateDownloadRequest(request: Request, site: Site, step: Int): DownloadRequest = {
     val downloadRequest: DownloadRequest = new DownloadRequest(request, site, spider.id, step)

@@ -36,6 +36,10 @@ object Html {
       }
     }
   }
+
+  def create(text: String): Html = {
+    Html(text)
+  }
 }
 
 class Html(val _document: Document) extends HtmlNode {
@@ -65,9 +69,6 @@ class Html(val _document: Document) extends HtmlNode {
     }
   }
 
-  def create(text: String): Html = {
-    Html(text)
-  }
 
   override def getElements: List[Element] = {
     return Collections.singletonList[Element](getDocument).toList

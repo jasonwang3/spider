@@ -8,7 +8,7 @@
 
 	<logger name="akka" level="INFO" />
 	<logger name="akka.cluster" level="INFO" />
-	<logger name="akka.config" level="DEBUG" />
+	<logger name="akka.config" level="INFO" />
 	<logger name="akka.serialization" level="INFO" />
 
 	<root level="INFO">

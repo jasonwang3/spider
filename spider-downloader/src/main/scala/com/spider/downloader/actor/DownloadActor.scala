@@ -29,6 +29,7 @@ class DownloadActor(_spiderId: String) extends Actor {
     val page: Page = downloader.download(downloadRequest.request, downloadRequest.site.toTask())
     page.step = downloadRequest.step
     sender().tell(page, self)
+    context.stop(self)
   }
 
   override def preStart() = {
