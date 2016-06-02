@@ -2,7 +2,7 @@ package com.coordinator.actor
 
 import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSub
-import akka.cluster.pubsub.DistributedPubSubMediator.Publish
+import akka.cluster.pubsub.DistributedPubSubMediator.{Publish, Subscribe}
 import com.spider.model.downloader.{DownloadRequest, Page, Request}
 import com.spider.model.processor.{AnalyzeRequest, AnalyzeResponse}
 import com.spider.model.{Action, PubSubMessage, Site, Spider}
@@ -12,6 +12,9 @@ import com.spider.model.{Action, PubSubMessage, Site, Spider}
   */
 class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   val mediator = DistributedPubSub(context.system).mediator
+
+//  mediator ! Subscribe(PubSubMessage.ANALYZE_RESPONSE, self)
+
   val spider: Spider = _spider
 
   override def receive: Receive = {
@@ -34,7 +37,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
       if (rule != null) {
         val action = rule.action
         if (action == Action.Download) {
-          val analyzeRequest: AnalyzeRequest = new AnalyzeRequest(spider.id, step, page.rawText, rule)
+          val analyzeRequest: AnalyzeRequest = new AnalyzeRequest(spider.id, step, page.rawText, rule, spider.site.domain)
           mediator ! Publish(PubSubMessage.ANALYZE_REQUEST, analyzeRequest)
         }
       } else {

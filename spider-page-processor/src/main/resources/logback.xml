@@ -6,10 +6,13 @@
     </encoder>
 	</appender>
 
-	<logger name="akka" level="INFO" />
-	<logger name="akka.cluster" level="INFO" />
-	<logger name="akka.config" level="INFO" />
-	<logger name="akka.serialization" level="INFO" />
+    <logger name="akka" level="WARN" />
+    <logger name="akka.cluster" level="WARN" />
+    <logger name="akka.config" level="WARN" />
+    <logger name="akka.serialization" level="WARN" />
+
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="com.spider" level="DEBUG"/>
 
 	<root level="INFO">
 		<appender-ref ref="stdout" />

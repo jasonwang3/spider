@@ -1,12 +1,14 @@
 package com.spider.downloader.actor
 
-import akka.actor.{Actor, ActorLogging}
+import akka.actor.SupervisorStrategy.{Escalate, Restart, Resume, Stop}
+import akka.actor.{Actor, ActorLogging, OneForOneStrategy}
 import akka.cluster.pubsub.DistributedPubSub
 import akka.cluster.pubsub.DistributedPubSubMediator.{Subscribe, SubscribeAck}
 import com.spider.core.akka.spring.SpringServiceHelper
 import com.spider.downloader.{AbstractDownloader, HttpClientDownloader}
 import com.spider.model.PubSubMessage
 import com.spider.model.downloader.DownloadRequest
+import scala.concurrent.duration._
 
 /**
   * Created by jason on 16-3-15.
@@ -23,9 +25,15 @@ class DownloadCoordinatorActor extends Actor with ActorLogging {
     case _ => log.info("received unknown message")
   }
 
+  override val supervisorStrategy =
+    OneForOneStrategy(maxNrOfRetries = 3, withinTimeRange = 1 minute) {
+      case t =>
+        super.supervisorStrategy.decider.applyOrElse(t, (_: Any) => Escalate)
+    }
+
   def processRequest(downloadRequest: DownloadRequest) = {
-    val downloadActor = context.actorOf(DownloadActor.props(downloadRequest.spiderId))
-    downloadActor.tell(downloadRequest, sender)
+    val downloadActor = context.actorOf(DownloadActor.props(downloadRequest.spiderId, downloadRequest, sender()))
+    log.debug("created download actor to download, spider id is {}", downloadRequest.spiderId)
   }
 
 

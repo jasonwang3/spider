@@ -8,19 +8,21 @@ import com.spider.model.support.SelectorType
 import com.spider.processor.selector.AbstractSelectable
 import com.spider.processor.selector.impl.{Html, HtmlNode, PlainText}
 
+import scala.collection.mutable
+
 /**
   * Created by jason on 16-5-17.
   */
 object ProcessorActor {
-  def props(spiderId: String): Props = Props(classOf[ProcessorActor], spiderId)
+  def props(spiderId: String, analyzeRequest: AnalyzeRequest): Props = Props(classOf[ProcessorActor], spiderId, analyzeRequest)
 }
 
 
-class ProcessorActor(_spiderId: String) extends Actor with ActorLogging {
+class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest) extends Actor with ActorLogging {
   val spiderId = _spiderId
+  val analyzeRequest = _analyzeRequest
 
   override def receive: Receive = {
-    case analyzeRequest: AnalyzeRequest => processAnalyzeRequest(analyzeRequest)
     case _ => log.warning("received unknown message")
   }
 
@@ -48,13 +50,24 @@ class ProcessorActor(_spiderId: String) extends Actor with ActorLogging {
         //TODO
       }
     })
-    _html.all
+    return processUrl(_html.all)
   }
 
 
   override def preStart() = {
     log.info("ProcessorActor started, spider id is {}", spiderId)
+    processAnalyzeRequest(analyzeRequest)
   }
 
+
+  def processUrl(urls: List[String]): List[String] = {
+    var valueList: List[String] = List()
+    urls.foreach(url => {
+      if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        valueList = "http://" + analyzeRequest.domain + url :: valueList
+      }
+    })
+    valueList.reverse
+  }
 
 }
