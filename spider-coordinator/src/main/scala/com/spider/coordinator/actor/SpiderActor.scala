@@ -1,4 +1,4 @@
-package com.coordinator.actor
+package com.spider.coordinator.actor
 
 import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSub
@@ -12,8 +12,6 @@ import com.spider.model.{Action, PubSubMessage, Site, Spider}
   */
 class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   val mediator = DistributedPubSub(context.system).mediator
-
-//  mediator ! Subscribe(PubSubMessage.ANALYZE_RESPONSE, self)
 
   val spider: Spider = _spider
 
@@ -30,10 +28,10 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   }
 
   def processPage(page: Page): Unit = {
-    log.debug("received page, status code is {}", page.statusCode)
+    log.debug("received page, status code is {},step is {}", page.statusCode, page.step)
     val step = page.step
     if (page.statusCode == 200) {
-      val rule = spider.rules(step - 1)
+      val rule = spider.rules(step)
       if (rule != null) {
         val action = rule.action
         if (action == Action.Download) {
@@ -50,12 +48,18 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
 
   def processAnalyzeResponse(analyzeResponse: AnalyzeResponse) = {
     log.debug("received analyze response {}", analyzeResponse)
-    analyzeResponse.targets.foreach(url => {
-      val downloadRequest: DownloadRequest = new DownloadRequest(new Request("http://219.238.188.179" + url), spider.site, spider.id, analyzeResponse.step + 1)
-      mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
-    })
+    if (spider.rules(analyzeResponse.step) != null) {
+      spider.rules(analyzeResponse.step).action match {
+        case Action.Download => {
+          analyzeResponse.targets.foreach(url => {
+            val downloadRequest: DownloadRequest = generateDownloadRequest(new Request(url), spider.site, analyzeResponse.step + 1)
+            mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
+          })
+        };
+        case _ => log.error("Unknown Rule,spider id is {}", spider.id)
+      }
+    }
   }
-
 
 
   def generateDownloadRequest(request: Request, site: Site, step: Int): DownloadRequest = {
@@ -65,7 +69,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
 
   override def preStart() = {
     log.info("Spider Actor started, name is {}", self.path.name)
-    val downLoadRequest = generateDownloadRequest(spider.request, spider.site, 1)
+    val downLoadRequest = generateDownloadRequest(spider.request, spider.site, 0)
     sendDownloadRequest(downLoadRequest)
   }
 }

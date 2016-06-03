@@ -1,4 +1,4 @@
-package com.coordinator.actor
+package com.spider.coordinator.actor
 
 import akka.actor.{Actor, ActorLogging, Props}
 import com.spider.model.Spider

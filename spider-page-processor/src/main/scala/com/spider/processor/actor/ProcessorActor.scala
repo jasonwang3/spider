@@ -1,26 +1,24 @@
 package com.spider.processor.actor
 
-import akka.actor.Actor.Receive
-import akka.actor.{Actor, ActorLogging, Props}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import com.spider.model.Rule
 import com.spider.model.processor.{AnalyzeRequest, AnalyzeResponse}
 import com.spider.model.support.SelectorType
 import com.spider.processor.selector.AbstractSelectable
 import com.spider.processor.selector.impl.{Html, HtmlNode, PlainText}
 
-import scala.collection.mutable
-
 /**
   * Created by jason on 16-5-17.
   */
 object ProcessorActor {
-  def props(spiderId: String, analyzeRequest: AnalyzeRequest): Props = Props(classOf[ProcessorActor], spiderId, analyzeRequest)
+  def props(spiderId: String, analyzeRequest: AnalyzeRequest, from: ActorRef): Props = Props(classOf[ProcessorActor], spiderId, analyzeRequest, from)
 }
 
 
-class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest) extends Actor with ActorLogging {
+class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: ActorRef) extends Actor with ActorLogging {
   val spiderId = _spiderId
   val analyzeRequest = _analyzeRequest
+  val from = _from
 
   override def receive: Receive = {
     case _ => log.warning("received unknown message")
@@ -31,7 +29,7 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest) extends
     val html: Html = Html(analyzeRequest.htmlRaw)
     val links = generateLinks(html, analyzeRequest.rule)
     val analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, links)
-    sender.tell(analyzeResponse, self)
+    from.tell(analyzeResponse, self)
     log.debug("sent analyze response {}", analyzeResponse)
   }
 
@@ -41,7 +39,7 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest) extends
       if (matchRule._1 == SelectorType.CSS) {
         _html = _html.$(matchRule._2).asInstanceOf[HtmlNode]
       } else if (matchRule._1 == SelectorType.XPATH) {
-        _html = _html.xpath(matchRule._2).asInstanceOf[HtmlNode]
+        _html = _html.xpath(matchRule._2).asInstanceOf[PlainText]
       } else if (matchRule._1 == SelectorType.LINK) {
         _html = _html.links.asInstanceOf[PlainText]
       } else if (matchRule._1 == SelectorType.REGEX) {

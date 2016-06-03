@@ -30,7 +30,7 @@ class ProcessorCoordinatorActor extends Actor with ActorLogging {
   }
 
   def processAnalyzeRequest(analyzeRequest: AnalyzeRequest) = {
-    val processorActor = context.actorOf(ProcessorActor.props(analyzeRequest.spiderId, analyzeRequest))
+    val processorActor = context.actorOf(ProcessorActor.props(analyzeRequest.spiderId, analyzeRequest, sender()))
     log.debug("create processor actor to analyze, spider id is {}", analyzeRequest.spiderId)
   }
 }

@@ -12,6 +12,5 @@ class AnalyzeResponse(_spiderId: String, _step: Int, _targets: List[String]) ext
 
   val targets: List[String] = _targets
 
-
-  override def toString = s"AnalyzeResponse(spiderId=$spiderId, step=$step, targets=$targets)"
+  override def toString = s"AnalyzeResponse(spiderId=$spiderId, step=$step)"
 }

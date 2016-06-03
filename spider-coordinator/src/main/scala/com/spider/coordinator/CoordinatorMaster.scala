@@ -1,7 +1,7 @@
-package com.coordinator
+package com.spider.coordinator
 
 import akka.actor.{ActorSystem, Props}
-import com.coordinator.actor.SpiderCoordinatorActor
+import com.spider.coordinator.actor.SpiderCoordinatorActor
 import org.slf4j.LoggerFactory
 
 /**

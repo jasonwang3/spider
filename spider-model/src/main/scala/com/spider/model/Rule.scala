@@ -10,9 +10,10 @@ import scala.collection.mutable
   */
 @SerialVersionUID(1L)
 class Rule(_action: Action, _matchRule: mutable.LinkedHashMap[SelectorType, String]) extends Serializable{
-  // CSS -> "div.bDiv", XPATH -> frame[@id='detailMainFrame']
+
   val action: Action = _action
 
+  // CSS -> "div.bDiv", XPATH -> frame[@id='detailMainFrame']
   val matchRule: mutable.LinkedHashMap[SelectorType, String] = _matchRule
 
 
