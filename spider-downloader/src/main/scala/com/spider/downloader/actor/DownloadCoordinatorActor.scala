@@ -1,5 +1,7 @@
 package com.spider.downloader.actor
 
+import java.net.SocketTimeoutException
+
 import akka.actor.SupervisorStrategy.{Escalate, Restart, Resume, Stop}
 import akka.actor.{Actor, ActorLogging, OneForOneStrategy}
 import akka.cluster.pubsub.DistributedPubSub
@@ -8,6 +10,7 @@ import com.spider.core.akka.spring.SpringServiceHelper
 import com.spider.downloader.{AbstractDownloader, HttpClientDownloader}
 import com.spider.model.PubSubMessage
 import com.spider.model.downloader.DownloadRequest
+
 import scala.concurrent.duration._
 
 /**
@@ -27,8 +30,8 @@ class DownloadCoordinatorActor extends Actor with ActorLogging {
 
   override val supervisorStrategy =
     OneForOneStrategy(maxNrOfRetries = 3, withinTimeRange = 1 minute) {
-      case t =>
-        super.supervisorStrategy.decider.applyOrElse(t, (_: Any) => Escalate)
+      case _: SocketTimeoutException => Restart
+      case _: Exception => Stop
     }
 
   def processRequest(downloadRequest: DownloadRequest) = {

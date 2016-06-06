@@ -22,9 +22,10 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
 
   "Coordinator actor" must {
     "process OA request" which {
+      val sessionId = "FE7E9537CFB36AB580A651E5D1B475BA"
       val spiderActor = system.actorOf(Props[SpiderCoordinatorActor], "downloadCoordinator")
       val request = new Request("http://219.238.188.179/seeyon/main.do?app=Coll&method=morePending4App&_spage=&page=1&pageSize=5")
-      val site: Site = Site.create().setDomain("219.238.188.179").addCookie("219.238.188.179", "JSESSIONID", "931E574CFA46707CE91D986C605C81A5")
+      val site: Site = Site.create().setDomain("219.238.188.179").addCookie("219.238.188.179", "JSESSIONID", sessionId)
         .addCookie("219.238.188.179", "login.locale", "zh_CN")
         .addHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36")
       var matchRule: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
