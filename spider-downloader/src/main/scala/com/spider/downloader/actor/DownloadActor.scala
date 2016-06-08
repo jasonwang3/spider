@@ -32,7 +32,7 @@ class DownloadActor(_spiderId: String, _downloadRequest: DownloadRequest, _from:
   }
 
   override def preStart() = {
-    log.debug("DownloadCoordinatorActor start, spider id is {}, url is {}", spiderId, downloadRequest.request.url)
+    log.debug("DownloadCoordinatorActor start, spider id is {}, step is {}", spiderId, downloadRequest.step)
     downloader = SpringServiceHelper.getBean("httpClientDownloader").asInstanceOf[HttpClientDownloader]
     download(downloadRequest)
   }

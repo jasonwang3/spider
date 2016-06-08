@@ -2,8 +2,8 @@ package com.spider.downloader.actor
 
 import java.net.SocketTimeoutException
 
-import akka.actor.SupervisorStrategy.{Escalate, Restart, Resume, Stop}
-import akka.actor.{Actor, ActorLogging, OneForOneStrategy}
+import akka.actor.SupervisorStrategy.{Directive, Restart, Stop}
+import akka.actor.{Actor, ActorLogging, ActorRef, OneForOneStrategy}
 import akka.cluster.pubsub.DistributedPubSub
 import akka.cluster.pubsub.DistributedPubSubMediator.{Subscribe, SubscribeAck}
 import com.spider.core.akka.spring.SpringServiceHelper
@@ -34,6 +34,8 @@ class DownloadCoordinatorActor extends Actor with ActorLogging {
       case _: Exception => Stop
     }
 
+
+
   def processRequest(downloadRequest: DownloadRequest) = {
     val downloadActor = context.actorOf(DownloadActor.props(downloadRequest.spiderId, downloadRequest, sender()))
     log.debug("created download actor to download, spider id is {}", downloadRequest.spiderId)
@@ -45,3 +47,5 @@ class DownloadCoordinatorActor extends Actor with ActorLogging {
     log.info("downloadCoordinatorActor start")
   }
 }
+
+

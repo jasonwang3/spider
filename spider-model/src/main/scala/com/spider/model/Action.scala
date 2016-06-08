@@ -5,5 +5,5 @@ package com.spider.model
   */
 object Action extends Enumeration {
   type Action = Value
-  val Download = Value
+  val GET_URL, GET_CONTENT = Value
 }

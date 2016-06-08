@@ -31,15 +31,25 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
     log.debug("received page, status code is {},step is {}", page.statusCode, page.step)
     val step = page.step
     if (page.statusCode == 200) {
-      val rule = spider.rules(step)
-      if (rule != null) {
-        val action = rule.action
-        if (action == Action.Download) {
-          val analyzeRequest: AnalyzeRequest = new AnalyzeRequest(spider.id, step, page.rawText, rule, spider.site.domain)
-          mediator ! Publish(PubSubMessage.ANALYZE_REQUEST, analyzeRequest)
+      if (step < spider.rules.size) {
+        val rule = spider.rules(step)
+        if (rule != null) {
+          rule.action match {
+            case Action.GET_URL => {
+              val analyzeRequest: AnalyzeRequest = new AnalyzeRequest(spider.id, step, page.rawText, rule, spider.site.domain)
+              mediator ! Publish(PubSubMessage.ANALYZE_REQUEST, analyzeRequest)
+            };
+            case Action.GET_CONTENT => {
+
+            }
+          }
+        } else {
+          //TODO
         }
       } else {
-        //TODO
+        log.info("has no rules to process,prepare to shutdown.spider id is {}", spider.id)
+        println(page.rawText)
+        context.stop(self)
       }
     } else {
       //TODO
@@ -49,15 +59,10 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   def processAnalyzeResponse(analyzeResponse: AnalyzeResponse) = {
     log.debug("received analyze response {}", analyzeResponse)
     if (spider.rules(analyzeResponse.step) != null) {
-      spider.rules(analyzeResponse.step).action match {
-        case Action.Download => {
-          analyzeResponse.targets.foreach(url => {
-            val downloadRequest: DownloadRequest = generateDownloadRequest(new Request(url), spider.site, analyzeResponse.step + 1)
-            mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
-          })
-        };
-        case _ => log.error("Unknown Rule,spider id is {}", spider.id)
-      }
+      analyzeResponse.targets.foreach(url => {
+        val downloadRequest: DownloadRequest = generateDownloadRequest(new Request(url), spider.site, analyzeResponse.step + 1)
+        mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
+      })
     }
   }
 

@@ -16,7 +16,4 @@ class Rule(_action: Action, _matchRule: mutable.LinkedHashMap[SelectorType, Stri
   // CSS -> "div.bDiv", XPATH -> frame[@id='detailMainFrame']
   val matchRule: mutable.LinkedHashMap[SelectorType, String] = _matchRule
 
-
-
-
 }
