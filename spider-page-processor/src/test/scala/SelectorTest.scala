@@ -16,9 +16,9 @@ import scala.collection.JavaConversions._
 class SelectorTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "parse OA" should "corectly" in {
-    val source = Source.fromURL(getClass.getResource("data/oa.html")).mkString
+    val source = Source.fromURL(getClass.getResource("data/test.html")).mkString
     val html = Html(source)
-    val list = html.css("div.bDiv").links.regex("/seeyon/collaboration\\.do\\?.*affairId=.*Pending").all
+    val list = html.xpath("//iframe[@id='contentIframe']/@src")
     println(list)
   }
 

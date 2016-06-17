@@ -34,22 +34,14 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
       if (step < spider.rules.size) {
         val rule = spider.rules(step)
         if (rule != null) {
-          rule.action match {
-            case Action.GET_URL => {
-              val analyzeRequest: AnalyzeRequest = new AnalyzeRequest(spider.id, step, page.rawText, rule, spider.site.domain)
-              mediator ! Publish(PubSubMessage.ANALYZE_REQUEST, analyzeRequest)
-            };
-            case Action.GET_CONTENT => {
-
-            }
-          }
+          val analyzeRequest: AnalyzeRequest = new AnalyzeRequest(spider.id, step, page.rawText, rule, spider.site.domain)
+          mediator ! Publish(PubSubMessage.ANALYZE_REQUEST, analyzeRequest)
         } else {
           //TODO
         }
       } else {
         log.info("has no rules to process,prepare to shutdown.spider id is {}", spider.id)
-        println(page.rawText)
-        context.stop(self)
+        shutdown
       }
     } else {
       //TODO
@@ -59,10 +51,24 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   def processAnalyzeResponse(analyzeResponse: AnalyzeResponse) = {
     log.debug("received analyze response {}", analyzeResponse)
     if (spider.rules(analyzeResponse.step) != null) {
-      analyzeResponse.targets.foreach(url => {
-        val downloadRequest: DownloadRequest = generateDownloadRequest(new Request(url), spider.site, analyzeResponse.step + 1)
-        mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
-      })
+      val rule = spider.rules(analyzeResponse.step)
+      rule.action match {
+        case Action.GET_URL => {
+          if (analyzeResponse.targets.size == 0) {
+            log.info("has no targets to download!spider id is {}", spider.id)
+            shutdown
+          } else {
+            analyzeResponse.targets.foreach(url => {
+              val downloadRequest: DownloadRequest = generateDownloadRequest(new Request(url), spider.site, analyzeResponse.step + 1)
+              mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
+            })
+          }
+
+        };
+        case Action.GET_CONTENT => {
+
+        }
+      }
     }
   }
 
@@ -76,5 +82,9 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
     log.info("Spider Actor started, name is {}", self.path.name)
     val downLoadRequest = generateDownloadRequest(spider.request, spider.site, 0)
     sendDownloadRequest(downLoadRequest)
+  }
+
+  def shutdown(): Unit = {
+    context.stop(self)
   }
 }
