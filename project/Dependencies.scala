@@ -4,7 +4,7 @@ import sbt._
 object Dependencies {
 
   object Versions {
-    val akkaVersion = "2.4.0"
+    val akkaVersion = "2.4.7"
   }
 
   object Compile {
@@ -17,6 +17,7 @@ object Dependencies {
     val akka_cluster =       "com.typesafe.akka"         %% "akka-cluster"        % akkaVersion
     val akka_testkit =       "com.typesafe.akka"         %% "akka-testkit"        % akkaVersion
     val akka_slf4j  =        "com.typesafe.akka"         %% "akka-slf4j"          % akkaVersion
+    val akka_cluster_tool =  "com.typesafe.akka"         %% "akka-cluster-tools"  % akkaVersion
     val scalatest =          "org.scalatest"             %% "scalatest"           % "2.2.6"      % "test"
     val scalactic =          "org.scalactic"             %% "scalactic"           % "2.2.6"
     val junit =              "junit"                     % "junit"                % "4.12"       % "test"
@@ -31,13 +32,16 @@ object Dependencies {
     val spring_context =     "org.springframework"       % "spring-context"       % "4.2.4.RELEASE"
     val jsoup =              "org.jsoup"                 % "jsoup"                % "1.8.3"
     val xsoup =              "us.codecraft"              % "xsoup"                % "0.3.1"
+    val poi =                "org.apache.poi"            % "poi"                  % "3.14"
+
+
+
+    val akka = Seq(akka_actor, akka_cluster,akka_slf4j, akka_testkit, akka_cluster_tool)
   }
 
-  val spider_cluster_seed = Seq(
-    Compile.akka_actor,
-    Compile.akka_cluster,
-    Compile.akka_slf4j,
-    Compile.akka_testkit,
+
+
+  val spider_cluster_seed = Compile.akka ++ Seq(
     Compile.scalatest,
     Compile.junit,
     Compile.junit_interface,
@@ -46,11 +50,7 @@ object Dependencies {
   )
 
 
-  val spider_downloader = Seq(
-    Compile.akka_actor,
-    Compile.akka_cluster,
-    Compile.akka_slf4j,
-    Compile.akka_testkit,
+  val spider_downloader = Compile.akka ++ Seq(
     Compile.scalatest,
     Compile.scalactic,
     Compile.logback,
@@ -69,29 +69,38 @@ object Dependencies {
     Compile.httpcomponents
   )
 
-  val spider_page_processor = Seq(
-    Compile.akka_actor,
-    Compile.akka_cluster,
-    Compile.akka_slf4j,
-    Compile.akka_testkit,
+  val spider_page_processor = Compile.akka ++ Seq(
     Compile.scalatest,
     Compile.scalactic,
+    Compile.logback,
+    Compile.slf4f,
+    Compile.spring_context,
+    Compile.core_spring,
     Compile.jsoup,
     Compile.xsoup,
     Compile.commons_io,
     Compile.commons_lang3,
-    Compile.commons_collection
+    Compile.commons_collection,
+    Compile.poi
   )
 
-  val spider_api = Seq(
-    Compile.akka_actor,
-    Compile.akka_cluster,
-    Compile.akka_slf4j,
-    Compile.akka_testkit,
+  val spider_api = Compile.akka ++ Seq(
     jdbc,
     cache,
     ws,
     "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  )
+
+  val spider_coordinator = Compile.akka ++ Seq(
+    Compile.scalatest,
+    Compile.scalactic,
+    Compile.logback,
+    Compile.slf4f,
+    Compile.spring_context,
+    Compile.core_spring,
+    Compile.commons_io,
+    Compile.commons_lang3,
+    Compile.commons_collection
   )
 
 }

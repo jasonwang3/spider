@@ -15,8 +15,8 @@ object Request {
   val PROXY = "proxy"
 }
 
-
-class Request(_url: String) {
+@SerialVersionUID(1L)
+class Request(_url: String) extends Serializable{
 
   val url: String = _url
 
@@ -47,4 +47,6 @@ class Request(_url: String) {
     return this
   }
 
+
+  override def toString = s"Request(url=$url, method=$method, extras=$extras, priority=$priority)"
 }

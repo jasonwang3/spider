@@ -26,7 +26,13 @@ class HtmlNode(_element: List[Element]) extends AbstractSelectable {
     sourceTests.toList
   }
 
-  override def links: Selectable = xpath("//a/@href")
+  override def links: Selectable = {
+    xpath("//a/@href")
+  }
+
+  def srcs: Selectable = {
+    xpath("//@src")
+  }
 
   override def nodes: List[Selectable] = {
     var selectables: ArrayBuffer[Selectable] = ArrayBuffer()

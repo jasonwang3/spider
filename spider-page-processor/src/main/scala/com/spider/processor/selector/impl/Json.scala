@@ -1,5 +1,6 @@
 package com.spider.processor.selector.impl
 
+import com.spider.processor.selector.Selectable
 import us.codecraft.xsoup.XTokenQueue
 
 /**
@@ -29,7 +30,7 @@ class Json(_sourceTexts: List[String]) extends PlainText(_sourceTexts){
 ////    val jsonPathSelector: JsonPathSelector = new JsonPathSelector(jsonPath)
 //    return selectList(jsonPathSelector, getSourceTexts)
 //  }
-
+  override def srcs: Selectable = ???
 }
 
 
