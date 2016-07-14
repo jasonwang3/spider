@@ -33,7 +33,7 @@ object Dependencies {
     val jsoup =              "org.jsoup"                 % "jsoup"                % "1.8.3"
     val xsoup =              "us.codecraft"              % "xsoup"                % "0.3.1"
     val poi =                "org.apache.poi"            % "poi"                  % "3.14"
-
+    val fastjson =           "com.alibaba"               % "fastjson"             % "1.2.12"
 
 
     val akka = Seq(akka_actor, akka_cluster,akka_slf4j, akka_testkit, akka_cluster_tool)
@@ -81,7 +81,8 @@ object Dependencies {
     Compile.commons_io,
     Compile.commons_lang3,
     Compile.commons_collection,
-    Compile.poi
+    Compile.poi,
+    Compile.fastjson
   )
 
   val spider_api = Compile.akka ++ Seq(

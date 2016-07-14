@@ -19,4 +19,7 @@ class Rule(_action: Action, _matchRule: mutable.LinkedHashMap[SelectorType, Stri
 
   var contentSelectors: List[ContentSelector] = null
 
+  var rule: Rule = null
+
+
 }

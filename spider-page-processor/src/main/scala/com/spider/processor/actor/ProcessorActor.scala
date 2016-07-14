@@ -1,12 +1,14 @@
 package com.spider.processor.actor
 
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import com.alibaba.fastjson.JSONObject
 import com.spider.model.{Action, Rule}
 import com.spider.model.processor.{AnalyzeRequest, AnalyzeResponse}
 import com.spider.model.support.SelectorType
 import com.spider.processor.selector.{AbstractSelectable, Selectable}
 import com.spider.processor.selector.impl.{Html, HtmlNode, PlainText}
 import com.spider.model.Action.Action
+
 /**
   * Created by jason on 16-5-17.
   */
@@ -56,22 +58,33 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
     return processUrl(_html.all)
   }
 
-  def generateContent(html: Html, rule: Rule): String = {
+  def generateContent(html: Html, rule: Rule): JSONObject = {
     var _html: Selectable = html
+    val jsonObjet:JSONObject = new JSONObject()
     rule.matchRule.foreach(matchRule => {
       if (matchRule._1 == SelectorType.CSS) {
         _html = _html.$(matchRule._2)
       } else if (matchRule._1 == SelectorType.XPATH) {
         _html = _html.xpath(matchRule._2)
-      } else if (matchRule._1 == SelectorType.LINK) {
-        _html = _html.links.asInstanceOf[PlainText]
       } else if (matchRule._1 == SelectorType.REGEX) {
         _html = _html.regex(matchRule._2)
       } else {
         //TODO
       }
     })
-    _html.toString
+    rule.contentSelectors.foreach(contentSelector => {
+      val paramName = contentSelector.paramName
+      var list: List[String] = List()
+      contentSelector.matchRule.foreach(matchRule => {
+        if (matchRule._1 == SelectorType.CSS) {
+          _html = _html.$(matchRule._2)
+        } else if (matchRule._1 == SelectorType.XPATH) {
+          _html = _html.$(matchRule._2)
+        }
+      })
+      jsonObjet.put(paramName, _html.all)
+    })
+    jsonObjet
   }
 
   override def preStart() = {

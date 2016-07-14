@@ -38,5 +38,11 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
     val page = httpClientDownloader.download(new Request("https://github.com"), site.toTask())
   }
 
+  "download JD" should "download a page" in {
+    val site: Site = Site.create().setDomain("list.jd.com")
+    val page = httpClientDownloader.download(new Request("http://list.jd.com/list.html?cat=670,677,678&page=1&delivery=1"), site.toTask())
+    println(page.rawText)
+  }
+
 
 }

@@ -15,11 +15,17 @@ import scala.collection.JavaConversions._
   */
 class SelectorTest extends FlatSpec with Matchers with BeforeAndAfter {
 
-  "parse OA" should "corectly" in {
+  "parse OA" should "correctly" in {
     val source = Source.fromURL(getClass.getResource("data/test.html")).mkString
     val html = Html(source)
     val list = html.xpath("//iframe[@id='contentIframe']/@src")
     println(list)
   }
 
+  "parse JD" should "correctly" in {
+    val source = Source.fromURL(getClass.getResource("data/123.html")).mkString
+    val html = Html(source)
+    val html2 = html.css("div[data-sku]").all
+    print(html2)
+  }
 }
