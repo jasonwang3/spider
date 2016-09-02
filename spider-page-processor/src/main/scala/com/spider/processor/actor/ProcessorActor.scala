@@ -8,6 +8,7 @@ import com.spider.model.support.SelectorType
 import com.spider.processor.selector.{AbstractSelectable, Selectable}
 import com.spider.processor.selector.impl.{Html, HtmlNode, PlainText}
 import com.spider.model.Action.Action
+import org.apache.commons.collections.CollectionUtils
 
 /**
   * Created by jason on 16-5-17.
@@ -34,7 +35,9 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
       val links = generateLinks(html, analyzeRequest.rule)
       analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, links)
     } else if (analyzeRequest.rule.action == Action.GET_CONTENT) {
-      generateContent(html, analyzeRequest.rule)
+      val jSONObject = generateContent(html, analyzeRequest.rule)
+      val json = jSONObject.toJSONString
+      analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, List(json))
     }
     from.tell(analyzeResponse, self)
     log.debug("sent analyze response {}", analyzeResponse)
@@ -55,7 +58,7 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
         //TODO
       }
     })
-    return processUrl(_html.all)
+    processUrl(_html.all)
   }
 
   def generateContent(html: Html, rule: Rule): JSONObject = {
@@ -72,18 +75,22 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
         //TODO
       }
     })
-    rule.contentSelectors.foreach(contentSelector => {
-      val paramName = contentSelector.paramName
-      var list: List[String] = List()
-      contentSelector.matchRule.foreach(matchRule => {
-        if (matchRule._1 == SelectorType.CSS) {
-          _html = _html.$(matchRule._2)
-        } else if (matchRule._1 == SelectorType.XPATH) {
-          _html = _html.$(matchRule._2)
-        }
+    if (rule.contentSelectors != null && rule.contentSelectors.nonEmpty) {
+      rule.contentSelectors.foreach(contentSelector => {
+        val paramName = contentSelector.paramName
+        var list: List[String] = List()
+        contentSelector.matchRule.foreach(matchRule => {
+          if (matchRule._1 == SelectorType.CSS) {
+            _html = _html.$(matchRule._2)
+          } else if (matchRule._1 == SelectorType.XPATH) {
+            _html = _html.$(matchRule._2)
+          } else if (matchRule._1 == SelectorType.REGEX) {
+            _html = _html.regex(matchRule._2)
+          }
+        })
+        jsonObjet.put(paramName, _html.all)
       })
-      jsonObjet.put(paramName, _html.all)
-    })
+    }
     jsonObjet
   }
 

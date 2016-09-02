@@ -1,15 +1,10 @@
-import java.io._
-import java.util
+import java.util.regex.{Matcher, Pattern}
 
-import com.spider.model.processor.OAContent
-import com.spider.processor.selector.Selectable
-import com.spider.processor.selector.impl.{Html, HtmlNode}
-import com.spider.processor.util.ExportExcel
+import com.spider.processor.selector.impl.Html
+import org.apache.commons.lang3.StringUtils
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
-import scala.util.control.Breaks._
+
 import scala.io.Source
-import scala.util.matching.Regex
-import scala.collection.JavaConversions._
 /**
   * Created by jason on 16-4-13.
   */
@@ -27,5 +22,19 @@ class SelectorTest extends FlatSpec with Matchers with BeforeAndAfter {
     val html = Html(source)
     val html2 = html.css("div[data-sku]").all
     print(html2)
+  }
+
+  "parse test" should "correctly" in {
+    var regexStr = Source.fromURL(getClass.getResource("data/test.txt")).mkString
+    if (StringUtils.countMatches(regexStr, "(") - StringUtils.countMatches(regexStr, "\\(") == StringUtils.countMatches(regexStr, "(?:") - StringUtils.countMatches(regexStr, "\\(?:")) {
+      regexStr = "(" + regexStr + ")"
+    }
+    val pattern = Pattern.compile("(?<=<my:专柜名称.{0,100}>).*?(?=</my:专柜名称>)", Pattern.DOTALL | Pattern.CASE_INSENSITIVE)
+    val matcher: Matcher = pattern.matcher(regexStr)
+    while (matcher.find) {
+      val groups: Array[String] = new Array[String](matcher.groupCount + 1)
+      groups(0) = matcher.group(0)
+      groups.foreach(println _)
+    }
   }
 }
