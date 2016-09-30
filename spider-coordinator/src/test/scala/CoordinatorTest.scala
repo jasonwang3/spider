@@ -98,14 +98,14 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
     val request = new Request("http://list.jd.com/list.html?cat=670,677,678&page=1&delivery=1")
     //step 1
     var matchRule: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
-    matchRule += CSS -> "div[data-sku]"
+    matchRule += CSS -> "div#plist"
     val rule1 = new Rule(GET_CONTENT, matchRule)
 
-    val matchRuleForContent1: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
-    matchRuleForContent1 += CSS -> "div[data-sku]"
-    matchRuleForContent1 += XPATH -> "em"
-    val contentSelector1: ContentSelector = new ContentSelector("title", matchRuleForContent1)
 
+//    val matchRuleForContent1: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
+//    matchRuleForContent1 += CSS -> "div[data-sku]"
+//    matchRuleForContent1 += XPATH -> "em"
+//    val contentSelector1: ContentSelector = new ContentSelector("title", matchRuleForContent1)
 
     val rules: List[Rule] = List(rule1)
     val spider = new Spider("testJD", request, site, rules)

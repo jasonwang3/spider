@@ -28,7 +28,7 @@ class AppShutdownHook (var system: ActorSystem) extends Thread {
   val logger = LoggerFactory.getLogger(classOf[AppShutdownHook])
 
   override def run {
-    logger.info("Shutting down {}", "pageProcesser")
+    logger.info("Shutting down {}", "pageProcessor")
     val address: Address = Cluster.get(system).selfAddress
     Cluster.get(system).down(address)
     Cluster.get(system).leave(address)

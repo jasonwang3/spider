@@ -35,15 +35,42 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
       val links = generateLinks(html, analyzeRequest.rule)
       analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, links)
     } else if (analyzeRequest.rule.action == Action.GET_CONTENT) {
-      val jSONObject = generateContent(html, analyzeRequest.rule)
-      val json = jSONObject.toJSONString
+      val jsonObject = generateContent(html, analyzeRequest.rule)
+      val json = jsonObject.toJSONString
       analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, List(json))
     }
     from.tell(analyzeResponse, self)
-    log.debug("sent analyze response {}", analyzeResponse)
+    log.debug("sent analyze response {}", analyzeResponse.targets)
   }
 
   def generateLinks(html: Html, rule: Rule): List[String] = {
+    val _html = getHtml(html, rule)
+    processUrl(_html.all)
+  }
+
+  def generateContent(html: Html, rule: Rule): JSONObject = {
+    val _html = getHtml(html, rule)
+    val jsonObject: JSONObject = new JSONObject()
+    if (rule.contentSelectors != null && rule.contentSelectors.nonEmpty) {
+      rule.contentSelectors.foreach(contentSelector => {
+        val paramName = contentSelector.paramName
+        var selectable: Selectable = null
+        contentSelector.matchRule.foreach(matchRule => {
+          if (matchRule._1 == SelectorType.CSS) {
+            selectable = _html.$(matchRule._2)
+          } else if (matchRule._1 == SelectorType.XPATH) {
+            selectable = _html.xpath(matchRule._2)
+          } else if (matchRule._1 == SelectorType.REGEX) {
+            selectable = _html.regex(matchRule._2)
+          }
+        })
+        jsonObject.put(paramName, selectable.all)
+      })
+    }
+    jsonObject
+  }
+
+  def getHtml(html: Html, rule: Rule): Selectable = {
     var _html: Selectable = html
     rule.matchRule.foreach(matchRule => {
       if (matchRule._1 == SelectorType.CSS) {
@@ -58,40 +85,7 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
         //TODO
       }
     })
-    processUrl(_html.all)
-  }
-
-  def generateContent(html: Html, rule: Rule): JSONObject = {
-    var _html: Selectable = html
-    val jsonObjet:JSONObject = new JSONObject()
-    rule.matchRule.foreach(matchRule => {
-      if (matchRule._1 == SelectorType.CSS) {
-        _html = _html.$(matchRule._2)
-      } else if (matchRule._1 == SelectorType.XPATH) {
-        _html = _html.xpath(matchRule._2)
-      } else if (matchRule._1 == SelectorType.REGEX) {
-        _html = _html.regex(matchRule._2)
-      } else {
-        //TODO
-      }
-    })
-    if (rule.contentSelectors != null && rule.contentSelectors.nonEmpty) {
-      rule.contentSelectors.foreach(contentSelector => {
-        val paramName = contentSelector.paramName
-        var list: List[String] = List()
-        contentSelector.matchRule.foreach(matchRule => {
-          if (matchRule._1 == SelectorType.CSS) {
-            _html = _html.$(matchRule._2)
-          } else if (matchRule._1 == SelectorType.XPATH) {
-            _html = _html.$(matchRule._2)
-          } else if (matchRule._1 == SelectorType.REGEX) {
-            _html = _html.regex(matchRule._2)
-          }
-        })
-        jsonObjet.put(paramName, _html.all)
-      })
-    }
-    jsonObjet
+    return _html
   }
 
   override def preStart() = {
