@@ -9,4 +9,6 @@ object PubSubMessage {
   val ANALYZE_REQUEST = "analyzeRequest"
 
   val ANALYZE_RESPONSE = "analyzeResponse"
+
+  val START_REQUEST = "startRequest"
 }

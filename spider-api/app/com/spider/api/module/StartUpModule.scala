@@ -15,9 +15,6 @@ class StartUpModule extends AbstractModule {
     val system = ActorSystem("ClusterSystem")
 
 
-
-
-
     logger.info("application start up")
   }
 }

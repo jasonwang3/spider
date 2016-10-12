@@ -2,14 +2,12 @@ package com.spider.processor.actor
 
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import com.alibaba.fastjson.JSONObject
-import com.spider.model.{Action, Rule}
 import com.spider.model.processor.{AnalyzeRequest, AnalyzeResponse}
 import com.spider.model.support.SelectorType
-import com.spider.processor.selector.{AbstractSelectable, Selectable}
-import com.spider.processor.selector.impl.{Html, HtmlNode, PlainText}
-import com.spider.model.Action.Action
-import org.apache.commons.collections.CollectionUtils
-
+import com.spider.model.{Action, Rule}
+import com.spider.processor.selector.Selectable
+import com.spider.processor.selector.impl.{Html, PlainText}
+import scala.collection.JavaConversions
 /**
   * Created by jason on 16-5-17.
   */
@@ -33,11 +31,11 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
     var analyzeResponse: AnalyzeResponse = null
     if (analyzeRequest.rule.action == Action.GET_URL) {
       val links = generateLinks(html, analyzeRequest.rule)
-      analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, links)
+      analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, links, null)
     } else if (analyzeRequest.rule.action == Action.GET_CONTENT) {
       val jsonObject = generateContent(html, analyzeRequest.rule)
       val json = jsonObject.toJSONString
-      analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, List(json))
+      analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, null, json)
     }
     from.tell(analyzeResponse, self)
     log.debug("sent analyze response {}", analyzeResponse.targets)
@@ -64,7 +62,7 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
             selectable = _html.regex(matchRule._2)
           }
         })
-        jsonObject.put(paramName, selectable.all)
+        jsonObject.put(paramName, JavaConversions.asJavaCollection(selectable.all))
       })
     }
     jsonObject

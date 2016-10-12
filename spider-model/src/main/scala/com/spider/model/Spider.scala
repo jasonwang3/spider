@@ -1,9 +1,8 @@
 package com.spider.model
 
-import com.spider.model.Action.Action
-import com.spider.model.downloader.{DownloadRequest, Request}
+import java.util.Date
 
-import scala.collection.mutable
+import com.spider.model.downloader.Request
 
 /**
   * Created by jason on 16-4-19.
@@ -17,6 +16,8 @@ class Spider(_id: String, _request: Request, _site: Site, _rules: List[Rule]) {
   val site: Site = _site
 
   val rules: List[Rule] = _rules
+
+  var startDate: Date = null
 
 
   override def toString = s"Spider(id=$id, request=$request, site=$site, rules=$rules)"

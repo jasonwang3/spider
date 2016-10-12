@@ -1,6 +1,7 @@
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
 import com.typesafe.sbt.packager.docker.DockerPlugin
 import com.typesafe.sbt.packager.linux.LinuxPlugin
+import play.sbt.PlayScala
 import sbt.Keys._
 import sbt._
 import sbt.dsl._
@@ -33,7 +34,7 @@ object SpiderBuild extends Build {
   lazy val spider_api = Project("spider-api", file("spider-api")).settings(
     scalaVersion := "2.11.7",
     libraryDependencies ++= Dependencies.spider_api
-  ).dependsOn(spider_model).enablePlugins(JavaAppPackaging).enablePlugins(LinuxPlugin)
+  ).dependsOn(spider_model).enablePlugins(JavaAppPackaging).enablePlugins(LinuxPlugin).enablePlugins(PlayScala)
 
   lazy val spider_coordinator = Project("spider-coordinator", file("spider-coordinator")).settings(
     scalaVersion := "2.11.7",

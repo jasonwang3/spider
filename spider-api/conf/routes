@@ -1,2 +1,4 @@
+GET         /                 com.spider.api.controllers.SpiderController.index
 
+POST        /v1/spider        com.spider.api.controllers.SpiderController.startSpider
 
