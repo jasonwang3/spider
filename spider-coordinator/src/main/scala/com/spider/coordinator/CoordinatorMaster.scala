@@ -29,7 +29,6 @@ class AppShutdownHook (var system: ActorSystem) extends Thread {
     logger.info("Shutting down {}", "spider-coordinator")
     val address: Address = Cluster.get(system).selfAddress
     Cluster.get(system).down(address)
-    Cluster.get(system).leave(address)
     try {
       Thread.sleep(3000)
     }

@@ -65,7 +65,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
           }
         };
         case Action.GET_CONTENT => {
-          println(analyzeResponse.targets)
+          log.debug("spider {} get content is {}", spider.id, analyzeResponse.content)
         }
       }
     }

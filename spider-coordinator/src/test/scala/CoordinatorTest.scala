@@ -4,6 +4,7 @@ import akka.testkit.{ImplicitSender, TestKit}
 import com.spider.coordinator.actor.SpiderCoordinatorActor
 import com.spider.model.Action._
 import com.spider.model.downloader.Request
+import com.spider.model.processor.AnalyzeRequest
 import com.spider.model.selector.ContentSelector
 import com.spider.model.support.SelectorType.{apply => _, _}
 import com.spider.model.{Rule, Site, Spider}
@@ -19,7 +20,6 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
   with FunSuiteLike with Matchers with BeforeAndAfterAll {
 
   override def afterAll {
-    Cluster.get(system).leave(Cluster.get(system).selfAddress)
     Cluster.get(system).down(Cluster.get(system).selfAddress)
     TestKit.shutdownActorSystem(system)
   }
@@ -98,14 +98,16 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
     val request = new Request("http://list.jd.com/list.html?cat=670,677,678&page=1&delivery=1")
     //step 1
     var matchRule: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
-    matchRule += CSS -> "div#plist"
+    matchRule += CSS -> "li.gl-item"
     val rule1 = new Rule(GET_CONTENT, matchRule)
-
-
-//    val matchRuleForContent1: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
-//    matchRuleForContent1 += CSS -> "div[data-sku]"
-//    matchRuleForContent1 += XPATH -> "em"
-//    val contentSelector1: ContentSelector = new ContentSelector("title", matchRuleForContent1)
+    var matchNameContent: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
+    matchNameContent += XPATH -> "//div[@class='p-name']/a/em/text()"
+    val contentSelector: ContentSelector = new ContentSelector("name", matchNameContent)
+    var matchDataContent: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
+    matchDataContent += XPATH -> "//div[@class='j-sku-item']/@data-sku"
+    val dataSelector: ContentSelector = new ContentSelector("data", matchDataContent)
+    val contentSelectorList = List(contentSelector, dataSelector)
+    rule1.contentSelectors = contentSelectorList
 
     val rules: List[Rule] = List(rule1)
     val spider = new Spider("testJD", request, site, rules)

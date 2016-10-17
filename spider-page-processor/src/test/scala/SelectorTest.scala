@@ -32,7 +32,7 @@ class SelectorTest extends TestKit(ActorSystem.create("ClusterSystem", ConfigFac
     matchNameContent += XPATH -> "//div[@class='p-name']/a/em/text()"
     val contentSelector: ContentSelector = new ContentSelector("name", matchNameContent)
     var matchDataContent: mutable.LinkedHashMap[SelectorType, String] = new mutable.LinkedHashMap[SelectorType, String]
-    matchDataContent += XPATH -> "//div[@class='tab-content-item']/@data-sku"
+    matchDataContent += XPATH -> "//div[@class='j-sku-item']/@data-sku"
     val dataSelector: ContentSelector = new ContentSelector("data", matchDataContent)
     val contentSelectorList = List(contentSelector, dataSelector)
     rule1.contentSelectors = contentSelectorList

@@ -1,0 +1,28 @@
+version: '2'
+
+networks:
+ default:
+  driver: bridge
+
+services:
+ spider-cluster-seed:
+   image: spider/spider-cluster-seed:1.0
+   ports:
+    - "2551:2551"
+ spider-api:
+   image: spider/spider-api:1.0
+   ports:
+    - "2552:2552"
+    - "9000:9000"
+ spider-coordinator:
+   image: spider/spider-coordinator:1.0
+   ports:
+    - "2553:2553"
+ spider-downloader:
+    image: spider/spider-downloader:1.0
+    ports:
+     - "2554:2554"
+ spider-page-processor:
+     image: spider/spider-page-processor:1.0
+     ports:
+      - "2555:2555"
