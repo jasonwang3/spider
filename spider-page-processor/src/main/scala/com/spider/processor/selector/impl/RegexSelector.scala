@@ -7,7 +7,6 @@ import com.spider.processor.selector.Selector
 import org.apache.commons.lang3.StringUtils
 
 import scala.collection.mutable.ListBuffer
-import scala.collection.parallel.mutable
 
 
 /**
@@ -57,12 +56,12 @@ class RegexSelector private() extends Selector {
     val matcher: Matcher = regex.matcher(text)
     if (matcher.find) {
       val groups: Array[String] = new Array[String](matcher.groupCount + 1)
-      for (i <- 0 to groups.length - 1) {
+      for (i <- groups.indices) {
         groups(i) = matcher.group(i)
       }
       return new RegexResult(groups)
     }
-    return RegexResult.EMPTY_RESULT
+    RegexResult.EMPTY_RESULT
   }
 
 
@@ -71,7 +70,7 @@ class RegexSelector private() extends Selector {
     var resultList: ListBuffer[RegexResult] = ListBuffer()
     while (matcher.find) {
       val groups: Array[String] = new Array[String](matcher.groupCount + 1)
-      for (i <- 0 to groups.length - 1) {
+      for (i <- groups.indices) {
         groups(i) = matcher.group(i)
       }
       resultList += new RegexResult(groups)

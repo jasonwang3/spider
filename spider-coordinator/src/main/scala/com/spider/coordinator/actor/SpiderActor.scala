@@ -54,7 +54,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
       val rule = spider.rules(analyzeResponse.step)
       rule.action match {
         case Action.GET_URL => {
-          if (analyzeResponse.targets.size == 0) {
+          if (analyzeResponse.targets.isEmpty) {
             log.info("has no targets to download!spider id is {}", spider.id)
             shutdown
           } else {
@@ -63,10 +63,9 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
               mediator ! Publish(PubSubMessage.DOWNLOAD_REQUEST, downloadRequest)
             })
           }
-
         };
         case Action.GET_CONTENT => {
-
+          log.debug("spider {} get content is {}", spider.id, analyzeResponse.content)
         }
       }
     }

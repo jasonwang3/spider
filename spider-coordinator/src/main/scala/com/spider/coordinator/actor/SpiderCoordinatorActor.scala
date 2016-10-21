@@ -2,14 +2,18 @@ package com.spider.coordinator.actor
 
 import akka.actor.SupervisorStrategy.Stop
 import akka.actor.{Actor, ActorLogging, OneForOneStrategy, Props}
-import com.spider.model.Spider
+import akka.cluster.pubsub.DistributedPubSub
+import akka.cluster.pubsub.DistributedPubSubMediator.Subscribe
+import com.spider.model.{PubSubMessage, Spider}
 
 import scala.concurrent.duration._
 
 /**
   * Created by jason on 16-5-10.
   */
-class SpiderCoordinatorActor extends Actor with ActorLogging{
+class SpiderCoordinatorActor extends Actor with ActorLogging {
+  val mediator = DistributedPubSub(context.system).mediator
+  mediator ! Subscribe(PubSubMessage.START_REQUEST, self)
 
   override def receive: Receive = {
     case spider: Spider => initSpider(spider)

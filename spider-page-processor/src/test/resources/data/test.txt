@@ -1,0 +1,220 @@
+<script type="text/javascript">document.getElementById("tarea").value="&&&&&&&  xsl_start  &&&&&&&&
+    Url=XSLView?appName=YXPP-B10+%E4%BF%83%E9%94%80%E7%94%B3%E8%AF%B7%E8%A1%A8&appId=3849127821538247128&formName=%E8%A7%86%E5%9B%BE+1&
+    viewType=vtHtml&formId=-9008144361577754677&&&&&&&&  data_start  &&&&&&&&<?xml version=\"1.0\" encoding=\"UTF-8\"?><my:myFields xmlns:my=
+    \"www.seeyon.com/form/2007\" recordid=\"-8857486848527872731\"><my:NO value=\"YXPP-B102016032100\">YXPP-B102016032100
+</my:NO>  <my:T大区>321</my:T大区>  <my:办事处></my:办事处>  <my:申请日期>2016-07-19</my:申请日期>  <my:专柜名称 value=\"卓展\">卓展</my:专柜名称>  <my:经营性质
+value=\"0\">直营专柜</my:经营性质>  <my:生活馆综合品牌 value=\"0\">未选择</my:生活馆综合品牌>  <my:BeChic店综合品牌 value=\"0\">未选择</my:BeChic店综合品牌>  <my:AIMER
+value=\"1\">选择</my:AIMER>  <my:AIMERMEN value=\"0\">未选择</my:AIMERMEN>  <my:LaClover value=\"0\">未选择</my:LaClover>  <my:IMI
+value=\"0\">未选择</my:IMI>  <my:AimerKids value=\"0\">未选择</my:AimerKids>  <my:慕澜 value=\"0\">未选择</my:慕澜>  <my:GideonOberson
+value=\"0\">未选择</my:GideonOberson>  <my:LiseCharmel value=\"0\">未选择</my:LiseCharmel>  <my:Feraud value=\"0\">未选择</my:Feraud>  <my:Rosch
+value=\"0\">未选择</my:Rosch>  <my:JcRCJG value=\"0\">未选择</my:JcRCJG>  <my:LOU value=\"0\">未选择</my:LOU>  <my:BODYWILD
+value=\"0\">未选择</my:BODYWILD>  <my:THEGUNZE value=\"0\">未选择</my:THEGUNZE>  <my:商场档次 value=\"1\">1级</my:商场档次>  <my:商场扣率
+value=\"21%\">21%</my:商场扣率>  <my:促销类别 value=\"0\">政策内</my:促销类别>  <my:是否出现明折 value=\"1\">否</my:是否出现明折>  <my:保底完成情况
+value=\"无保底\">无保底</my:保底完成情况>  <my:促销期间预计销售 value=\"5万\">5万</my:促销期间预计销售>  <my:促销期间从>2016-07-20</my:促销期间从>  <my:促销期间到>2016-07-24
+</my:促销期间到>  <my:是否需要公司资源支持 value=\"1\">否</my:是否需要公司资源支持>  <my:申请人部门级别 value=\"1\">办事处</my:申请人部门级别>  <my:促销方案
+value=\"卓展于7月20日起进行夏季V日活动，内衣区活动为20、22、24倍积分，为提升销售，我办申请配合商场活动，2016年秋冬新品不参加，请领导 批示！\">卓展于7月20日起进行夏季V日活动，内衣区活动为20、22、24倍积分，为提升销售，我办申请配合商场活动，2016年秋冬新品不参加，请领导 批示！</my:促销方案>  <my:竞品促销活动情况
+value=\"全部参加活动\">全部参加活动</my:竞品促销活动情况>  <my:商场促销活动情况 value=\"高倍积分\">高倍积分</my:商场促销活动情况>  <my:促销费用预算及承担方式
+value=\"活动部分商场加扣7%\">活动部分商场加扣7%</my:促销费用预算及承担方式>  <my:是否增加临时人员 value=\"1\">否</my:是否增加临时人员>  <my:人员数量 value=\"0\">0</my:人员数量>  <my:工资发放标准
+value=\"0\">0</my:工资发放标准>  <my:总额占销售额比 value=\"0\">0.00</my:总额占销售额比>  <my:T申请品牌></my:T申请品牌>  <my:心爱
+value=\"0\">未选择</my:心爱>  <my:AimerHome value=\"0\">未选择</my:AimerHome>  <my:Aimersports value=\"0\">未选择</my:Aimersports>  <my:奥莱
+value=\"0\">未选择</my:奥莱>  <my:所属市场 value=\"1\">北方市场</my:所属市场>  <my:分公司新
+value=\"4\">黑龙江分公司</my:分公司新></my:myFields>&&&&&&&&  input_start  &&&&&&&&<?xml version=\"1.0\" encoding=\"UTF-8\"?>  <FieldInputList>
+<FieldInput name=\"my:NO\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"255\"
+is_null=\"true\" formattype=\"\" isUnique=\"false\" /> <FieldInput name=\"my:T大区\" type=\"select\" access=\"browse\" allowprint=\"false\"
+allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"50\" is_null=\"true\" isFinChild = \"false\" isUnique=\"false\" > <Input display=\"西北区\"
+value=\"6\" metadataId=\"-5327394013691098973\" state=\"0\"/> <Input display=\"山东区\" value=\"7\" metadataId=\"-8889212651958744508\" state=\"0\"/>
+<Input display=\"北京大区 (停)\" value=\"0\" metadataId=\"4832920770875638528\" state=\"0\"/> <Input display=\"东北区\" value=\"1\"
+metadataId=\"567451532039700910\" state=\"1\"/> <Input display=\"北京区\" value=\"10\" metadataId=\"2026496668953362645\" state=\"1\"/> <Input
+        display=\"上海特区\" value=\"12\" metadataId=\"3018176082797084682\" state=\"1\"/> <Input display=\"中南区\" value=\"11\"
+metadataId=\"-7894437845577612626\" state=\"1\"/> <Input display=\"华美丽\" value=\"8\" metadataId=\"-6434530422172663256\" state=\"1\"/> <Input
+        display=\"华北区\" value=\"9\" metadataId=\"-6172498834286688902\" state=\"0\"/> <Input display=\"华东区\" value=\"2\"
+metadataId=\"-8539811279015949773\" state=\"1\"/> <Input display=\"华南区\" value=\"3\" metadataId=\"-5865264375507893057\" state=\"0\"/> <Input
+        display=\"华中区\" value=\"4\" metadataId=\"-4859492160119093597\" state=\"0\"/> <Input display=\"西南区\" value=\"5\"
+metadataId=\"-352610502599818872\" state=\"1\"/> <Input display=\"北方区\" value=\"13\" metadataId=\"1994968561144381744\" state=\"1\"/>
+</FieldInput>       <FieldInput
+name=\"my:办事处\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"false\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"兰州分公司\" value=\"6\" metadataId=\"8509496712740881750\" state=\"1\"/>            <Input
+display=\"新疆分公司\" value=\"27\" metadataId=\"7624623817312585733\" state=\"1\"/>            <Input
+display=\"西安分公司\" value=\"5\" metadataId=\"-2276915978356047863\" state=\"1\"/>            <Input
+display=\"上海分公司\" value=\"4\" metadataId=\"-7967918376135342490\" state=\"1\"/>            <Input
+display=\"南宁分公司\" value=\"32\" metadataId=\"-3241177080134678333\" state=\"1\"/>            <Input
+display=\"郑州分公司\" value=\"30\" metadataId=\"-2114389010772703129\" state=\"1\"/>            <Input
+display=\"贵阳分公司\" value=\"29\" metadataId=\"-3363769100735462929\" state=\"1\"/>            <Input
+display=\"太原分公司\" value=\"13\" metadataId=\"6825124519545162103\" state=\"1\"/>            <Input
+display=\"杭州分公司\" value=\"16\" metadataId=\"7115701101814040685\" state=\"1\"/>            <Input
+display=\"昆明分公司\" value=\"18\" metadataId=\"4881112573491036815\" state=\"1\"/>            <Input
+display=\"深圳分公司\" value=\"19\" metadataId=\"1401080995307605991\" state=\"1\"/>            <Input
+display=\"北京分公司\" value=\"2\" metadataId=\"6026214194548984933\" state=\"1\"/>            <Input
+display=\"南京分公司\" value=\"21\" metadataId=\"5136844100356013\" state=\"1\"/>            <Input
+display=\"柳州办事处\" value=\"22\" metadataId=\"3316619378664555954\" state=\"1\"/>            <Input
+display=\"长春分公司\" value=\"23\" metadataId=\"5417115607002792145\" state=\"1\"/>            <Input
+display=\"石家庄分公司\" value=\"3\" metadataId=\"2029612433490069920\" state=\"1\"/>            <Input
+display=\"合肥分公司\" value=\"31\" metadataId=\"3796998333620702289\" state=\"1\"/>            <Input
+display=\"武汉分公司\" value=\"7\" metadataId=\"4594461055066328102\" state=\"1\"/>            <Input
+display=\"成都分公司\" value=\"8\" metadataId=\"6456216333477824360\" state=\"1\"/>            <Input
+display=\"济南分公司\" value=\"9\" metadataId=\"4563959570139201625\" state=\"1\"/>            <Input
+display=\"青岛分公司\" value=\"10\" metadataId=\"772778566691866228\" state=\"1\"/>            <Input
+display=\"重庆分公司\" value=\"11\" metadataId=\"2703813697834667353\" state=\"1\"/>            <Input
+display=\"天津分公司\" value=\"12\" metadataId=\"5218955105527809520\" state=\"1\"/>            <Input
+display=\"华东库\" value=\"35\" metadataId=\"1832593441757808717\" state=\"1\"/>            <Input
+display=\"大庆分公司\" value=\"36\" metadataId=\"1320996191848843088\" state=\"1\"/>            <Input
+display=\"苏州商会\" value=\"37\" metadataId=\"2245841562142457941\" state=\"1\"/>            <Input
+display=\"银川分公司\" value=\"38\" metadataId=\"1282429662924783673\" state=\"1\"/>            <Input
+display=\"华美丽\" value=\"33\" metadataId=\"-1485690912240811471\" state=\"1\"/>            <Input
+display=\"大区直管经销\" value=\"34\" metadataId=\"-1346427326636799471\" state=\"1\"/>            <Input
+display=\"哈尔滨分公司\" value=\"14\" metadataId=\"-5102522198744349543\" state=\"1\"/>            <Input
+display=\"大连分公司\" value=\"15\" metadataId=\"-9053638885377227723\" state=\"1\"/>            <Input
+display=\"南昌分公司\" value=\"17\" metadataId=\"-2955723524310744571\" state=\"1\"/>            <Input
+display=\"长沙分公司\" value=\"20\" metadataId=\"-1830389642247910907\" state=\"1\"/>            <Input
+display=\"厦门分公司\" value=\"24\" metadataId=\"-213961287701151335\" state=\"1\"/>            <Input
+display=\"广州分公司\" value=\"25\" metadataId=\"-889310120192619873\" state=\"1\"/>            <Input
+display=\"沈阳分公司\" value=\"26\" metadataId=\"-5919528663608701073\" state=\"1\"/>            <Input
+display=\"苏南分公司\" value=\"28\" metadataId=\"-2261754087510816447\" state=\"1\"/>            <Input
+display=\"海南办事处\" value=\"39\" metadataId=\"-7456758376461743176\" state=\"1\"/>            <Input
+display=\"安徽分公司\" value=\"40\" metadataId=\"-97818483432668012\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:申请日期\" type=\"extend\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\"  allowmodify=\"true\" fieldtype=\"TIMESTAMP\"  is_null=\"false\"  is_file = \"false\" isImage = \"false\" isUnique=\"false\"  formattype=\"\"  formAppId=\"\"  relInputAtt=\"\"  selectType=\"user\"  relationConditionId=\"null\"  isDisplayRelated=\"false\"  isDisplayBaseForm=\"false\"  extendNameType=\"日期选取器\"  >             <Com
+url=\"window.showModalDialog(\'/seeyon/common/js/addDate/date.jsp\',window,\'dialogHeight:300px;dialogWidth:340px\')\" >               <img
+src=\"/seeyon/apps_res/form/image/date.gif\"/>             </Com>        </FieldInput>       <FieldInput
+name=\"my:专柜名称\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"50\" is_null=\"false\"  formattype=\"\"  isUnique=\"false\" />          <FieldInput
+name=\"my:经营性质\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"false\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"直营专柜\" value=\"0\" metadataId=\"-4798168329029729019\" state=\"1\"/>            <Input
+display=\"经销\" value=\"1\" metadataId=\"8248892443519567770\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:生活馆综合品牌\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:BeChic店综合品牌\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:AIMER\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:AIMERMEN\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:LaClover\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:IMI\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:AimerKids\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:慕澜\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:GideonOberson\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:LiseCharmel\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:Feraud\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:Rosch\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:JcRCJG\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:LOU\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:BODYWILD\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:THEGUNZE\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"4\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:商场档次\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"true\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"2级\" value=\"2\" metadataId=\"4809640126570579570\" state=\"1\"/>            <Input
+display=\"1级\" value=\"1\" metadataId=\"6386977205272857395\" state=\"1\"/>            <Input
+display=\"星级\" value=\"0\" metadataId=\"-580124170171954743\" state=\"1\"/>            <Input
+display=\"3级\" value=\"3\" metadataId=\"-934208868319803047\" state=\"1\"/>            <Input
+display=\"A级\" value=\"4\" metadataId=\"-2930337072231333420\" state=\"0\"/>            <Input
+display=\"B1级\" value=\"5\" metadataId=\"-4682638449268735832\" state=\"0\"/>            <Input
+display=\"B2级\" value=\"6\" metadataId=\"-1267423727117775830\" state=\"1\"/>            <Input
+display=\"B3级\" value=\"7\" metadataId=\"3989152348547662465\" state=\"1\"/>            <Input
+display=\"C1级\" value=\"8\" metadataId=\"-9204147061970940800\" state=\"1\"/>            <Input
+display=\"C2级\" value=\"9\" metadataId=\"3339104728892196589\" state=\"0\"/>            <Input
+display=\"D级\" value=\"10\" metadataId=\"-3443070344495019656\" state=\"0\"/>          </FieldInput>       <FieldInput
+name=\"my:商场扣率\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"50\" is_null=\"true\"  formattype=\"\"  isUnique=\"false\" />          <FieldInput
+name=\"my:促销类别\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"false\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"额度内特殊大型\" value=\"2\" metadataId=\"4570431882668819597\" state=\"0\"/>            <Input
+display=\"额度外特殊大型\" value=\"3\" metadataId=\"988727532319425294\" state=\"0\"/>            <Input
+display=\"政策外\" value=\"1\" metadataId=\"-8997250192829692232\" state=\"1\"/>            <Input
+display=\"政策内\" value=\"0\" metadataId=\"-2391112447926583002\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:是否出现明折\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"false\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"否\" value=\"1\" metadataId=\"7903244478190732145\" state=\"1\"/>            <Input
+display=\"是\" value=\"0\" metadataId=\"7440713095302630026\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:保底完成情况\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"50\" is_null=\"true\"  formattype=\"\"  isUnique=\"false\" />          <FieldInput
+name=\"my:促销期间预计销售\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"50\" is_null=\"true\"  formattype=\"\"  isUnique=\"false\" />          <FieldInput
+name=\"my:促销期间从\" type=\"extend\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\"  allowmodify=\"true\" fieldtype=\"TIMESTAMP\"  is_null=\"true\"  is_file = \"false\" isImage = \"false\" isUnique=\"false\"  formattype=\"\"  formAppId=\"\"  relInputAtt=\"\"  selectType=\"user\"  relationConditionId=\"null\"  isDisplayRelated=\"false\"  isDisplayBaseForm=\"false\"  extendNameType=\"日期选取器\"  >             <Com
+url=\"window.showModalDialog(\'/seeyon/common/js/addDate/date.jsp\',window,\'dialogHeight:300px;dialogWidth:340px\')\" >               <img
+src=\"/seeyon/apps_res/form/image/date.gif\"/>             </Com>        </FieldInput>       <FieldInput
+name=\"my:促销期间到\" type=\"extend\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\"  allowmodify=\"true\" fieldtype=\"TIMESTAMP\"  is_null=\"true\"  is_file = \"false\" isImage = \"false\" isUnique=\"false\"  formattype=\"\"  formAppId=\"\"  relInputAtt=\"\"  selectType=\"user\"  relationConditionId=\"null\"  isDisplayRelated=\"false\"  isDisplayBaseForm=\"false\"  extendNameType=\"日期选取器\"  >             <Com
+url=\"window.showModalDialog(\'/seeyon/common/js/addDate/date.jsp\',window,\'dialogHeight:300px;dialogWidth:340px\')\" >               <img
+src=\"/seeyon/apps_res/form/image/date.gif\"/>             </Com>        </FieldInput>       <FieldInput
+name=\"my:是否需要公司资源支持\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"false\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"否\" value=\"1\" metadataId=\"7903244478190732145\" state=\"1\"/>            <Input
+display=\"是\" value=\"0\" metadataId=\"7440713095302630026\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:申请人部门级别\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"true\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"大区\" value=\"0\" metadataId=\"839352410112019803\" state=\"1\"/>            <Input
+display=\"办事处\" value=\"1\" metadataId=\"-3629844129403024726\" state=\"1\"/>            <Input
+display=\"营销部\" value=\"2\" metadataId=\"3464123158722136443\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:促销方案\" type=\"textarea\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\"  fieldtype=\"LONGTEXT\"  formattype=\"\"  is_null=\"true\" />          <FieldInput
+name=\"my:竞品促销活动情况\" type=\"textarea\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\"  fieldtype=\"LONGTEXT\"  formattype=\"\"  is_null=\"true\" />          <FieldInput
+name=\"my:商场促销活动情况\" type=\"textarea\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\"  fieldtype=\"LONGTEXT\"  formattype=\"\"  is_null=\"true\" />          <FieldInput
+name=\"my:促销费用预算及承担方式\" type=\"textarea\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\"  fieldtype=\"LONGTEXT\"  formattype=\"\"  is_null=\"true\" />          <FieldInput
+name=\"my:是否增加临时人员\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"false\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"否\" value=\"1\" metadataId=\"7903244478190732145\" state=\"1\"/>            <Input
+display=\"是\" value=\"0\" metadataId=\"7440713095302630026\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:人员数量\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"50\" is_null=\"true\"  formattype=\"\"  isUnique=\"false\" />          <FieldInput
+name=\"my:工资发放标准\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"50\" is_null=\"true\"  formattype=\"\"  isUnique=\"false\" />          <FieldInput
+name=\"my:总额占销售额比\" type=\"text\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"DECIMAL\" length=\"20\" digit=\"2\" is_null=\"true\"  formattype=\"\"  isUnique=\"false\" />          <FieldInput
+name=\"my:T申请品牌\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"50\" is_null=\"true\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"Lise Charmel\" value=\"4\" metadataId=\"-8162069836474201981\" state=\"1\"/>            <Input
+display=\"集合店\" value=\"28\" metadataId=\"-7667502195499249772\" state=\"1\"/>            <Input
+display=\"AIMER\" value=\"0\" metadataId=\"1106392878199556872\" state=\"1\"/>            <Input
+display=\"AIMER MEN\" value=\"1\" metadataId=\"4021466170757107477\" state=\"1\"/>            <Input
+display=\"La Clover\" value=\"2\" metadataId=\"5437608657712204058\" state=\"1\"/>            <Input
+display=\"IMI\" value=\"3\" metadataId=\"6450641563464582360\" state=\"1\"/>            <Input
+display=\"慕澜\" value=\"9\" metadataId=\"425913202866668080\" state=\"1\"/>            <Input
+display=\"BeChic店综合品牌\" value=\"12\" metadataId=\"509680791174792353\" state=\"1\"/>            <Input
+display=\"郡是【停】\" value=\"14\" metadataId=\"2116101773718602197\" state=\"0\"/>            <Input
+display=\"特展综合品牌\" value=\"19\" metadataId=\"743305373127362574\" state=\"0\"/>            <Input
+display=\"Feraud\" value=\"5\" metadataId=\"-6893230078412307455\" state=\"1\"/>            <Input
+display=\"C版一家人生活馆\" value=\"27\" metadataId=\"3740029925030577440\" state=\"1\"/>            <Input
+display=\"Rosch\" value=\"6\" metadataId=\"1011357132722487692\" state=\"1\"/>            <Input
+display=\"高级定制\" value=\"17\" metadataId=\"9130662467576744455\" state=\"1\"/>            <Input
+display=\"THE GUNZE\" value=\"16\" metadataId=\"8572847384622811098\" state=\"0\"/>            <Input
+display=\"LOU\" value=\"15\" metadataId=\"8569840547737849789\" state=\"1\"/>            <Input
+display=\"Gideon Oberson\" value=\"7\" metadataId=\"8284701269452607157\" state=\"1\"/>            <Input
+display=\"BODY WILD\" value=\"13\" metadataId=\"-6703084660435564812\" state=\"1\"/>            <Input
+display=\"JC&amp;RC&amp;JG\" value=\"10\" metadataId=\"-2719561899929943134\" state=\"1\"/>            <Input
+display=\"DANSKIN\" value=\"18\" metadataId=\"-878865834098997073\" state=\"1\"/>            <Input
+display=\"Aimer Kids\" value=\"8\" metadataId=\"-6487483830194648937\" state=\"1\"/>            <Input
+display=\"生活馆综合品牌\" value=\"11\" metadataId=\"-7985268155891760500\" state=\"1\"/>            <Input
+display=\"Aimer Home\" value=\"21\" metadataId=\"5704378409212791525\" state=\"1\"/>            <Input
+display=\"华美丽\" value=\"22\" metadataId=\"6382866948685123110\" state=\"1\"/>            <Input
+display=\"爱美丽潮店\" value=\"23\" metadataId=\"4509631233660768172\" state=\"1\"/>            <Input
+display=\"Aimer Sports\" value=\"24\" metadataId=\"2138850936975347199\" state=\"1\"/>            <Input
+display=\"文创\" value=\"25\" metadataId=\"-4340136975509600636\" state=\"1\"/>            <Input
+display=\"奥莱店\" value=\"26\" metadataId=\"-98965366892965935\" state=\"1\"/>            <Input
+display=\"心爱\" value=\"20\" metadataId=\"5545615960092917864\" state=\"1\"/>            <Input
+display=\"特卖综合品牌\" value=\"29\" metadataId=\"-7541029842734791276\" state=\"1\"/>            <Input
+display=\"展卖综合品牌\" value=\"30\" metadataId=\"4712018947277407036\" state=\"1\"/>            <Input
+display=\"NG纽格芙\" value=\"31\" metadataId=\"-7345050320779325672\" state=\"1\"/>            <Input
+display=\"UM25\" value=\"32\" metadataId=\"-5418013293044154137\" state=\"1\"/>            <Input
+display=\"SIRRFONY by I.D.SARRIERI\" value=\"33\" metadataId=\"-1411185618534184313\" state=\"1\"/>            <Input
+display=\"皇锦\" value=\"34\" metadataId=\"5562206553639306379\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:心爱\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"255\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:AimerHome\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"255\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:Aimersports\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"255\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:奥莱\" type=\"checkbox\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\" length=\"255\" isUnique=\"false\"  is_null=\"true\"/>          <FieldInput
+name=\"my:所属市场\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"255\" is_null=\"false\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"南方市场\" value=\"0\" metadataId=\"8894992263180209150\" state=\"1\"/>            <Input
+display=\"北方市场\" value=\"1\" metadataId=\"5853739998599728385\" state=\"1\"/>            <Input
+display=\"北、上、广\" value=\"2\" metadataId=\"4532483393967115809\" state=\"0\"/>            <Input
+display=\"北京分公司\" value=\"3\" metadataId=\"8527068643331558379\" state=\"1\"/>          </FieldInput>       <FieldInput
+name=\"my:分公司新\" type=\"select\" access=\"browse\" allowprint=\"false\" allowtransmit=\"false\" fieldtype=\"VARCHAR\"  length=\"255\" is_null=\"true\" isFinChild = \"false\"  isUnique=\"false\"  >            <Input
+display=\"北京分公司\" value=\"0\" metadataId=\"-7547140960564590581\" state=\"1\"/>            <Input
+display=\"上海分公司\" value=\"1\" metadataId=\"49827290522537268\" state=\"1\"/>            <Input
+display=\"广东分公司\" value=\"2\" metadataId=\"8822419718414878849\" state=\"1\"/>            <Input
+display=\"海南分公司\" value=\"29\" metadataId=\"3655859541612447449\" state=\"1\"/>            <Input
+display=\"南海分公司\" value=\"3\" metadataId=\"-7063823355035695673\" state=\"0\"/>            <Input
+display=\"黑龙江分公司\" value=\"4\" metadataId=\"-3183141739465850395\" state=\"1\"/>            <Input
+display=\"吉林分公司\" value=\"5\" metadataId=\"-5383815998494456000\" state=\"1\"/>            <Input
+display=\"辽宁分公司\" value=\"6\" metadataId=\"7447580536587698568\" state=\"1\"/>            <Input
+display=\"新疆分公司\" value=\"7\" metadataId=\"7911841889493994144\" state=\"1\"/>            <Input
+display=\"甘肃分公司\" value=\"8\" metadataId=\"8951174738977378163\" state=\"1\"/>            <Input
+display=\"银川分公司\" value=\"9\" metadataId=\"-1674133089047131881\" state=\"1\"/>            <Input
+display=\"陕西分公司\" value=\"10\" metadataId=\"5176941894748684691\" state=\"1\"/>            <Input
+display=\"内蒙分公司\" value=\"11\" metadataId=\"-5827555253971695400\" state=\"1\"/>            <Input
+display=\"山西分公司\" value=\"12\" metadataId=\"-1951805305730871735\" state=\"1\"/>            <Input
+display=\"河北分公司\" value=\"13\" metadataId=\"-7359606223633692594\" state=\"1\"/>            <Input
+display=\"天津分公司\" value=\"14\" metadataId=\"5340807374728480827\" state=\"1\"/>            <Input
+display=\"山东分公司\" value=\"15\" metadataId=\"3810462460975664973\" state=\"1\"/>            <Input
+display=\"河南分公司\" value=\"16\" metadataId=\"7420278354062296442\" state=\"1\"/>            <Input
+display=\"湖北分公司\" value=\"17\" metadataId=\"5010917603967124933\" state=\"1\"/>            <Input
+display=\"湖南分公司\" value=\"18\" metadataId=\"3969711614692182253\" state=\"1\"/>            <Input
+display=\"安徽分公司\" value=\"19\" metadataId=\"-1225168554846371087\" state=\"1\"/>            <Input
+display=\"江苏分公司\" value=\"20\" metadataId=\"-8649218810094467048\" state=\"1\"/>            <Input
+display=\"浙江分公司\" value=\"21\" metadataId=\"-2755554641963233734\" state=\"1\"/>            <Input
+display=\"江西分公司\" value=\"22\" metadataId=\"1398369416651295105\" state=\"1\"/>            <Input
+display=\"四川分公司\" value=\"23\" metadataId=\"-709659205250364533\" state=\"1\"/>            <Input
+display=\"重庆分公司\" value=\"24\" metadataId=\"-1560956657442797804\" state=\"1\"/>            <Input
+display=\"贵州分公司\" value=\"25\" metadataId=\"-5436049971185630687\" state=\"1\"/>            <Input
+display=\"云南分公司\" value=\"26\" metadataId=\"-6829052240681023639\" state=\"1\"/>            <Input
+display=\"福建分公司\" value=\"27\" metadataId=\"292949707214507035\" state=\"1\"/>            <Input
+display=\"广西分公司\" value=\"28\" metadataId=\"-2045619578880898573\" state=\"1\"/>            <Input
+display=\"IM京津翼分公司\" value=\"30\" metadataId=\"8007829807924595965\" state=\"1\"/>          </FieldInput>  </FieldInputList>";</script>

@@ -7,6 +7,8 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-coffeescript" % "1.0.0")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-less" % "1.1.0")
 
+addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.8.2")
+
 addSbtPlugin("com.typesafe.sbt" % "sbt-jshint" % "1.0.3")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-rjs" % "1.0.7")
@@ -17,5 +19,16 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.1.0")
 
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.2")
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.0")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0-M6")
+
+resolvers ++= resolverSettings
+
+lazy val resolverSettings = Seq(
+  Resolver.mavenLocal,
+  "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/",
+  "Typesafe Akka snapshot repository" at "http://repo.akka.io/snapshots/",
+  "sonatype-snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
+  "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases",
+  Resolver.sbtPluginRepo("releases")
+)
 

@@ -1,4 +1,3 @@
-
 name := """spider-page-processor"""
 
 version := "1.0"
@@ -11,6 +10,22 @@ fork in run := true
 
 // the bash scripts classpath is in follow
 scriptClasspath ~= (cp => "../conf" +: cp)
+
+/** docker start */
+packageName in Docker := packageName.value
+
+version in Docker := version.value
+
+dockerBaseImage := "java"
+
+dockerRepository := Some("index.tenxcloud.com/w926494698")
+
+dockerAlias := DockerAlias(Some("spider"),None,packageName.value,Some(version.value))
+
+dockerExposedPorts := Seq(2555)
+
+defaultLinuxInstallLocation in Docker := "/opt/docker"
+/** docker end */
 
 mappings in Universal <++= (packageBin in Compile, baseDirectory ) map { (_, target) =>
   val dir = target / "src" / "main" / "resources"

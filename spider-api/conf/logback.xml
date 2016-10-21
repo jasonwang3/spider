@@ -6,6 +6,40 @@
         </encoder>
     </appender>
 
+    <appender name="logStash" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <file>logs/notification-api.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/spider-api.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>${logging.maxdays:-30}</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <timestamp>createTime</timestamp>
+            </fieldNames>
+            <customFields>
+                {"application": "spider-api"}
+            </customFields>
+            <providers>
+                <!-- provides the timestamp -->
+                <timestamp/>
+                <!-- provides the version -->
+                <version/>
+                <message/>
+                <loggerName/>
+                <threadName/>
+                <logLevel/>
+                <logLevelValue/>
+                <stackTrace/>
+                <mdc/>
+                <tags/>
+                <logstashMarkers/>
+            </providers>
+        </encoder>
+    </appender>
+
     <logger name="akka" level="WARN" />
     <logger name="akka.cluster" level="WARN" />
     <logger name="akka.config" level="WARN" />
@@ -15,6 +49,7 @@
     <logger name="com.spider" level="DEBUG"/>
 
     <root level="INFO">
+        <appender-ref ref="logStash" />
         <appender-ref ref="stdout" />
     </root>
 

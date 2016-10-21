@@ -23,6 +23,8 @@ packageName in Docker := packageName.value
 
 version in Docker := version.value
 
+dockerAlias := DockerAlias(Some("spider"),None,packageName.value,Some(version.value))
+
 dockerBaseImage := "java"
 
 dockerRepository := Some("index.tenxcloud.com/w926494698")
