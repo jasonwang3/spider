@@ -1,4 +1,3 @@
-
 name := """spider-page-processor"""
 
 version := "1.0"

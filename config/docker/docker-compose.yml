@@ -9,20 +9,36 @@ services:
    image: spider/spider-cluster-seed:1.0
    ports:
     - "2551:2551"
+   environment:
+    - SEED_HOST=spider-cluster-seed
+    - HOST_NAME=spider-cluster-seed
  spider-api:
    image: spider/spider-api:1.0
    ports:
     - "2552:2552"
     - "9000:9000"
+   environment:
+    - SEED_HOST=spider-cluster-seed
+    - HOST_NAME=spider-api
+    - APPLICATION_SECRET=abcjefg
  spider-coordinator:
    image: spider/spider-coordinator:1.0
    ports:
     - "2553:2553"
+   environment:
+    - SEED_HOST=spider-cluster-seed
+    - HOST_NAME=spider-coordinator
  spider-downloader:
     image: spider/spider-downloader:1.0
     ports:
      - "2554:2554"
+    environment:
+     - SEED_HOST=spider-cluster-seed
+     - HOST_NAME=spider-downloader
  spider-page-processor:
      image: spider/spider-page-processor:1.0
      ports:
       - "2555:2555"
+     environment:
+      - SEED_HOST=spider-cluster-seed
+      - HOST_NAME=spider-page-processor
