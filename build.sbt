@@ -8,17 +8,15 @@ scalaVersion := "2.11.7"
 
 lazy val akkaVersion = "2.4.0"
 
-
-resolvers += Seq(Resolver.sonatypeRepo("public"),resolverSettings)
-
-lazy val resolverSettings = Seq(
-  Resolver.mavenLocal,
-  "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/",
-  "Typesafe Akka snapshot repository" at "http://repo.akka.io/snapshots/",
-  "sonatype-snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
-  "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases",
+resolvers += {
+  Resolver.mavenLocal
+  Resolver.sonatypeRepo("public")
+  "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
+  "Typesafe Akka snapshot repository" at "http://repo.akka.io/snapshots/"
+  "sonatype-snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+  "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases"
   Resolver.sbtPluginRepo("releases")
-)
+}
 
 testOptions += Tests.Argument(TestFrameworks.JUnit, "-v")
 
