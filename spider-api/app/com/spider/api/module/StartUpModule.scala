@@ -9,20 +9,23 @@ import java.util.concurrent.TimeUnit
 import akka.actor.{ActorSystem, Address}
 import akka.cluster.Cluster
 import com.google.inject.AbstractModule
+import com.spider.api.actor.SpiderServiceActor
 import org.slf4j.LoggerFactory
+import play.api.libs.concurrent.AkkaGuiceSupport
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
-class StartUpModule extends AbstractModule {
+class StartUpModule extends AbstractModule with AkkaGuiceSupport{
   val logger = LoggerFactory.getLogger(classOf[StartUpModule])
 
   def configure() = {
-    val system = ActorSystem("ClusterSystem")
+    bindActor[SpiderServiceActor]("spiderServiceActor")
 
-    Runtime.getRuntime.addShutdownHook(new AppShutdownHook(system))
+//    Runtime.getRuntime.addShutdownHook(new AppShutdownHook(system))
     logger.info("application start up")
   }
+
 }
 
 class AppShutdownHook (var system: ActorSystem) extends Thread {

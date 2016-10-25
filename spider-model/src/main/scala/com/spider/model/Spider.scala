@@ -7,6 +7,7 @@ import com.spider.model.downloader.Request
 /**
   * Created by jason on 16-4-19.
   */
+@SerialVersionUID(1L)
 class Spider(_id: String, _request: Request, _site: Site, _rules: List[Rule]) {
 
   var id: String = _id

@@ -1,4 +1,3 @@
-import com.typesafe.sbt.packager.archetypes.TemplateWriter
 
 name := """spider"""
 
