@@ -16,9 +16,7 @@ object Request {
 }
 
 @SerialVersionUID(1L)
-class Request(_url: String) extends Serializable{
-
-  val url: String = _url
+class Request(val url: String) extends Serializable{
 
   var method: String = null
   /**

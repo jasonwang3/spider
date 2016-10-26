@@ -13,6 +13,8 @@ abstract class AbstractDownloader extends Downloader{
   }
 
   def download(url: String, charset: String): Page = {
-    download(new Request(url), Site.create().setCharset(charset).toTask)
+    val site = new Site
+    site.charset = charset
+    download(new Request(url), site.toTask)
   }
 }

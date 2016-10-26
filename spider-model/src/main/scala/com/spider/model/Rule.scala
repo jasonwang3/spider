@@ -2,24 +2,20 @@ package com.spider.model
 
 import com.spider.model.Action.Action
 import com.spider.model.selector.ContentSelector
-import com.spider.model.support.SelectorType.SelectorType
 
-import scala.collection.mutable
+import scala.collection.immutable.ListMap
+
 
 /**
-  * Created by jason on 16-4-19.
+  *
+  * @param action
+  * @param matchRule CSS -> "div.bDiv", XPATH -> frame[@id='detailMainFrame']
   */
 @SerialVersionUID(1L)
-class Rule(_action: Action, _matchRule: mutable.LinkedHashMap[SelectorType, String]) extends Serializable {
-
-  val action: Action = _action
-
-  // CSS -> "div.bDiv", XPATH -> frame[@id='detailMainFrame']
-  val matchRule: mutable.LinkedHashMap[SelectorType, String] = _matchRule
-
-  var contentSelectors: List[ContentSelector] = null
+class Rule(val action: Action, val matchRule: List[MatchRule], var contentSelectors: List[ContentSelector]) extends Serializable {
+  def this(action: Action, matchRule: List[MatchRule]) = {
+    this(action, matchRule, null)
+  }
 
   var rule: Rule = null
-
-
 }

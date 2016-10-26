@@ -9,7 +9,7 @@ import play.api.Logger
 import play.api.libs.json.JsValue
 import play.api.mvc._
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
 /**
@@ -29,7 +29,7 @@ class SpiderController @Inject()(system: ActorSystem)(@Named("spiderServiceActor
     logger.debug(s"received spider request, body is = ${body.get}")
     (serviceActor ? body.get.toString()).map {
       case message: String => Ok("success")
-      case ex: Exception => InternalServerError(ex.getMessage)
+      case ex: Exception => InternalServerError("system occurs error")
     }
   }
 

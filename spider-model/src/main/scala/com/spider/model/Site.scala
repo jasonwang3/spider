@@ -13,15 +13,15 @@ import scala.collection.mutable
 object Site {
 
   val DEFAULT_STATUS_CODE_SET = Set[Int](200)
-
-  def create() = {
-    new Site
-  }
-
 }
 
 @SerialVersionUID(1L)
-class Site() extends Serializable{
+class Site extends Serializable {
+
+  def this(domain: String) = {
+    this()
+    this.domain = domain
+  }
 
   var domain: String = null
 
@@ -58,11 +58,6 @@ class Site() extends Serializable{
   def toTask(): Task = {
     val task = new Task(this, this.domain)
     task
-  }
-
-  def setDomain(domain: String): Site = {
-    this.domain = domain
-    this
   }
 
   def getAllCookies: java.util.Map[String, java.util.Map[String, String]] = {

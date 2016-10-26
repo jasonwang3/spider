@@ -8,6 +8,7 @@ import com.spider.model.{Action, Rule}
 import com.spider.processor.selector.Selectable
 import com.spider.processor.selector.impl.{Html, PlainText}
 import scala.collection.JavaConversions
+
 /**
   * Created by jason on 16-5-17.
   */
@@ -54,12 +55,12 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
         val paramName = contentSelector.paramName
         var selectable: Selectable = null
         contentSelector.matchRule.foreach(matchRule => {
-          if (matchRule._1 == SelectorType.CSS) {
-            selectable = _html.$(matchRule._2)
-          } else if (matchRule._1 == SelectorType.XPATH) {
-            selectable = _html.xpath(matchRule._2)
-          } else if (matchRule._1 == SelectorType.REGEX) {
-            selectable = _html.regex(matchRule._2)
+          if (matchRule.selectorType == SelectorType.CSS) {
+            selectable = _html.$(matchRule.rule)
+          } else if (matchRule.selectorType == SelectorType.XPATH) {
+            selectable = _html.xpath(matchRule.rule)
+          } else if (matchRule.selectorType == SelectorType.REGEX) {
+            selectable = _html.regex(matchRule.rule)
           }
         })
         jsonObject.put(paramName, JavaConversions.asJavaCollection(selectable.all))
@@ -71,14 +72,14 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
   def getHtml(html: Html, rule: Rule): Selectable = {
     var _html: Selectable = html
     rule.matchRule.foreach(matchRule => {
-      if (matchRule._1 == SelectorType.CSS) {
-        _html = _html.$(matchRule._2)
-      } else if (matchRule._1 == SelectorType.XPATH) {
-        _html = _html.xpath(matchRule._2)
-      } else if (matchRule._1 == SelectorType.LINK) {
+      if (matchRule.selectorType == SelectorType.CSS) {
+        _html = _html.$(matchRule.rule)
+      } else if (matchRule.selectorType == SelectorType.XPATH) {
+        _html = _html.xpath(matchRule.rule)
+      } else if (matchRule.selectorType == SelectorType.LINK) {
         _html = _html.links.asInstanceOf[PlainText]
-      } else if (matchRule._1 == SelectorType.REGEX) {
-        _html = _html.regex(matchRule._2)
+      } else if (matchRule.selectorType == SelectorType.REGEX) {
+        _html = _html.regex(matchRule.rule)
       } else {
         //TODO
       }

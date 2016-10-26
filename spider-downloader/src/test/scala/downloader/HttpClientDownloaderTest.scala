@@ -30,7 +30,7 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
   }
 
   "download with cookies" should "download a page" in {
-    val site: Site = Site.create().setDomain(".github.com").addCookie("_ga", "GA1.2.328404385.1436499079")
+    val site: Site = new Site(".github.com").addCookie("_ga", "GA1.2.328404385.1436499079")
       .addCookie(".github.com", "dotcom_user", "jasonwang3")
       .addCookie(".github.com", "logged_in", "yes")
       .addCookie("github.com", "tz", "Asia%2FShanghai")
@@ -39,7 +39,7 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
   }
 
   "download JD" should "download a page" in {
-    val site: Site = Site.create().setDomain("list.jd.com")
+    val site: Site = new Site("list.jd.com")
     val page = httpClientDownloader.download(new Request("http://list.jd.com/list.html?cat=670,677,678&page=1&delivery=1"), site.toTask())
     println(page.rawText)
   }

@@ -14,8 +14,4 @@ class ResultItems extends Serializable{
 
   var skip: Boolean = false
 
-
-
-
-
 }
