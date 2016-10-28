@@ -49,7 +49,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   }
 
   def processAnalyzeResponse(analyzeResponse: AnalyzeResponse) = {
-    log.debug("received analyze response {}", analyzeResponse)
+    log.debug("received analyze response,id is {}", analyzeResponse)
     if (spider.rules(analyzeResponse.step) != null) {
       val rule = spider.rules(analyzeResponse.step)
       rule.action match {
@@ -65,7 +65,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
           }
         };
         case Action.GET_CONTENT => {
-          log.debug("spider {} get content is {}", spider.id, analyzeResponse.content)
+          shutdown
         }
       }
     }

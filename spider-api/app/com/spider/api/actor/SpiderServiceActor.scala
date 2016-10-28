@@ -4,9 +4,10 @@ import java.util.Date
 
 import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSub
+import akka.cluster.pubsub.DistributedPubSubMediator.Publish
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.spider.model.support.SelectorType
-import com.spider.model.{Action, Spider}
+import com.spider.model.{Action, PubSubMessage, Spider}
 import org.json4s._
 import org.json4s.ext.EnumNameSerializer
 import org.json4s.jackson.JsonMethods
@@ -32,19 +33,18 @@ class SpiderServiceActor extends Actor with ActorLogging {
       val spider = jsValue.extract[Spider]
       println(spider)
       //TODO:add validation
-      //      spider.id = now.getTime.toString
-      //      spider.startDate = now
-      //      mediator ! Publish(PubSubMessage.START_REQUEST, spider)
-      //      log.info("send spider to coordinator, id is {}, message is {}, ", spider.id, spider)
+      spider.id = now.getTime.toString
+      spider.startDate = now
+      mediator ! Publish(PubSubMessage.START_REQUEST, spider)
+      log.info("send spider to coordinator, id is {}, message is {}, ", spider.id, spider)
     } catch {
-      case ex: MappingException => {
+      case ex: MappingException =>
         log.error(ex, "json converter error")
         sender ! ex
-      }
-      case ex:Exception => {
+      case ex: Exception =>
         log.error(ex, "system occurs error")
         sender ! ex
-      }
+
     }
     sender ! "OK"
 
