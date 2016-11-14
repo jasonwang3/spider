@@ -7,5 +7,5 @@ import com.spider.model.MatchRule
   */
 @SerialVersionUID(1L)
 class ContentSelector(val paramName: String, val matchRule: List[MatchRule]) extends Serializable {
-
+  var urlDownload = false
 }

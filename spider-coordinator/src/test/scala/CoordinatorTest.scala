@@ -88,4 +88,25 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
     Thread.sleep(40000)
   }
 
+  test("TMALL") {
+    val spiderActor = system.actorOf(Props[SpiderCoordinatorActor], "downloadCoordinator")
+    val site: Site = new Site("list.tmall.com")
+    site.charset = "GBK"
+    val request = new Request("https://list.tmall.com/search_product.htm?q=%E6%9B%BC%E5%A6%AE%E8%8A%AC&imgfile=&commend=all&ssid=s5-e&search_type=tmall&sourceId=tb.index&spm=a21bo.50862.201856-taobao-item.1&ie=utf8&initiative_id=tbindexz_20161114")
+    val rule1 = new Rule(GET_CONTENT, List(new MatchRule(CSS, "div.product")))
+    val titleSelector: ContentSelector = new ContentSelector("title", List(new MatchRule(XPATH, "//p[@class='productTitle']/a/@title")))
+    val priceSelector: ContentSelector = new ContentSelector("price", List(new MatchRule(XPATH, "//p[@class='productPrice']/em/@title")))
+    val imageSelector: ContentSelector = new ContentSelector("image", List(new MatchRule(XPATH, "//div[@class='productImg-wrap']/a/img/@src|//div[@class='productImg-wrap']/a/img/@data-ks-lazyload")))
+    imageSelector.urlDownload = true
+    val contentSelectorList = List(titleSelector, priceSelector, imageSelector)
+    rule1.contentSelectors = contentSelectorList
+    val rules: List[Rule] = List(rule1)
+    val spider = new Spider(request, site, rules)
+    spider.id = "testTMALL"
+    //send
+    Thread.sleep(5000)
+    spiderActor ! spider
+    Thread.sleep(40000)
+  }
+
 }

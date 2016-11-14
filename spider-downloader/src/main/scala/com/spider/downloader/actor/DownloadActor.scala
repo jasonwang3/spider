@@ -14,9 +14,7 @@ object DownloadActor {
   def props(spiderId: String, downloadRequest: DownloadRequest, from: ActorRef): Props = Props(classOf[DownloadActor], spiderId, downloadRequest, from)
 }
 
-class DownloadActor(_spiderId: String, _downloadRequest: DownloadRequest, _from: ActorRef) extends Actor {
-  val spiderId: String = _spiderId
-  val downloadRequest: DownloadRequest = _downloadRequest
+class DownloadActor(val spiderId: String, val downloadRequest: DownloadRequest, val from: ActorRef) extends Actor {
   val log = Logging(context.system, this)
   var downloader: AbstractDownloader = null
 
@@ -27,7 +25,7 @@ class DownloadActor(_spiderId: String, _downloadRequest: DownloadRequest, _from:
   def download(downloadRequest: DownloadRequest): Unit = {
     val page: Page = downloader.download(downloadRequest.request, downloadRequest.site.toTask())
     page.step = downloadRequest.step
-    _from.tell(page, self)
+    from.tell(page, self)
     context.stop(self)
   }
 

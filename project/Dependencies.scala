@@ -4,7 +4,7 @@ import sbt._
 object Dependencies {
 
   object Versions {
-    val akkaVersion = "2.4.7"
+    val akkaVersion = "2.4.12"
   }
 
   object Compile {

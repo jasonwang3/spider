@@ -36,6 +36,23 @@ class SelectorTest extends TestKit(ActorSystem.create("ClusterSystem", ConfigFac
 
   }
 
+  "parse TMALL" should "get correct content" in {
+    val source = Source.fromURL(getClass.getResource("data/TMALL.html"))("GBK").mkString
+    val rule1 = new Rule(GET_CONTENT, List(new MatchRule(CSS, "div.product")))
+    val analyzeRequest: AnalyzeRequest = new AnalyzeRequest("test", 0, source, rule1, null)
+    val titleSelector: ContentSelector = new ContentSelector("title", List(new MatchRule(XPATH, "//p[@class='productTitle']/a/@title")))
+    val priceSelector: ContentSelector = new ContentSelector("price", List(new MatchRule(XPATH, "//p[@class='productPrice']/em/@title")))
+    val contentSelectorList = List(titleSelector, priceSelector)
+    rule1.contentSelectors = contentSelectorList
+    val probe1 = TestProbe()
+    val actor: ActorRef = system.actorOf(ProcessorActor.props(analyzeRequest.spiderId, analyzeRequest, probe1.ref))
+    val response = probe1.expectMsgClass(100 seconds, classOf[AnalyzeResponse])
+    println(response)
+
+  }
+
+
+
   "parse test" should "correctly" in {
     var regexStr = Source.fromURL(getClass.getResource("data/test.txt")).mkString
     if (StringUtils.countMatches(regexStr, "(") - StringUtils.countMatches(regexStr, "\\(") == StringUtils.countMatches(regexStr, "(?:") - StringUtils.countMatches(regexStr, "\\(?:")) {

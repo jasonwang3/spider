@@ -16,14 +16,7 @@ object Site {
 }
 
 @SerialVersionUID(1L)
-class Site extends Serializable {
-
-  def this(domain: String) = {
-    this()
-    this.domain = domain
-  }
-
-  var domain: String = null
+class Site(var domain: String) extends Serializable {
 
   var userAgent: String = null
 

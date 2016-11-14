@@ -4,9 +4,10 @@ import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import com.alibaba.fastjson.JSONObject
 import com.spider.model.processor.{AnalyzeRequest, AnalyzeResponse}
 import com.spider.model.support.SelectorType
-import com.spider.model.{Action, Rule}
+import com.spider.model.{Action, Content, Rule}
 import com.spider.processor.selector.Selectable
 import com.spider.processor.selector.impl.{Html, PlainText}
+
 import scala.collection.JavaConversions
 
 /**
@@ -34,9 +35,8 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
       val links = generateLinks(html, analyzeRequest.rule)
       analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, links, null)
     } else if (analyzeRequest.rule.action == Action.GET_CONTENT) {
-      val jsonObject = generateContent(html, analyzeRequest.rule)
-      val json = jsonObject.toJSONString
-      analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, null, json)
+      val content = generateContent(html, analyzeRequest.rule)
+      analyzeResponse = new AnalyzeResponse(analyzeRequest.spiderId, analyzeRequest.step, null, content)
     }
     from.tell(analyzeResponse, self)
     log.debug("sent analyze response {}", analyzeResponse.targets)
@@ -47,9 +47,9 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
     processUrl(_html.all)
   }
 
-  def generateContent(html: Html, rule: Rule): JSONObject = {
+  def generateContent(html: Html, rule: Rule): List[Content] = {
     val _html = getHtml(html, rule)
-    val jsonObject: JSONObject = new JSONObject()
+    var contentList:List[Content] = List()
     if (rule.contentSelectors != null && rule.contentSelectors.nonEmpty) {
       rule.contentSelectors.foreach(contentSelector => {
         val paramName = contentSelector.paramName
@@ -63,10 +63,11 @@ class ProcessorActor(_spiderId: String, _analyzeRequest: AnalyzeRequest, _from: 
             selectable = _html.regex(matchRule.rule)
           }
         })
-        jsonObject.put(paramName, JavaConversions.asJavaCollection(selectable.all))
+        val content:Content = new Content(paramName, selectable.all, contentSelector.urlDownload)
+        contentList = contentList :+ content
       })
     }
-    jsonObject
+    contentList
   }
 
   def getHtml(html: Html, rule: Rule): Selectable = {
