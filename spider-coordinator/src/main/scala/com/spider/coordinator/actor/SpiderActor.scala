@@ -2,18 +2,17 @@ package com.spider.coordinator.actor
 
 import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.DistributedPubSub
-import akka.cluster.pubsub.DistributedPubSubMediator.{Publish, Subscribe}
+import akka.cluster.pubsub.DistributedPubSubMediator.Publish
 import com.spider.model.downloader.{DownloadRequest, Page, Request}
 import com.spider.model.processor.{AnalyzeRequest, AnalyzeResponse}
-import com.spider.model.{Action, PubSubMessage, Site, Spider}
+import com.spider.model._
+import com.spider.model.message.DownloadURL
 
 /**
   * Created by jason on 16-5-13.
   */
-class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
+class SpiderActor(val spider: Spider) extends Actor with ActorLogging {
   val mediator = DistributedPubSub(context.system).mediator
-
-  val spider: Spider = _spider
 
   override def receive: Receive = {
     case page: Page => processPage(page)
@@ -49,7 +48,7 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
   }
 
   def processAnalyzeResponse(analyzeResponse: AnalyzeResponse) = {
-    log.debug("received analyze response {}", analyzeResponse)
+    log.debug("received analyze response,id is {}", analyzeResponse)
     if (spider.rules(analyzeResponse.step) != null) {
       val rule = spider.rules(analyzeResponse.step)
       rule.action match {
@@ -65,7 +64,21 @@ class SpiderActor(_spider: Spider) extends Actor with ActorLogging {
           }
         };
         case Action.GET_CONTENT => {
-          log.debug("spider {} get content is {}", spider.id, analyzeResponse.content)
+          val contents: List[Content] = analyzeResponse.contents
+          contents.foreach(content => {
+            if (content.urlDownload) {
+              //              val downloadUrl = new DownloadURL(cont)
+              //               mediator ! Publish(PubSubMessage.DOWNLOAD_URL, )
+              content.data match {
+                case List => {
+                  val data = content.data
+
+                }
+              }
+            }
+
+          })
+          shutdown
         }
       }
     }

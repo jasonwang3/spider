@@ -11,4 +11,6 @@ object PubSubMessage {
   val ANALYZE_RESPONSE = "analyzeResponse"
 
   val START_REQUEST = "startRequest"
+
+  val DOWNLOAD_URL = "downloadUrl"
 }

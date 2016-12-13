@@ -1,4 +1,3 @@
-import com.typesafe.sbt.packager.archetypes.TemplateWriter
 
 name := """spider"""
 
@@ -6,7 +5,7 @@ version := "1.0"
 
 scalaVersion := "2.11.7"
 
-lazy val akkaVersion = "2.4.0"
+lazy val akkaVersion = "2.4.12"
 
 resolvers += {
   Resolver.mavenLocal

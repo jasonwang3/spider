@@ -27,7 +27,6 @@ import scala.collection.immutable.HashMap
   */
 
 
-
 class HttpClientDownloader extends AbstractDownloader {
   val logger = LoggerFactory.getLogger(classOf[HttpClientGenerator])
 
@@ -148,7 +147,7 @@ class HttpClientDownloader extends AbstractDownloader {
     val content: String = getContent(charset, httpResponse)
     val page: Page = new Page
     page.rawText = content
-//    page.url = new PlainText(request.url)
+    //    page.url = new PlainText(request.url)
     page.request = request
     page.statusCode = httpResponse.getStatusLine.getStatusCode
     page

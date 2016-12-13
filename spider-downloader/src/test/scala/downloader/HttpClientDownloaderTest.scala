@@ -30,7 +30,7 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
   }
 
   "download with cookies" should "download a page" in {
-    val site: Site = Site.create().setDomain(".github.com").addCookie("_ga", "GA1.2.328404385.1436499079")
+    val site: Site = new Site(".github.com").addCookie("_ga", "GA1.2.328404385.1436499079")
       .addCookie(".github.com", "dotcom_user", "jasonwang3")
       .addCookie(".github.com", "logged_in", "yes")
       .addCookie("github.com", "tz", "Asia%2FShanghai")
@@ -39,8 +39,15 @@ class HttpClientDownloaderTest extends FlatSpec with Matchers with BeforeAndAfte
   }
 
   "download JD" should "download a page" in {
-    val site: Site = Site.create().setDomain("list.jd.com")
+    val site: Site = new Site("list.jd.com")
     val page = httpClientDownloader.download(new Request("http://list.jd.com/list.html?cat=670,677,678&page=1&delivery=1"), site.toTask())
+    println(page.rawText)
+  }
+
+  "download TMALL" should "download a page" in {
+    val site: Site = new Site("list.tmall.com")
+    site.charset = "GBK"
+    val page = httpClientDownloader.download(new Request("https://list.tmall.com/search_product.htm?q=%E6%9B%BC%E5%A6%AE%E8%8A%AC&imgfile=&commend=all&ssid=s5-e&search_type=tmall&sourceId=tb.index&spm=a21bo.50862.201856-taobao-item.1&ie=utf8&initiative_id=tbindexz_20161114"), site.toTask())
     println(page.rawText)
   }
 
