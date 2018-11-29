@@ -1,7 +1,7 @@
 import akka.actor.{ActorSystem, Props}
 import akka.cluster.Cluster
 import akka.testkit.{ImplicitSender, TestKit}
-import com.spider.coordinator.actor.SpiderCoordinatorActor
+import com.spider.coordinator.actor.{SpiderActor, SpiderCoordinatorActor}
 import com.spider.model.Action._
 import com.spider.model.downloader.Request
 import com.spider.model.selector.ContentSelector
@@ -29,7 +29,6 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
 
   test("QA") {
     val sessionId = "018E65370B30D758D1C218D1DD6D263B"
-    val spiderActor = system.actorOf(Props[SpiderCoordinatorActor], "downloadCoordinator")
     val request = new Request("http://219.238.188.179/seeyon/main.do?app=Coll&method=morePending4App&_spage=&page=1&pageSize=3")
     val site: Site = new Site("219.238.188.179")
       .addCookie("219.238.188.179", "JSESSIONID", sessionId)
@@ -60,16 +59,13 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
     val rules: List[Rule] = List(rule1, rule2, rule3, rule4)
     val spider = new Spider(request, site, rules)
     spider.id = "testId"
-    //send
-    Thread.sleep(5000)
-    spiderActor ! spider
-    Thread.sleep(40000)
+    val spiderActor = system.actorOf(Props(classOf[SpiderActor], spider), "spiderActor_QA")
+
   }
 
 
 
   test("JD") {
-    val spiderActor = system.actorOf(Props[SpiderCoordinatorActor], "downloadCoordinator")
     val site: Site = new Site("list.jd.com")
     val request = new Request("http://list.jd.com/list.html?cat=670,677,678&page=1&delivery=1")
     //step 1
@@ -83,13 +79,10 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
     val spider = new Spider(request, site, rules)
     spider.id = "testJD"
     //send
-    Thread.sleep(5000)
-    spiderActor ! spider
-    Thread.sleep(40000)
+    val spiderActor = system.actorOf(Props(classOf[SpiderActor], spider), "spiderActor_JD")
   }
 
   test("TMALL") {
-    val spiderActor = system.actorOf(Props[SpiderCoordinatorActor], "downloadCoordinator")
     val site: Site = new Site("list.tmall.com")
     site.charset = "GBK"
     val request = new Request("https://list.tmall.com/search_product.htm?q=%E6%9B%BC%E5%A6%AE%E8%8A%AC&imgfile=&commend=all&ssid=s5-e&search_type=tmall&sourceId=tb.index&spm=a21bo.50862.201856-taobao-item.1&ie=utf8&initiative_id=tbindexz_20161114")
@@ -104,9 +97,7 @@ class CoordinatorTest extends TestKit(ActorSystem.create("ClusterSystem", Config
     val spider = new Spider(request, site, rules)
     spider.id = "testTMALL"
     //send
-    Thread.sleep(5000)
-    spiderActor ! spider
-    Thread.sleep(40000)
+    val spiderActor = system.actorOf(Props(classOf[SpiderActor], spider), "spiderActor_TMALL")
   }
 
 }
